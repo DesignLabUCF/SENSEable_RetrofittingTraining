@@ -154,7 +154,7 @@ public class DataLogger : MonoBehaviour
         else
             term = "--------------------\n";
 
-        return "\n====================\n" + type + "\n\nCurrent:\n" + GetTimeSinceLaunch() + "\n\nTimestamp:\n" + GetTimestamp() + "\n\n" + term;
+        return "\n====================\n" + type + "\n\nCurrent:\n" + GetTimeSinceLaunch() + "\n\nTimestamp:\n" + GetTimestamp().ToString("MM-dd-yyyy_HH-mm-ss-fff") + "\n\n" + term;
     }
 
     private String DataFooter()
@@ -185,16 +185,17 @@ public class DataLogger : MonoBehaviour
     IEnumerator Save()
     {
         writingToFile = true;
+        int cutoffIndex = log.Count;
         // Create and write to the file
         string path = Application.persistentDataPath + "/OutputData/" + GetTimestamp().ToString("MM-dd-yyyy_HH-mm-ss") + ".txt";
         Debug.Log("Writing to file: " + path);
         StreamWriter writer = new StreamWriter(path, true);
-        for(int i = 0; i < log.Count; i++)
+        for(int i = 0; i < cutoffIndex; i++)
         {
             // Write to file
             writer.Write(log[i]);
             // Update gui
-            UpdateWriteProgressText(i + 1, log.Count);
+            UpdateWriteProgressText(i + 1, cutoffIndex);
             // Wait till next frame
             yield return null;
         }

@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class TaskMenu : MonoBehaviour
 {
-    public PressableButtonHoloLens2 handMenuToggle;
+    public Interactable handMenuToggle;
     public BIMManager bimManager;
     public Interactable pinToggle;
     public Interactable hologramToggle;
@@ -60,9 +60,9 @@ public class TaskMenu : MonoBehaviour
     public void CloseMenu()
     {
         // Update Hand Menu
-        handMenuToggle.SendMessage("ButtonPressed");
-        //handMenuToggle.ButtonPressed();
-        //SetVisibility(false);
+        handMenuToggle.IsToggled = false;
+        // Hide window
+        SetVisibility(false);
     }
 
     public void SetPinned()

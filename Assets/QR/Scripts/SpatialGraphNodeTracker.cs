@@ -7,7 +7,8 @@ using Microsoft.MixedReality.Toolkit.Utilities;
 #if MIXED_REALITY_OPENXR
 using Microsoft.MixedReality.OpenXR;
 #else
-using SpatialGraphNode = Microsoft.MixedReality.SampleQRCodes.WindowsXR.SpatialGraphNode;
+//using SpatialGraphNode = Microsoft.MixedReality.SampleQRCodes.WindowsXR.SpatialGraphNode;
+using SpatialGraphNode = Microsoft.MixedReality.SENSEableQR.WindowsXR.SpatialGraphNode;
 #endif
 
 namespace Microsoft.MixedReality.SENSEableQR

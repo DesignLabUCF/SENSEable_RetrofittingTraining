@@ -1402,7 +1402,7 @@ Transform:
   m_Children:
   - {fileID: 963194228}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &176523275
 GameObject:
@@ -2383,7 +2383,7 @@ Transform:
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 9, y: 14, z: 0}
 --- !u!1 &297367158
 GameObject:
@@ -2695,7 +2695,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &481338662
 GameObject:
@@ -3207,7 +3207,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &630836578
 PrefabInstance:
@@ -4693,7 +4693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56494c345bcba08478fb1b6675892e80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handMenuToggle: {fileID: 0}
+  handMenuToggle: {fileID: 1838953613}
   bimManager: {fileID: 1319848923}
   pinToggle: {fileID: 715634957}
   hologramToggle: {fileID: 1772656760}
@@ -4717,7 +4717,7 @@ Transform:
   m_Children:
   - {fileID: 1133313583}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1021327263
 MonoBehaviour:
@@ -4748,7 +4748,7 @@ MonoBehaviour:
   hostTransform: {fileID: 1021327262}
   manipulationType: 3
   twoHandedManipulationType: 7
-  allowFarManipulation: 1
+  allowFarManipulation: 0
   useForcesForNearManipulation: 0
   oneHandRotationModeNear: 1
   oneHandRotationModeFar: 1
@@ -4756,8 +4756,8 @@ MonoBehaviour:
   transformSmoothingLogicType:
     reference: Microsoft.MixedReality.Toolkit.Utilities.DefaultTransformSmoothingLogic,
       Microsoft.MixedReality.Toolkit.SDK
-  smoothingFar: 1
-  smoothingNear: 1
+  smoothingFar: 0
+  smoothingNear: 0
   moveLerpTime: 0.001
   rotateLerpTime: 0.001
   scaleLerpTime: 0.001
@@ -4827,11 +4827,11 @@ MonoBehaviour:
   faceUserDefinedTargetTransform: 0
   targetToFace: {fileID: 0}
   pivotAxis: 7
-  minDistance: 0.3
-  maxDistance: 0.9
-  defaultDistance: 0.7
-  maxViewHorizontalDegrees: 30
-  maxViewVerticalDegrees: 20
+  minDistance: 0.5
+  maxDistance: 0.5
+  defaultDistance: 0.5
+  maxViewHorizontalDegrees: 50
+  maxViewVerticalDegrees: 45
   reorientWhenOutsideParameters: 1
   orientToControllerDeadzoneDegrees: 60
   ignoreAngleClamp: 0
@@ -6433,7 +6433,7 @@ Transform:
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 27, y: 0, z: 0}
 --- !u!1001 &1209898433
 PrefabInstance:
@@ -6809,7 +6809,7 @@ Transform:
   - {fileID: 223974227}
   - {fileID: 8011685455316655508}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1319848923
 MonoBehaviour:
@@ -6825,6 +6825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rootObject: {fileID: 7234164005904860974}
   isVisible: 0
+  hologramToggle: {fileID: 1772656760}
 --- !u!1 &1336964362
 GameObject:
   m_ObjectHideFlags: 0
@@ -7448,7 +7449,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1425804477
 GameObject:
@@ -8063,7 +8064,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1710119734 stripped
 Transform:
@@ -8142,7 +8143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateLinkedTransform: 0
-  moveLerpTime: 0.1
+  moveLerpTime: 0.025
   rotateLerpTime: 0.1
   scaleLerpTime: 0
   maintainScaleOnInitialization: 1
@@ -8246,7 +8247,7 @@ Transform:
   m_Children:
   - {fileID: 481338663}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1772656760 stripped
 MonoBehaviour:
@@ -8880,11 +8881,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4201285846490890162, guid: 32258084ec35401459631f300ebbe241, type: 3}
       propertyPath: ButtonPressed.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4201285846490890162, guid: 32258084ec35401459631f300ebbe241, type: 3}
       propertyPath: ButtonPressed.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4201285846490890162, guid: 32258084ec35401459631f300ebbe241, type: 3}
       propertyPath: ButtonPressed.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
@@ -8908,11 +8909,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4201285846490890162, guid: 32258084ec35401459631f300ebbe241, type: 3}
       propertyPath: ButtonPressed.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: SetVisibility
+      value: CloseMenu
       objectReference: {fileID: 0}
     - target: {fileID: 4201285846490890162, guid: 32258084ec35401459631f300ebbe241, type: 3}
       propertyPath: ButtonPressed.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: ResetAllStates
+      value: SetInputUp
       objectReference: {fileID: 0}
     - target: {fileID: 4201285846490890162, guid: 32258084ec35401459631f300ebbe241, type: 3}
       propertyPath: ButtonPressed.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
@@ -8941,6 +8942,10 @@ PrefabInstance:
     - target: {fileID: 6855522087614523523, guid: 32258084ec35401459631f300ebbe241, type: 3}
       propertyPath: Dimensions
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6855522087614523523, guid: 32258084ec35401459631f300ebbe241, type: 3}
+      propertyPath: startDimensionIndex
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6855522087614523523, guid: 32258084ec35401459631f300ebbe241, type: 3}
       propertyPath: profiles.Array.data[0].Themes.Array.size
@@ -9040,7 +9045,7 @@ Transform:
   - {fileID: 77209942}
   - {fileID: 956889953}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2127736847
 GameObject:
@@ -11256,7 +11261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4353210698208891275, guid: 188dee834865aec40985dd6b5b238000, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4353210698208891275, guid: 188dee834865aec40985dd6b5b238000, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13659,7 +13664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateLinkedTransform: 0
-  moveLerpTime: 0.1
+  moveLerpTime: 0.05
   rotateLerpTime: 0.1
   scaleLerpTime: 0
   maintainScaleOnInitialization: 1
@@ -13683,7 +13688,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6949165250068373823}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -13698,7 +13703,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6949165250068373823}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -13709,9 +13714,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  facingCameraTrackingThreshold: 75
+  facingCameraTrackingThreshold: 45
   requireFlatHand: 0
-  flatHandThreshold: 45
+  flatHandThreshold: 30
   followHandUntilFacingCamera: 1
   followHandCameraFacingThresholdAngle: 50
   useGazeActivation: 1
@@ -13782,7 +13787,7 @@ Transform:
   m_GameObject: {fileID: 6949165251013611854}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.01}
-  m_LocalScale: {x: 0.032, y: 0.096, z: 0.02}
+  m_LocalScale: {x: 0.032, y: 0.048, z: 0.02}
   m_Children: []
   m_Father: {fileID: 6949165250068373822}
   m_RootOrder: 0

@@ -1,3 +1,4 @@
+using Microsoft.MixedReality.Toolkit.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ public class BIMManager : MonoBehaviour
 {
     public GameObject rootObject;
     public bool isVisible = false;
+    public Interactable hologramToggle;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +25,9 @@ public class BIMManager : MonoBehaviour
 
     public void SetVisibility(bool visibility)
     {
+        // Update GUI
+        hologramToggle.IsToggled = visibility;
+        // Update meshes and data
         isVisible = visibility;
         rootObject.SetActive(isVisible);
     }

@@ -13,8 +13,8 @@ public class AlignmentManager : MonoBehaviour
     public List<Vector3> scanPositions;
     public List<Vector3> scanRotations; // Euler angles
     public List<float> scanSizes; // QR size
-
     private TextMeshPro text;
+    private float xRotationOffset = 180.0f; // In degrees; Formerly 180f
 
     public void Awake()
     {
@@ -94,7 +94,7 @@ public class AlignmentManager : MonoBehaviour
             average = average + scanRotations[i];
         }
         return new Vector3(
-            (average.x / ((float)scanRotations.Count)) + 180.0f, // Fix
+            (average.x / ((float)scanRotations.Count)) + xRotationOffset,
             average.y / ((float)scanRotations.Count), 
             average.z / ((float)scanRotations.Count));
     }
