@@ -48,9 +48,6 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0",
-    "com.microsoft.mixedreality.toolkit.tools": "file:MixedReality/com.microsoft.mixedreality.toolkit.tools-2.8.2.tgz",
-    "com.microsoft.windows.mixedreality.dotnetwinrt": "file:MixedReality/com.microsoft.windows.mixedreality.dotnetwinrt-0.5.2009.tgz",
-    "com.microsoft.mixedreality.input": "file:MixedReality/com.microsoft.mixedreality.input-0.9.2006.tgz"
+    "com.unity.modules.xr": "1.0.0"
   }
 }
