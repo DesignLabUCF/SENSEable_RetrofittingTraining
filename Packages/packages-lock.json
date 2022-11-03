@@ -1,11 +1,5 @@
 {
   "dependencies": {
-    "com.microsoft.mixedreality.input": {
-      "version": "file:MixedReality/com.microsoft.mixedreality.input-0.9.2006.tgz",
-      "depth": 0,
-      "source": "local-tarball",
-      "dependencies": {}
-    },
     "com.microsoft.mixedreality.openxr": {
       "version": "file:MixedReality/com.microsoft.mixedreality.openxr-1.5.1.tgz",
       "depth": 0,

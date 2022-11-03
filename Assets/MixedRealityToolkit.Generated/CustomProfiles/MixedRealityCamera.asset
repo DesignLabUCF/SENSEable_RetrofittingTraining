@@ -43,7 +43,7 @@ MonoBehaviour:
     runtimePlatform: -1
     settingsProfile: {fileID: 11400000, guid: 32349edfa9bacb94a9fe58923e9a2400, type: 2}
   nearClipPlaneOpaqueDisplay: 0.1
-  farClipPlaneOpaqueDisplay: 1000
+  farClipPlaneOpaqueDisplay: 50
   cameraClearFlagsOpaqueDisplay: 2
   backgroundColorOpaqueDisplay: {r: 0, g: 0, b: 0, a: 0}
   opaqueQualityLevel: 5

@@ -167,18 +167,6 @@ public class DataLogger : MonoBehaviour
         // Create directory if does not exist
         if(!Directory.Exists(Application.persistentDataPath + "/OutputData"))
             Directory.CreateDirectory(Application.persistentDataPath + "/OutputData");
-        /*
-        // Create and write to the file
-        string path = Application.persistentDataPath + "/OutputData/" + GetTimestamp().ToString("MM-dd-yyyy_HH-mm-ss") + ".txt";
-        Debug.Log("Writing to file: " + path);
-        StreamWriter writer = new StreamWriter(path, true);
-        for(int i = 0; i < log.Count; i++)
-        {
-            writer.Write(log[i]);
-        }
-        writer.Close();
-        */
-        // Launch coroutine to run in the background
         StartCoroutine(Save());
     }
 
@@ -201,6 +189,22 @@ public class DataLogger : MonoBehaviour
         }
         writer.Close();
         writingToFile = false;
+    }
+
+    // Print QR rotations to external file
+    public void DebugLogSave()
+    {
+        // Create and write to the file
+        if (!Directory.Exists(Application.persistentDataPath + "/DebugTest"))
+            Directory.CreateDirectory(Application.persistentDataPath + "/DebugTest");
+        string path = Application.persistentDataPath + "/DebugTest/" + GetTimestamp().ToString("MM-dd-yyyy_HH-mm-ss") + ".txt";
+        Debug.Log("Writing to file: " + path);
+        StreamWriter writer = new StreamWriter(path, true);
+        for (int i = 0; i < alignmentManager.scanPositions.Count; i++)
+        {
+            writer.Write(i.ToString() + ": " + alignmentManager.scanPositions[i].ToString("F3") + "\n");
+        }
+        writer.Close();
     }
 
     private DateTime GetTimestamp()

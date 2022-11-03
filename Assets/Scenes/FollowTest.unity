@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 2dbb7c77550db1947a17cb72b333c6a8, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -4426,7 +4426,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 1000
+  far clip plane: 50
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -4711,7 +4711,7 @@ Transform:
   m_GameObject: {fileID: 1021327260}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.2158, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children:
   - {fileID: 1133313583}
   m_Father: {fileID: 0}
@@ -4825,9 +4825,9 @@ MonoBehaviour:
   faceUserDefinedTargetTransform: 0
   targetToFace: {fileID: 0}
   pivotAxis: 7
-  minDistance: 0.7
-  maxDistance: 0.7
-  defaultDistance: 0.7
+  minDistance: 0.4
+  maxDistance: 0.6
+  defaultDistance: 0.4
   maxViewHorizontalDegrees: 60
   maxViewVerticalDegrees: 45
   reorientWhenOutsideParameters: 1
@@ -5339,7 +5339,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1389887271}
         m_TargetAssemblyTypeName: DataLogger, Assembly-CSharp
-        m_MethodName: WriteToFile
+        m_MethodName: DebugLogSave
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

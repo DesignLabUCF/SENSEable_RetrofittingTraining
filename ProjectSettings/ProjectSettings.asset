@@ -153,6 +153,11 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -615,7 +620,8 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    14: master
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
@@ -643,11 +649,25 @@ PlayerSettings:
   metroCertificateIssuer: DefaultCompany
   metroCertificateNotAfter: 808ef180aa07da01
   metroApplicationDescription: Template_3D
-  wsaImages: {}
-  metroTileShortName: Blank_HoloLens_Unity
+  wsaImages:
+    65636: Assets/Logo50x50.png
+    131172: Assets/Logo620x300.png
+    131272: Assets/Logo1240x600.png
+    2031640: Assets/Logo24x24.png
+    2031716: Assets/Logo44x44.png
+    2031816: Assets/Logo88x88.png
+    2097252: Assets/Logo71x71.png
+    2097352: Assets/Logo142x142.png
+    2162788: Assets/Logo150x150.png
+    2162888: Assets/Logo300x300.png
+    2228324: Assets/Logo310x310.png
+    2228424: Assets/Logo620x620.png
+    2293860: Assets/Logo310x150.png
+    2293960: Assets/Logo620x300.png
+  metroTileShortName: RetrofittingTraining
   metroTileShowName: 0
   metroMediumTileShowName: 0
-  metroLargeTileShowName: 0
+  metroLargeTileShowName: 1
   metroWideTileShowName: 0
   metroSupportStreamingInstall: 0
   metroLastRequiredScene: 0
@@ -665,7 +685,8 @@ PlayerSettings:
       InternetClient: True
       WebCam: True
       Microphone: True
-  metroTargetDeviceFamilies: {}
+  metroTargetDeviceFamilies:
+    Holographic: False
   metroFTAName: 
   metroFTAFileTypes: []
   metroProtocolName: 
