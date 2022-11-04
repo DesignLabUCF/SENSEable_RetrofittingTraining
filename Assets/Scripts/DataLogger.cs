@@ -200,9 +200,18 @@ public class DataLogger : MonoBehaviour
         string path = Application.persistentDataPath + "/DebugTest/" + GetTimestamp().ToString("MM-dd-yyyy_HH-mm-ss") + ".txt";
         Debug.Log("Writing to file: " + path);
         StreamWriter writer = new StreamWriter(path, true);
+        // Position
+        writer.Write("Positions:\n");
         for (int i = 0; i < alignmentManager.scanPositions.Count; i++)
         {
             writer.Write(i.ToString() + ": " + alignmentManager.scanPositions[i].ToString("F3") + "\n");
+        }
+        writer.Write("\n\n");
+        // Rotation
+        writer.Write("Rotations:\n");
+        for (int i = 0; i < alignmentManager.scanRotations.Count; i++)
+        {
+            writer.Write(i.ToString() + ": " + alignmentManager.scanRotations[i].ToString("F3") + "\n");
         }
         writer.Close();
     }

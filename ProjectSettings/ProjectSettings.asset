@@ -158,6 +158,14 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -650,23 +658,26 @@ PlayerSettings:
   metroCertificateNotAfter: 808ef180aa07da01
   metroApplicationDescription: Template_3D
   wsaImages:
-    65636: Assets/Logo50x50.png
-    131172: Assets/Logo620x300.png
-    131272: Assets/Logo1240x600.png
-    2031640: Assets/Logo24x24.png
-    2031716: Assets/Logo44x44.png
-    2031816: Assets/Logo88x88.png
-    2097252: Assets/Logo71x71.png
-    2097352: Assets/Logo142x142.png
-    2162788: Assets/Logo150x150.png
-    2162888: Assets/Logo300x300.png
-    2228324: Assets/Logo310x310.png
-    2228424: Assets/Logo620x620.png
-    2293860: Assets/Logo310x150.png
-    2293960: Assets/Logo620x300.png
+    65636: 
+    65686: Assets/Logos/Logo75x75.png
+    131172: 
+    131222: Assets/Logos/Logo930x450.png
+    131272: 
+    2031640: Assets/Logos/Logo24x24.png
+    2031716: 
+    2031816: Assets/Logos/Logo88x88.png
+    2097252: Assets/Logos/Logo71x71.png
+    2097352: 
+    2162788: Assets/Logos/Logo150x150.png
+    2162838: 
+    2162888: 
+    2228324: Assets/Logos/Logo310x310.png
+    2228424: 
+    2293860: Assets/Logos/Logo310x150.png
+    2293960: 
   metroTileShortName: RetrofittingTraining
   metroTileShowName: 0
-  metroMediumTileShowName: 0
+  metroMediumTileShowName: 1
   metroLargeTileShowName: 1
   metroWideTileShowName: 0
   metroSupportStreamingInstall: 0

@@ -49,6 +49,8 @@ public class AlignmentManager : MonoBehaviour
             {
                 bimManager.SetVisibility(true);
             }
+            // Check for outlier
+            /// TODO
             // Collect
             scanPositions.Add(scanPosition);
             scanRotations.Add(scanRotation);
@@ -64,7 +66,7 @@ public class AlignmentManager : MonoBehaviour
             transform.position = GetAveragePosition();
             transform.eulerAngles = GetAverageRotation();
             // Lock world Position
-            // TODO
+            /// TODO
         }
     }
 
