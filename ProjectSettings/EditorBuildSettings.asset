@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/FollowTest.unity
-    guid: 84c842e849d29794f9c81e674c6a7f91
+    path: Assets/Scenes/WorldLocked.unity
+    guid: a1ea948b7c2298e4aaf8af89684e96a1
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 7f96a196da51055419b335d536ce03ac, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: eb0fb011f59828c4e841c438af24b882, type: 2}

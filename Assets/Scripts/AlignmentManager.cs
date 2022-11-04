@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Microsoft.MixedReality.SENSEableQR;
+using Microsoft.MixedReality.WorldLocking.Core;
+using static Microsoft.MixedReality.WorldLocking.Core.SpacePin;
 
 public class AlignmentManager : MonoBehaviour
 {
@@ -15,6 +17,11 @@ public class AlignmentManager : MonoBehaviour
     public List<float> scanSizes; // QR size
     private TextMeshPro text;
     private float xRotationOffset = 180.0f; // In degrees; Formerly 180f
+    private string anchorName = "SENSEableRetrofittingAnchor";
+    //private ulong anchorID = ulong.MaxValue;
+    //public AnchorId anchorID = (AnchorId)ulong.MaxValue;
+    //private IAttachmentPoint attachmentPoint;
+    //private Pose lockedPose = Pose.identity;
 
     public void Awake()
     {
@@ -35,6 +42,55 @@ public class AlignmentManager : MonoBehaviour
     void Update()
     {
 
+    }
+
+    /*
+    private AnchorId GetAnchorID()
+    {
+        return ((AnchorId)anchorID);
+    }
+    */
+    /*
+    protected virtual void OnLocationUpdate(Pose adjustment)
+    {
+        lockedPose = adjustment.Multiply(lockedPose);
+    }
+    */
+    public void WorldLockingSave()
+    {
+        /*
+        // Get Pose
+        Pose result = Pose.identity;
+        result = transform.GetGlobalPose();
+        lockedPose = result;
+        // If active, remove anchor
+        if (anchorID.IsKnown())
+            WorldLockingManager.GetInstance().AlignmentManager.RemoveAlignmentAnchor(anchorID);
+        // Add the new anchor
+        anchorID = WorldLockingManager.GetInstance().AlignmentManager.AddAlignmentAnchor(anchorName, lockedPose, lockedPose);
+        // Send
+        WorldLockingManager.GetInstance().AlignmentManager.SendAlignmentAnchors();
+        if(anchorID.IsKnown())
+        {
+            IAttachmentPointManager attachmentPointManager = WorldLockingManager.GetInstance().AttachmentPointManager;
+            if (attachmentPoint == null)
+            {
+                attachmentPoint = attachmentPointManager.CreateAttachmentPoint(lockedPose.position, null, OnLocationUpdate, null);
+            }
+            else
+            {
+                attachmentPointManager.TeleportAttachmentPoint(attachmentPoint, lockedPose.position, null);
+            }
+        }
+        */
+        // Save
+        WorldLockingManager.GetInstance().Save();
+
+    }
+
+    public void WorldLockingLoad()
+    {
+        WorldLockingManager.GetInstance().Load();
     }
 
     public void AddScan(Vector3 scanPosition, Vector3 scanRotation, float QRSize)
