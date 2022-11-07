@@ -5,9 +5,15 @@ using TMPro;
 using Microsoft.MixedReality.SENSEableQR;
 using Microsoft.MixedReality.WorldLocking.Core;
 using static Microsoft.MixedReality.WorldLocking.Core.SpacePin;
+using Microsoft.MixedReality.Toolkit.UI;
+using Microsoft.MixedReality.Toolkit.Input;
+using System;
 
 public class AlignmentManager : MonoBehaviour
 {
+    public GameObject lockButton;
+    public BoxCollider nudgeCollider;
+    public GameObject axis;
     public BIMManager bimManager;
     public bool scanningActive = true;
     //public bool structureVisible = false;
@@ -15,9 +21,10 @@ public class AlignmentManager : MonoBehaviour
     public List<Vector3> scanPositions;
     public List<Vector3> scanRotations; // Euler angles
     public List<float> scanSizes; // QR size
+    private bool scansTrimmed = false;
     private TextMeshPro text;
     private float xRotationOffset = 180.0f; // In degrees; Formerly 180f
-    private string anchorName = "SENSEableRetrofittingAnchor";
+    //private string anchorName = "SENSEableRetrofittingAnchor";
     //private ulong anchorID = ulong.MaxValue;
     //public AnchorId anchorID = (AnchorId)ulong.MaxValue;
     //private IAttachmentPoint attachmentPoint;
@@ -36,6 +43,7 @@ public class AlignmentManager : MonoBehaviour
     void Start()
     {
         scanningActive = true;
+        SetNudgeability(false);
     }
 
     // Update is called once per frame
@@ -105,24 +113,32 @@ public class AlignmentManager : MonoBehaviour
             {
                 bimManager.SetVisibility(true);
             }
-            // Check for outlier
-            /// TODO
+            // First few scans sometimes come out wonky, so just re-do them
+            if(scansTrimmed == false & scanPositions.Count > 20)
+            {
+                scansTrimmed = true;
+                scanPositions.RemoveRange(0, 5);
+                scanRotations.RemoveRange(0, 5);
+                scanSizes.RemoveRange(0, 5);
+            }
+            // Normalize rotation (issues arrise if some are below 0 and become >~350
+            scanRotation.x = NormalizeRotation(scanRotation.x);
+            scanRotation.y = NormalizeRotation(scanRotation.y);
+            scanRotation.z = -NormalizeRotation(scanRotation.z);
             // Collect
             scanPositions.Add(scanPosition);
             scanRotations.Add(scanRotation);
             scanSizes.Add(QRSize);
+            // Update count text
+            SetText(scanPositions.Count, DesiredScans);
             // Check if we are done scanning for QR codes
-            if(scanPositions.Count >= DesiredScans)
+            if (scanPositions.Count >= DesiredScans)
             {
                 ScanningComplete();
             }
-            // Update count text
-            SetText(scanPositions.Count, DesiredScans);
             // Update average preview
             transform.position = GetAveragePosition();
             transform.eulerAngles = GetAverageRotation();
-            // Lock world Position
-            /// TODO
         }
     }
 
@@ -132,6 +148,41 @@ public class AlignmentManager : MonoBehaviour
         text.gameObject.SetActive(false);
         SetQRIndicatorVisibility(false);
         GameObject.FindObjectOfType<DataLogger>().LogAlignmentComplete();
+        SetNudgeability(true);
+    }
+
+    private void SetNudgeability(bool canNudge)
+    {
+        axis.SetActive(canNudge);
+        nudgeCollider.enabled = canNudge;
+        GetComponent<NearInteractionGrabbable>().enabled = canNudge;
+        GetComponent<ObjectManipulator>().enabled = canNudge;
+        GetComponent<MinMaxScaleConstraint>().enabled = canNudge;
+        GetComponent<MoveAxisConstraint>().enabled = canNudge;
+        lockButton.SetActive(canNudge);
+    }
+
+    public void NudgeComplete()
+    {
+        SetNudgeability(false);
+    }
+
+    private float NormalizeRotation(float rot)
+    {
+        float normalized = rot;
+        if(rot <= 45.0f || rot >= (360.0f - 45.0f))
+        {
+            normalized = normalized - 180.0f;
+            if (normalized < 0f)
+            {
+                normalized = normalized + 180.0f;
+            }
+            else
+            {
+                normalized = normalized - 180.0f;
+            }
+        }
+        return normalized;
     }
 
     private Vector3 GetAveragePosition()
@@ -171,6 +222,7 @@ public class AlignmentManager : MonoBehaviour
     {
         scanPositions.Clear();
         scanRotations.Clear();
+        scansTrimmed = false;
         transform.position = Vector3.zero;
         transform.eulerAngles = Vector3.zero;
         scanningActive = true;
@@ -178,6 +230,7 @@ public class AlignmentManager : MonoBehaviour
         text.gameObject.SetActive(true);
         SetText(scanPositions.Count, DesiredScans);
         SetQRIndicatorVisibility(true);
+        SetNudgeability(false);
     }
 
     private void SetText(int n, int max)
