@@ -13,6 +13,9 @@ public class AlignmentManager : MonoBehaviour
 {
     public GameObject lockButton;
     public BoxCollider nudgeCollider;
+    //public BoxCollider xCollider;
+    //public BoxCollider yCollider;
+    //public BoxCollider zCollider;
     public GameObject axis;
     public BIMManager bimManager;
     public bool scanningActive = true;
@@ -22,6 +25,7 @@ public class AlignmentManager : MonoBehaviour
     public List<Vector3> scanRotations; // Euler angles
     public List<float> scanSizes; // QR size
     private bool scansTrimmed = false;
+    private bool manipulatorGrabbed = false;
     private TextMeshPro text;
     private float xRotationOffset = 180.0f; // In degrees; Formerly 180f
     //private string anchorName = "SENSEableRetrofittingAnchor";
@@ -44,12 +48,24 @@ public class AlignmentManager : MonoBehaviour
     {
         scanningActive = true;
         SetNudgeability(false);
+
+        // TODO REMOVE
+        Invoke("DebugScanSim", 5.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    private void DebugScanSim()
+    {
+        Debug.Log("DEBUG SCAN SIMULATION RUNNING");
+        for(int i = 0; i < DesiredScans + 50; i++)
+        {
+            AddScan(Vector3.forward, Vector3.zero, 0.25f);
+        }
     }
 
     /*
@@ -154,7 +170,11 @@ public class AlignmentManager : MonoBehaviour
     private void SetNudgeability(bool canNudge)
     {
         axis.SetActive(canNudge);
+        manipulatorGrabbed = false;
         nudgeCollider.enabled = canNudge;
+        //xCollider.enabled = canNudge;
+        //yCollider.enabled = canNudge;
+        //zCollider.enabled = canNudge;
         GetComponent<NearInteractionGrabbable>().enabled = canNudge;
         GetComponent<ObjectManipulator>().enabled = canNudge;
         GetComponent<MinMaxScaleConstraint>().enabled = canNudge;
@@ -251,6 +271,51 @@ public class AlignmentManager : MonoBehaviour
             }
         }
     }
+
+    public void NudgeStarted()
+    {
+        manipulatorGrabbed = true;
+    }
+
+    public void NudgeEnded()
+    {
+        manipulatorGrabbed = false;
+    }
+
+    public void SetNudgeAxis(Microsoft.MixedReality.Toolkit.Utilities.AxisFlags axis)
+    {
+        Debug.Log("Setting axis: " + axis.ToString());
+        if(manipulatorGrabbed == false)
+            GetComponent<RotationAxisConstraint>().ConstraintOnRotation = axis;
+    }
+
+    /*
+    private void OnTriggerEnter(Collider other)
+    {
+        if (manipulatorGrabbed == false)
+        {
+            if (other == xCollider)
+            {
+                GetComponent<MoveAxisConstraint>().ConstraintOnMovement = Microsoft.MixedReality.Toolkit.Utilities.AxisFlags.XAxis;
+            }
+            else if (other == yCollider)
+            {
+                GetComponent<MoveAxisConstraint>().ConstraintOnMovement = Microsoft.MixedReality.Toolkit.Utilities.AxisFlags.YAxis;
+            }
+            else if (other == zCollider)
+            {
+                GetComponent<MoveAxisConstraint>().ConstraintOnMovement = Microsoft.MixedReality.Toolkit.Utilities.AxisFlags.ZAxis;
+            }
+        }
+    }
+    */
+
+    /*
+    private void OnCollisionEnter(Collision collision)
+    {
+        collision.GetContact(0).thisCollider
+    }
+    */
 
     //private void SetStructureVisbility(bool visibility)
     //{
