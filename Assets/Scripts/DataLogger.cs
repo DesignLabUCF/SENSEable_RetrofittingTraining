@@ -19,6 +19,12 @@ public class DataLogger : MonoBehaviour
     //private StringBuilder log;
     private List<String> log;
     private string format = "F3";
+    private enum EyeTrackingStatus
+    {
+        NotEnabled = 0,
+        NotValid = 1,
+        Valid = 2
+    }
 
     private void Awake()
     {
@@ -38,15 +44,18 @@ public class DataLogger : MonoBehaviour
         if(HeadDataIsReadyToLog())
         {
             // Read in Gaze data
+            EyeTrackingStatus eyeTrackingStatus = EyeTrackingStatus.NotEnabled;
             bool gazeValid = false;
             Vector3 gazeOrigin = Vector3.zero;
             Vector3 gazeDirection = Vector3.zero;
             if(CoreServices.InputSystem.EyeGazeProvider.IsEyeTrackingEnabled)
             {
                 Debug.Log("Eye tracking enabled.");
-                if(CoreServices.InputSystem.EyeGazeProvider.IsEyeTrackingDataValid)
+                eyeTrackingStatus = EyeTrackingStatus.NotValid;
+                if (CoreServices.InputSystem.EyeGazeProvider.IsEyeTrackingDataValid)
                 {
                     Debug.Log("Eye tracking is valid.");
+                    eyeTrackingStatus = EyeTrackingStatus.Valid;
                     gazeValid = true;
                     gazeOrigin = CoreServices.InputSystem.EyeGazeProvider.GazeOrigin;
                     gazeDirection = CoreServices.InputSystem.EyeGazeProvider.GazeDirection;
@@ -57,7 +66,7 @@ public class DataLogger : MonoBehaviour
                 }
             }
             // Log
-            LogHeadData(userCamera.transform, gazeOrigin, gazeDirection, gazeValid, alignmentManager.transform, taskMenu.transform, taskMenu.pinned, taskMenu.visible);
+            LogHeadData(userCamera.transform, eyeTrackingStatus, gazeOrigin, gazeDirection, gazeValid, alignmentManager.transform, taskMenu.transform, taskMenu.pinned, taskMenu.visible);
             // Update timestamp
             previousTime = DateTime.Now;
         }
@@ -73,10 +82,10 @@ public class DataLogger : MonoBehaviour
             return false;
     }
 
-    public void LogHeadData(Transform head, Vector3 gazeOrigin, Vector3 gazeDirection, bool? gazeValid, Transform wall, Transform menu, bool menuPinned, bool menuVisible)
+    private void LogHeadData(Transform head, EyeTrackingStatus eyeTrackingStatus, Vector3 gazeOrigin, Vector3 gazeDirection, bool? gazeValid, Transform wall, Transform menu, bool menuPinned, bool menuVisible)
     {
         string data = DataHeader("Head", false) +
-            "\n\nHead_Position:\n" +
+            "\nHead_Position:\n" +
             head.position.ToString(format) +
             "\n\nHead_Rotation:\n" +
             head.eulerAngles.ToString(format) +
@@ -84,6 +93,8 @@ public class DataLogger : MonoBehaviour
             wall.position.ToString(format) +
             "\n\nWall_Rotation:\n" +
             wall.eulerAngles.ToString(format) +
+            "\n\nEye_Tracking_Status:\n" +
+            eyeTrackingStatus.ToString() +
             "\n\nGaze_Valid:\n" +
             gazeValid +
             "\n\nGaze_Origin:\n" +
@@ -117,7 +128,7 @@ public class DataLogger : MonoBehaviour
     public void LogTaskStarted(Task task)
     {
         string data = DataHeader("Task_Started", false) +
-            "\n\nTask_Name:\n" +
+            "\nTask_Name:\n" +
             task.taskName +
             "\n\nTask_Number:\n" +
             task.taskNumber +
@@ -131,7 +142,7 @@ public class DataLogger : MonoBehaviour
     public void LogSetMenuPin(bool pinned)
     {
         string data = DataHeader("Menu_Pin", false) +
-            "\n\nMenu_Pinned:\n" +
+            "\nMenu_Pinned:\n" +
             pinned +
             DataFooter();
         AddData(data);
@@ -139,9 +150,18 @@ public class DataLogger : MonoBehaviour
         //log.Append(data);
         //Debug.Log(data);
     }
+    public void LogWallLocked()
+    {
+        string data = DataHeader("Wall_Locked", true);
+        AddData(data);
+        //log.Add(data);
+        //log.Append(data);
+        //Debug.Log(data);
+    }
+
     private void AddData(string data)
     {
-        if(!writingToFile) // Only update GUI text when writing to file is not occuring
+        if(writingToFile == false) // Only update GUI text when writing to file is not occuring
             UpdateWriteProgressText(0, log.Count);
         log.Add(data);
     }
@@ -162,20 +182,25 @@ public class DataLogger : MonoBehaviour
         return "\n====================\n";
     }
 
-    public void WriteToFile()
+    public void WriteToFile(bool isManualSave)
     {
+        // Save already in progress
+        if (writingToFile == true)
+            return;
         // Create directory if does not exist
         if(!Directory.Exists(Application.persistentDataPath + "/OutputData"))
             Directory.CreateDirectory(Application.persistentDataPath + "/OutputData");
-        StartCoroutine(Save());
+        StartCoroutine(Save(isManualSave));
     }
 
-    IEnumerator Save()
+    IEnumerator Save(bool isManualSave)
     {
+        // File params
         writingToFile = true;
         int cutoffIndex = log.Count;
+        string saveType = (isManualSave == true) ? "MANUAL" : "AUTO";
         // Create and write to the file
-        string path = Application.persistentDataPath + "/OutputData/" + GetTimestamp().ToString("MM-dd-yyyy_HH-mm-ss") + ".txt";
+        string path = Application.persistentDataPath + "/OutputData/" + GetTimestamp().ToString("MM-dd-yyyy_HH-mm-ss") + "_" + saveType + ".txt";
         Debug.Log("Writing to file: " + path);
         StreamWriter writer = new StreamWriter(path, true);
         for(int i = 0; i < cutoffIndex; i++)

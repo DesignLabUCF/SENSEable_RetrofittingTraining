@@ -6,11 +6,13 @@ using UnityEngine;
 public class Axis : MonoBehaviour
 {
     public Microsoft.MixedReality.Toolkit.Utilities.AxisFlags axis;
+    private AxisManager axisManager;
     private AlignmentManager alignmentManager;
     private MeshRenderer grabHighlightMesh;
 
     private void Awake()
     {
+        axisManager = transform.parent.GetComponent<AxisManager>();
         alignmentManager = GameObject.FindObjectOfType<AlignmentManager>();
         grabHighlightMesh = transform.Find("GrabHighlight").GetComponent<MeshRenderer>();
     }
@@ -39,16 +41,30 @@ public class Axis : MonoBehaviour
     }
     */
 
-    public void ActivateAxis()
+    /*
+
+    public void Activate()
     {
         AxisFlags flag = ~axis;
         alignmentManager.SetNudgeAxis(flag);
         grabHighlightMesh.enabled = true;
     }
 
-    public void DeactivateAxis()
+    public void Deactivate()
     {
         //alignmentManager.SetNudgeAxis(axis);
         grabHighlightMesh.enabled = false;
     }
+    */
+
+    public void SetVisibility(bool visibile)
+    {
+        grabHighlightMesh.enabled = visibile;
+    }
+
+    public void AlertManager()
+    {
+        axisManager.ActivateAxis(this, axis);
+    }
+
 }

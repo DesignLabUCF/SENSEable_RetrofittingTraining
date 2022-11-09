@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 5931879533557367670}
   - component: {fileID: 3461790135992929409}
   - component: {fileID: 5689570342290326479}
+  - component: {fileID: 1035807694809336}
   m_Layer: 0
   m_Name: AxisPointerX
   m_TagString: Untagged
@@ -213,8 +214,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.75, y: 0.5, z: 0.5}
-  m_Center: {x: 1, y: 0, z: 0}
+  m_Size: {x: 2, y: 0.5, z: 0.5}
+  m_Center: {x: 1.25, y: 0, z: 0}
 --- !u!114 &1498014293470202419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb2d9f98ea5c3c4a9a7b8dafb70d53e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axis: 4
+  axis: 1
 --- !u!114 &1498014293470202423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,7 +271,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1498014293470202419}
         m_TargetAssemblyTypeName: Axis, Assembly-CSharp
-        m_MethodName: ActivateAxis
+        m_MethodName: AlertManager
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -282,19 +283,7 @@ MonoBehaviour:
         m_CallState: 2
   onHoverExited:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1498014293470202419}
-        m_TargetAssemblyTypeName: Axis, Assembly-CSharp
-        m_MethodName: DeactivateAxis
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1498014293470202420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,6 +350,20 @@ MonoBehaviour:
   executionOrder: 0
   constraintOnRotation: -1
   useLocalSpaceForConstraint: 0
+--- !u!114 &1035807694809336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497915404418864206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5afd5316c63705643b3daba5a6e923bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTetherWhenManipulating: 0
+  IsBoundsHandles: 0
 --- !u!1 &1497961446206613708
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,6 +697,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1496377471626104466}
+  - component: {fileID: 1958782281532199}
   m_Layer: 0
   m_Name: Axis
   m_TagString: Untagged
@@ -708,7 +712,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1498838380817547164}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children:
@@ -719,6 +723,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1958782281532199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498838380817547164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfafb8bafe1862940a1fcc97f767665f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1499144328732855442
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,6 +913,7 @@ GameObject:
   - component: {fileID: 9180189013521209443}
   - component: {fileID: 4910843538148574583}
   - component: {fileID: 1538304030065497749}
+  - component: {fileID: 1365068425155662}
   m_Layer: 0
   m_Name: AxisPointerY
   m_TagString: Untagged
@@ -932,8 +949,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.75, y: 0.5, z: 0.5}
-  m_Center: {x: 1, y: 0, z: 0}
+  m_Size: {x: 2, y: 0.5, z: 0.5}
+  m_Center: {x: 1.25, y: 0, z: 0}
 --- !u!114 &1498014293470202418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -946,7 +963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb2d9f98ea5c3c4a9a7b8dafb70d53e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axis: 1
+  axis: 2
 --- !u!114 &5273283269499687505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -989,7 +1006,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1498014293470202418}
         m_TargetAssemblyTypeName: Axis, Assembly-CSharp
-        m_MethodName: ActivateAxis
+        m_MethodName: AlertManager
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1001,19 +1018,7 @@ MonoBehaviour:
         m_CallState: 2
   onHoverExited:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1498014293470202418}
-        m_TargetAssemblyTypeName: Axis, Assembly-CSharp
-        m_MethodName: DeactivateAxis
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &5264019428614071587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1081,6 +1086,20 @@ MonoBehaviour:
   executionOrder: 0
   constraintOnRotation: -1
   useLocalSpaceForConstraint: 0
+--- !u!114 &1365068425155662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499379361082501362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5afd5316c63705643b3daba5a6e923bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTetherWhenManipulating: 0
+  IsBoundsHandles: 0
 --- !u!1 &1499457610324072600
 GameObject:
   m_ObjectHideFlags: 0
@@ -1178,6 +1197,7 @@ GameObject:
   - component: {fileID: 4703220387303409259}
   - component: {fileID: 2459996606241972567}
   - component: {fileID: 6883172193088921121}
+  - component: {fileID: 1539497595593040}
   m_Layer: 0
   m_Name: AxisPointerZ
   m_TagString: Untagged
@@ -1213,8 +1233,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.75, y: 0.5, z: 0.5}
-  m_Center: {x: 1, y: 0, z: 0}
+  m_Size: {x: 2, y: 0.5, z: 0.5}
+  m_Center: {x: 1.25, y: 0, z: 0}
 --- !u!114 &1498014293470202429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1227,7 +1247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb2d9f98ea5c3c4a9a7b8dafb70d53e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axis: 2
+  axis: 4
 --- !u!114 &6385013119125615920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1271,7 +1291,7 @@ MonoBehaviour:
   rotateLerpTime: 0.001
   scaleLerpTime: 0.001
   enableConstraints: 1
-  constraintsManager: {fileID: 6385013119125615920}
+  constraintsManager: {fileID: 1498014293470202420}
   elasticsManager: {fileID: 0}
   onManipulationStarted:
     m_PersistentCalls:
@@ -1284,7 +1304,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1498014293470202429}
         m_TargetAssemblyTypeName: Axis, Assembly-CSharp
-        m_MethodName: ActivateAxis
+        m_MethodName: AlertManager
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1296,19 +1316,7 @@ MonoBehaviour:
         m_CallState: 2
   onHoverExited:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1498014293470202429}
-        m_TargetAssemblyTypeName: Axis, Assembly-CSharp
-        m_MethodName: DeactivateAxis
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &4703220387303409259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1361,6 +1369,20 @@ MonoBehaviour:
   executionOrder: 0
   constraintOnRotation: -1
   useLocalSpaceForConstraint: 0
+--- !u!114 &1539497595593040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499553790781414896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5afd5316c63705643b3daba5a6e923bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTetherWhenManipulating: 0
+  IsBoundsHandles: 0
 --- !u!1 &2826730579746008917
 GameObject:
   m_ObjectHideFlags: 0

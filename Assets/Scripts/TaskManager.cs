@@ -42,6 +42,8 @@ public class TaskManager : MonoBehaviour
         //SetTaskHologramVisibility(true, currentTask);
         // Update data log
         GameObject.FindObjectOfType<DataLogger>().LogTaskStarted(currentTask);
+        if(currentTask.taskName == "End") // Save file when end is reached for safety
+            FindObjectOfType<DataLogger>().WriteToFile(false);
     }
 
     /*

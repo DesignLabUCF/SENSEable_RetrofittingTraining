@@ -49,8 +49,9 @@ public class AlignmentManager : MonoBehaviour
         scanningActive = true;
         SetNudgeability(false);
 
-        // TODO REMOVE
-        Invoke("DebugScanSim", 5.0f);
+#if UNITY_EDITOR
+        Invoke("DebugScanSim", 5.0f); // For debugging in Editor
+#endif
     }
 
     // Update is called once per frame
@@ -66,6 +67,7 @@ public class AlignmentManager : MonoBehaviour
         {
             AddScan(Vector3.forward, Vector3.zero, 0.25f);
         }
+        transform.eulerAngles = transform.eulerAngles + (new Vector3(180.0f, 0f, 0f));
     }
 
     /*
@@ -185,6 +187,7 @@ public class AlignmentManager : MonoBehaviour
     public void NudgeComplete()
     {
         SetNudgeability(false);
+        GameObject.FindObjectOfType<DataLogger>().LogWallLocked();
     }
 
     private float NormalizeRotation(float rot)
@@ -288,38 +291,4 @@ public class AlignmentManager : MonoBehaviour
         if(manipulatorGrabbed == false)
             GetComponent<RotationAxisConstraint>().ConstraintOnRotation = axis;
     }
-
-    /*
-    private void OnTriggerEnter(Collider other)
-    {
-        if (manipulatorGrabbed == false)
-        {
-            if (other == xCollider)
-            {
-                GetComponent<MoveAxisConstraint>().ConstraintOnMovement = Microsoft.MixedReality.Toolkit.Utilities.AxisFlags.XAxis;
-            }
-            else if (other == yCollider)
-            {
-                GetComponent<MoveAxisConstraint>().ConstraintOnMovement = Microsoft.MixedReality.Toolkit.Utilities.AxisFlags.YAxis;
-            }
-            else if (other == zCollider)
-            {
-                GetComponent<MoveAxisConstraint>().ConstraintOnMovement = Microsoft.MixedReality.Toolkit.Utilities.AxisFlags.ZAxis;
-            }
-        }
-    }
-    */
-
-    /*
-    private void OnCollisionEnter(Collision collision)
-    {
-        collision.GetContact(0).thisCollider
-    }
-    */
-
-    //private void SetStructureVisbility(bool visibility)
-    //{
-    //    scanObjectRoot.SetActive(visibility);
-    //    structureVisible = visibility;
-    //}
 }
