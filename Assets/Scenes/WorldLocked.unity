@@ -14084,7 +14084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5320988348424196406, guid: 6ba03d38e5f0a79418df65e925f0c052, type: 3}
       propertyPath: taskNumber
-      value: 
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5320988348424196406, guid: 6ba03d38e5f0a79418df65e925f0c052, type: 3}
       propertyPath: instructions
