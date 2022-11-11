@@ -1,0 +1,37 @@
+#:import C kivy.utils.get_color_from_hex
+#Method for introducing color conversion 16 credit colors
+ 
+<BottomColorButton@FrameToggleButton>:
+    group:'color'
+    border:(4,4,4,4)
+    on_release:app.canvas_widget.change_color(self.draw_color) #trigger event
+ 
+ 
+<DrawCanvasWidget>:
+    canvas.before:
+        Color:
+            rgba:[1,1,1,1]
+        Rectangle:
+            pos:self.pos
+            size:self.size
+#    Button:
+#        id: playButton
+#        text:'Play/Pause'
+#        background_normal: ''
+#        background_down: ''
+#        background_color: C('#808080')
+#        size:0.25*root.width,60
+#        on_press:app.canvas_widget.play_button()
+#        pos:0,0
+#    Slider:
+#        id: timeline
+#        min: 0
+#        max: 100
+#        step: 1
+#        orientation: 'horizontal'
+#        size:0.75*root.width,60
+#        pos:0.25*root.width,0
+
+
+
+

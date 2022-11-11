@@ -1,0 +1,74 @@
+#:import C kivy.utils.get_color_from_hex
+#Method for introducing color conversion 16 credit colors
+ 
+<BottomColorButton@FrameToggleButton>:
+    group:'color'
+    border:(4,4,4,4)
+    on_press:app.canvas_widget.change_color(self.draw_color) #trigger event
+ 
+ 
+<DrawCanvasWidget>:
+    canvas.before:
+        Color:
+            rgba:[1,1,1,1]
+        Rectangle:
+            pos:self.pos
+            size:self.size
+ 
+
+    BoxLayout:    #Add a layout
+        id:bottom_box    #Add id properties
+        orientation:'horizontal'  #Specify the layout direction
+        padding:2   #Set the spacing
+        spacing:2   #Set the spacing
+        size:root.width,60   #Set size
+        BottomColorButton:
+            id: button1
+            text:'Color:\nWood Studs'
+            draw_color:C('#9A6324') #and background change must match below
+            background_normal: ''
+            background_down: ''
+            background_color: C('#999999') if self.state == 'normal' else C('#9A6324')
+            state:'down'
+            thickness:'Coarse'
+            on_press:app.canvas_widget.change_line_width(self.thickness)
+        BottomColorButton:
+            id: button2
+            text:'Color:\nPipes'
+            draw_color:C('#000075')
+            background_normal: ''
+            background_down: ''
+            background_color: C('#999999') if self.state == 'normal' else C('#000075')
+            thickness:'generally'
+            on_press:app.canvas_widget.change_line_width(self.thickness)
+        BottomColorButton:
+            id: button3
+            text:'Color:\nWire'
+            draw_color:C('#990000')  
+            background_normal: ''
+            background_down: ''
+            background_color: C('#999999') if self.state == 'normal' else C('#990000')
+            thickness:'generally'
+            on_press:app.canvas_widget.change_line_width(self.thickness)
+        BottomColorButton:
+            id: button4
+            text:'Color:\nOutlet'
+            draw_color:C('#333333')
+            background_normal: ''
+            background_down: ''
+            background_color: C('#999999') if self.state == 'normal' else C('#333333')
+            thickness:'generally'
+            on_press:app.canvas_widget.change_line_width(self.thickness)
+        Button:
+            id: button4
+            text:'Undo'
+            background_normal: ''
+            background_down: ''
+            #background_color: C('#999999') if self.state == 'normal' else C('#990000')
+            background_color: C('#999999')
+            on_press:app.canvas_widget.undo()
+            #on_press:app.canvas_widget.Pressbtn(self)
+
+
+
+

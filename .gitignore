@@ -1,3 +1,18 @@
+#### SENSEable Design Lab
+
+## Subject data
+Data/Subjects/*
+!Data/Subjects/*.gitkeep
+Data/Logs/*
+!Data/Logs/*.gitkeep
+## Python enviornment
+Data/env/
+## Experiment documents
+Documents/*
+!Documents/*.gitkeep
+
+#### UNITY
+
 # This .gitignore file should be placed at the root of your Unity project directory
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore

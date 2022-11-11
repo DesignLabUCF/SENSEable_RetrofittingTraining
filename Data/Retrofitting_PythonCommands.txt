@@ -1,0 +1,11 @@
+# STEP 0 - SET DIRECTORY
+pushd F:\AR_Retrofitting\Data
+
+# 1. WALL ESTIMATOR
+env\Scripts\python WallEstimator.py SUBJECT_NUMBER
+
+# 2. EXPERIMENT TRACKER
+env\Scripts\python ProgressTracker.py
+
+# 3. WALL ART TOOL
+env\Scripts\python WallArtTool.py %subject%
