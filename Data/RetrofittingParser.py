@@ -25,19 +25,23 @@ class LogEvent:
 	# Head data
 	head_position = ""
 	head_rotation = ""
-	facade_position = ""
-	facade_rotation = ""
+	wall_visible = ""
+	wall_position = ""
+	wall_rotation = ""
+	gaze_status = ""
 	gaze_valid = ""
 	gaze_origin = ""
 	gaze_direction = ""
-	gaze_confidence = ""
 	# Layer data
 	wires = ""
 	pipes = ""
 	studs = ""
 	# Menu pin data
-	menu_name = ""
 	menu_pinned = ""
+	menu_position = ""
+	menu_rotation = ""
+	menu_scale = ""
+	menu_visible = ""
 
 	def reset(self):
 		# Universal
@@ -50,19 +54,23 @@ class LogEvent:
 		# Head data
 		head_position = ""
 		head_rotation = ""
-		facade_position = ""
-		facade_rotation = ""
+		wall_visible = ""
+		wall_position = ""
+		wall_rotation = ""
+		gaze_status = ""
 		gaze_valid = ""
 		gaze_origin = ""
 		gaze_direction = ""
-		gaze_confidence = ""
 		# Layer data
 		wires = ""
 		pipes = ""
 		studs = ""
 		# Menu pin data
-		menu_name = ""
 		menu_pinned = ""
+		menu_position = ""
+		menu_rotation = ""
+		menu_scale = ""
+		menu_visible = ""
 
 	def __init__(self, event_type):
 		self.event_type = event_type
@@ -72,6 +80,8 @@ class LogEvent:
 
 
 def main():
+	print("Opening file: " + sys.argv[1] + ".txt")
+
 	event_parse_started = False
 	read_event_name = False
 	read_current = False
@@ -80,24 +90,32 @@ def main():
 	read_task_number = False
 	read_head_position = False
 	read_head_rotation = False
-	read_facade_position = False
-	read_facade_rotation = False
+	read_wall_visible = False
+	read_wall_position = False
+	read_wall_rotation = False
+	read_gaze_status = False
 	read_gaze_valid = False
 	read_gaze_origin = False
 	read_gaze_direction = False
-	read_gaze_confidence = False
+	#read_gaze_confidence = False
 	read_wires = False
 	read_pipes = False
 	read_studs = False
-	read_menu_name = False
+	#read_menu_name = False
 	read_menu_pinned = False
+	read_menu_position = False
+	read_menu_rotation = False
+	read_menu_scale = False
+	read_menu_visible = False
 
 	event_list = []
 	log_event = None
 
 	try:
 		#log = open(file_name + ".log")
-		log = open(sys.argv[1] + ".log")
+		log = open(sys.argv[1] + ".txt")
+		print("Parsing file...")
+
 		for line in log:
 			line = line.strip()
 			# Read in data
@@ -122,12 +140,18 @@ def main():
 			elif read_head_rotation:
 				read_head_rotation = False
 				log_event.head_rotation = line
-			elif read_facade_position:
-				read_facade_position = False
-				log_event.facade_position = line
-			elif read_facade_rotation:
-				read_facade_rotation = False
-				log_event.facade_rotation = line
+			elif read_wall_visible:
+				read_wall_visible = False
+				log_event.wall_visible = line
+			elif read_wall_position:
+				read_wall_position = False
+				log_event.wall_position = line
+			elif read_wall_rotation:
+				read_wall_rotation = False
+				log_event.wall_rotation = line
+			elif read_gaze_status:
+				read_gaze_status = False
+				log_event.gaze_status = line
 			elif read_gaze_valid:
 				read_gaze_valid = False
 				log_event.gaze_valid = line
@@ -137,9 +161,6 @@ def main():
 			elif read_gaze_direction:
 				read_gaze_direction = False
 				log_event.gaze_direction = line
-			elif read_gaze_confidence:
-				read_gaze_confidence = False
-				log_event.gaze_confidence = line
 			elif read_wires:
 				read_wires = False
 				log_event.wires = line
@@ -149,12 +170,21 @@ def main():
 			elif read_studs:
 				read_studs = False
 				log_event.studs = line
-			elif read_menu_name:
-				read_menu_name = False
-				log_event.menu_name = line
 			elif read_menu_pinned:
 				read_menu_pinned = False
 				log_event.menu_pinned = line
+			elif read_menu_position:
+				read_menu_position = False
+				log_event.menu_position = line
+			elif read_menu_rotation:
+				read_menu_rotation = False
+				log_event.menu_rotation = line
+			elif read_menu_scale:
+				read_menu_scale = False
+				log_event.menu_scale = line
+			elif read_menu_visible:
+				read_menu_visible = False
+				log_event.menu_visible = line
 
 			# Determine what type of data the next line is
 			elif "====================" in line: # Start or end of event
@@ -179,33 +209,45 @@ def main():
 				read_head_position = True
 			elif "Head_Rotation:" == line and event_parse_started:
 				read_head_rotation = True
-			elif "Facade_Position:" == line and event_parse_started:
-				read_facade_position = True
-			elif "Facade_Rotation:" == line and event_parse_started:
-				read_facade_rotation = True
+			elif "Wall_Visible:" == line and event_parse_started:
+				read_wall_visible = True
+			elif "Wall_Position:" == line and event_parse_started:
+				read_wall_position = True
+			elif "Wall_Rotation:" == line and event_parse_started:
+				read_wall_rotation = True
+			elif "Gaze_Status:" == line and event_parse_started:
+				read_gaze_status = True
 			elif "Gaze_Valid:" == line and event_parse_started:
 				read_gaze_valid = True
 			elif "Gaze_Origin:" == line and event_parse_started:
 				read_gaze_origin = True
 			elif "Gaze_Direction:" == line and event_parse_started:
 				read_gaze_direction = True
-			elif "Gaze_Confidence:" == line and event_parse_started:
-				read_gaze_confidence = True
 			elif "Wires:" == line and event_parse_started:
 				read_wires = True
 			elif "Pipes:" == line and event_parse_started:
 				read_pipes = True
 			elif "Studs:" == line and event_parse_started:
 				read_studs = True
-			elif "Menu_Name:" == line and event_parse_started:
-				read_menu_name = True
 			elif "Menu_Pinned:" == line and event_parse_started:
 				read_menu_pinned = True
+			elif "Menu_Position:" == line and event_parse_started:
+				read_menu_position = True
+			elif "Menu_Rotation:" == line and event_parse_started:
+				read_menu_rotation = True
+			elif "Menu_Scale:" == line and event_parse_started:
+				read_menu_scale = True
+			elif "Menu_Visible:" == line and event_parse_started:
+				read_menu_visible = True
 	except Exception as e:
 			raise e
 
+	print("Parsing complete.")
+	print("Creating output file: " + sys.argv[1] + ".csv")
+
 	with open(sys.argv[1] + ".csv", 'w', newline='') as csvfile:
 		writer = csv.writer(csvfile)
+		print("Writing to file...")
 		writer.writerow(["Type", \
 			"Current", \
 			"Timestamp", \
@@ -217,12 +259,14 @@ def main():
 			"Head_Rotation_X", \
 			"Head_Rotation_Y", \
 			"Head_Rotation_Z", \
-			"Facade_Position_X", \
-			"Facade_Position_Y", \
-			"Facade_Position_Z", \
-			"Facade_Rotation_X", \
-			"Facade_Rotation_Y", \
-			"Facade_Rotation_Z", \
+			"Wall_Visible", \
+			"Wall_Position_X", \
+			"Wall_Position_Y", \
+			"Wall_Position_Z", \
+			"Wall_Rotation_X", \
+			"Wall_Rotation_Y", \
+			"Wall_Rotation_Z", \
+			"Gaze_Status", \
 			"Gaze_Valid", \
 			"Gaze_Origin_X", \
 			"Gaze_Origin_Y", \
@@ -230,20 +274,30 @@ def main():
 			"Gaze_Direction_X", \
 			"Gaze_Direction_Y", \
 			"Gaze_Direction_Z", \
-			"Gaze_Confidence", \
 			"Wires", \
 			"Pipes", \
 			"Studs", \
-			"Menu_Name", \
-			"Menu_Pinned"])
+			"Menu_Position_X", \
+			"Menu_Position_Y", \
+			"Menu_Position_Z", \
+			"Menu_Rotation_X", \
+			"Menu_Rotation_Y", \
+			"Menu_Rotation_Z", \
+			"Menu_Scale_X", \
+			"Menu_Scale_Y", \
+			"Menu_Scale_Z", \
+			"Menu_Visible"])
 		for i in range(0, len(event_list)):
 			log_event = event_list[i]
 			head_pos_x, head_pos_y, head_pos_z = parse_xyz_from_line(log_event.head_position)
 			head_rot_x, head_rot_y, head_rot_z = parse_xyz_from_line(log_event.head_rotation)
-			facade_pos_x, facade_pos_y, facade_pos_z = parse_xyz_from_line(log_event.facade_position)
-			facade_rot_x, facade_rot_y, facade_rot_z = parse_xyz_from_line(log_event.facade_rotation)
+			wall_pos_x, wall_pos_y, wall_pos_z = parse_xyz_from_line(log_event.wall_position)
+			wall_rot_x, wall_rot_y, wall_rot_z = parse_xyz_from_line(log_event.wall_rotation)
 			gaze_origin_rot_x, gaze_origin_rot_y, gaze_origin_rot_z = parse_xyz_from_line(log_event.gaze_origin)
 			gaze_direction_rot_x, gaze_direction_rot_y, gaze_direction_rot_z = parse_xyz_from_line(log_event.gaze_direction)
+			menu_pos_x, menu_pos_y, menu_pos_z = parse_xyz_from_line(log_event.menu_position)
+			menu_rot_x, menu_rot_y, menu_rot_z = parse_xyz_from_line(log_event.menu_rotation)
+			menu_scale_x, menu_scale_y, menu_scale_z = parse_xyz_from_line(log_event.menu_scale)
 			writer.writerow([log_event.event_type, \
 				log_event.current_time, \
 				log_event.timestamp, \
@@ -255,12 +309,14 @@ def main():
 				head_rot_x, \
 				head_rot_y, \
 				head_rot_z, \
-				facade_pos_x, \
-				facade_pos_y, \
-				facade_pos_z, \
-				facade_rot_x, \
-				facade_rot_y, \
-				facade_rot_z, \
+				log_event.wall_visible, \
+				wall_pos_x, \
+				wall_pos_y, \
+				wall_pos_z, \
+				wall_rot_x, \
+				wall_rot_y, \
+				wall_rot_z, \
+				log_event.gaze_status, \
 				log_event.gaze_valid, \
 				gaze_origin_rot_x, \
 				gaze_origin_rot_y, \
@@ -268,24 +324,30 @@ def main():
 				gaze_direction_rot_x, \
 				gaze_direction_rot_y, \
 				gaze_direction_rot_z, \
-				log_event.gaze_confidence, \
 				log_event.wires, \
 				log_event.pipes, \
 				log_event.studs, \
-				log_event.menu_name, \
-				log_event.menu_pinned])
+				menu_pos_x, \
+				menu_pos_y, \
+				menu_pos_z, \
+				menu_rot_x, \
+				menu_rot_y, \
+				menu_rot_z, \
+				menu_scale_x, \
+				menu_scale_y, \
+				menu_scale_z, \
+				log_event.menu_visible])
+	print("Output file succesfully generated!")
 
-
-#X=76.408 Y=319.696 Z=150.947
-#P=-10.223447 Y=-113.999596 R=-1.140259
+#(0.053, -0.007, -0.030)
 def parse_xyz_from_line(line):
 	if line == "":
-		return "", "", ""
-	s = line.split("=")
-	x = s[1][:-2] # remove " Y"
-	y = s[2][:-2] # remove " Z"/" R"
-	z = s[3].strip()
-	return x, y, z
+		return None, None, None
+	s = line.split(",")
+	x = s[0][1:].strip() # remove '('
+	y = s[1].strip()
+	z = s[2].strip()[:-1].strip() # remove ')' and any potential spaces
+	return float(x), float(y), float(z)
 
 if __name__ == "__main__":
 	main()

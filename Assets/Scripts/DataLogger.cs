@@ -11,6 +11,7 @@ public class DataLogger : MonoBehaviour
 {
     public Camera userCamera;
     public AlignmentManager alignmentManager;
+    public BIMManager bIMManager;
     public TaskMenu taskMenu;
     public TextMeshPro writeProgressText;
     public float interval = 0.25f; // Every 'interval' seconds
@@ -66,7 +67,7 @@ public class DataLogger : MonoBehaviour
                 }
             }
             // Log
-            LogHeadData(userCamera.transform, eyeTrackingStatus, gazeOrigin, gazeDirection, gazeValid, alignmentManager.transform, taskMenu.transform, taskMenu.pinned, taskMenu.visible);
+            LogHeadData(userCamera.transform, eyeTrackingStatus, gazeOrigin, gazeDirection, gazeValid, alignmentManager.transform, bIMManager.isVisible, taskMenu.transform, taskMenu.pinned, taskMenu.visible);
             // Update timestamp
             previousTime = DateTime.Now;
         }
@@ -82,13 +83,15 @@ public class DataLogger : MonoBehaviour
             return false;
     }
 
-    private void LogHeadData(Transform head, EyeTrackingStatus eyeTrackingStatus, Vector3 gazeOrigin, Vector3 gazeDirection, bool? gazeValid, Transform wall, Transform menu, bool menuPinned, bool menuVisible)
+    private void LogHeadData(Transform head, EyeTrackingStatus eyeTrackingStatus, Vector3 gazeOrigin, Vector3 gazeDirection, bool? gazeValid, Transform wall, bool wallVisible, Transform menu, bool menuPinned, bool menuVisible)
     {
         string data = DataHeader("Head", false) +
             "\nHead_Position:\n" +
             head.position.ToString(format) +
             "\n\nHead_Rotation:\n" +
             head.eulerAngles.ToString(format) +
+            "\n\nWall_Visible:\n" +
+            wallVisible +
             "\n\nWall_Position:\n" +
             wall.position.ToString(format) +
             "\n\nWall_Rotation:\n" +
@@ -107,6 +110,8 @@ public class DataLogger : MonoBehaviour
             menu.position.ToString(format) +
             "\n\nMenu_Rotation:\n" +
             menu.rotation.ToString(format) +
+            "\n\nMenu_Scale:\n" +
+            menu.localScale.ToString(format) +
             "\n\nMenu_Visible:\n" +
             menuVisible +
             DataFooter();
