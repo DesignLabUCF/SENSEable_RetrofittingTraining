@@ -8721,6 +8721,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   userCamera: {fileID: 963194227}
   alignmentManager: {fileID: 1319848921}
+  bIMManager: {fileID: 1319848923}
   taskMenu: {fileID: 1021327261}
   writeProgressText: {fileID: 258204234}
   interval: 0.25

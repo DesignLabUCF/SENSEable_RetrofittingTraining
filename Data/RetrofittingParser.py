@@ -32,10 +32,6 @@ class LogEvent:
 	gaze_valid = ""
 	gaze_origin = ""
 	gaze_direction = ""
-	# Layer data
-	wires = ""
-	pipes = ""
-	studs = ""
 	# Menu pin data
 	menu_pinned = ""
 	menu_position = ""
@@ -61,10 +57,6 @@ class LogEvent:
 		gaze_valid = ""
 		gaze_origin = ""
 		gaze_direction = ""
-		# Layer data
-		wires = ""
-		pipes = ""
-		studs = ""
 		# Menu pin data
 		menu_pinned = ""
 		menu_position = ""
@@ -97,11 +89,6 @@ def main():
 	read_gaze_valid = False
 	read_gaze_origin = False
 	read_gaze_direction = False
-	#read_gaze_confidence = False
-	read_wires = False
-	read_pipes = False
-	read_studs = False
-	#read_menu_name = False
 	read_menu_pinned = False
 	read_menu_position = False
 	read_menu_rotation = False
@@ -161,15 +148,6 @@ def main():
 			elif read_gaze_direction:
 				read_gaze_direction = False
 				log_event.gaze_direction = line
-			elif read_wires:
-				read_wires = False
-				log_event.wires = line
-			elif read_pipes:
-				read_pipes = False
-				log_event.pipes = line
-			elif read_studs:
-				read_studs = False
-				log_event.studs = line
 			elif read_menu_pinned:
 				read_menu_pinned = False
 				log_event.menu_pinned = line
@@ -223,12 +201,6 @@ def main():
 				read_gaze_origin = True
 			elif "Gaze_Direction:" == line and event_parse_started:
 				read_gaze_direction = True
-			elif "Wires:" == line and event_parse_started:
-				read_wires = True
-			elif "Pipes:" == line and event_parse_started:
-				read_pipes = True
-			elif "Studs:" == line and event_parse_started:
-				read_studs = True
 			elif "Menu_Pinned:" == line and event_parse_started:
 				read_menu_pinned = True
 			elif "Menu_Position:" == line and event_parse_started:
@@ -274,9 +246,6 @@ def main():
 			"Gaze_Direction_X", \
 			"Gaze_Direction_Y", \
 			"Gaze_Direction_Z", \
-			"Wires", \
-			"Pipes", \
-			"Studs", \
 			"Menu_Position_X", \
 			"Menu_Position_Y", \
 			"Menu_Position_Z", \
@@ -324,9 +293,6 @@ def main():
 				gaze_direction_rot_x, \
 				gaze_direction_rot_y, \
 				gaze_direction_rot_z, \
-				log_event.wires, \
-				log_event.pipes, \
-				log_event.studs, \
 				menu_pos_x, \
 				menu_pos_y, \
 				menu_pos_z, \

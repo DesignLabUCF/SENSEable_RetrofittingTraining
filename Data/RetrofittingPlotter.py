@@ -67,10 +67,10 @@ def main():
 		ax = plt.axes(projection="3d")
 		# Facade
 		if plot_facade:
-			cube_x = head_data.iloc[head_data.shape[0] - 1]["Facade_Position_X"]
-			cube_y = head_data.iloc[head_data.shape[0] - 1]["Facade_Position_Y"] 
-			cube_z = head_data.iloc[head_data.shape[0] - 1]["Facade_Position_Z"]
-			facade_rotation_angle = head_data.iloc[head_data.shape[0] - 1]["Facade_Rotation_Y"]
+			cube_x = head_data.iloc[head_data.shape[0] - 1]["Wall_Position_X"]
+			cube_y = head_data.iloc[head_data.shape[0] - 1]["Wall_Position_Y"] 
+			cube_z = head_data.iloc[head_data.shape[0] - 1]["Wall_Position_Z"]
+			facade_rotation_angle = head_data.iloc[head_data.shape[0] - 1]["Wall_Rotation_Y"]
 			# Conference room - Pos 1
 			cube_dx = 152.4 # TODO VERIFY
 			cube_dy = -10.0
