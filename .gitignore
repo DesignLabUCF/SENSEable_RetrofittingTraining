@@ -8,8 +8,9 @@ Data/Logs/*
 ## Python enviornment
 Data/env/
 ## Experiment documents
-Documents/*
-!Documents/*.gitkeep
+#Documents/*
+#!Documents/*.gitkeep
+Documents/IRB
 
 #### UNITY
 
