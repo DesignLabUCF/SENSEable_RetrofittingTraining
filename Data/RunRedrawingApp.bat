@@ -1,5 +1,4 @@
-set subject=TEST2
-set datafile=TEST2_2022-02-17_18-24-29-936349
-pushd D:\UnrealProjects\Retrofitting\Data
+set subject=1
+set datafile=1_2022-11-14_19-46-52-523083
 env\Scripts\python RedrawWallArt.py %subject% %datafile%
 

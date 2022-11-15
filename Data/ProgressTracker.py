@@ -15,11 +15,18 @@
 import sys
 import os
 from tkinter import *
+from tkinter import messagebox
 from datetime import datetime
 import csv
 
+# Global vars
+is_ar = None
+save_text = None
+# Scripts params
 TIME_FORMAT = "%m_%d_%Y-%H_%M_%S_%f"
 DEFAULT_DATETIME = None
+# Tasks
+camera_after_these_tasks = ["4b", "6", "8", "11"]
 tasks = [ \
 ["0a", "Headset is on", DEFAULT_DATETIME], \
 ["0b", "GUI training complete", DEFAULT_DATETIME], \
@@ -29,10 +36,10 @@ tasks = [ \
 #["1d", "Pencil", DEFAULT_DATETIME], \
 #["1e", "Ruler", DEFAULT_DATETIME], \
 ["1d", "Blue tape", DEFAULT_DATETIME], \
-["1e", "Hard hat", DEFAULT_DATETIME], \
-["1f", "Gloves", DEFAULT_DATETIME], \
-["1g", "Glasses", DEFAULT_DATETIME], \
-["1h", "Stud finder", DEFAULT_DATETIME], \
+#["1e", "Hard hat", DEFAULT_DATETIME], \
+["1e", "Gloves", DEFAULT_DATETIME], \
+#["1g", "Glasses", DEFAULT_DATETIME], \
+["1f", "Stud finder", DEFAULT_DATETIME], \
 ["2a", "Outlet and junction box", DEFAULT_DATETIME], \
 ["2b", "Mounting screws", DEFAULT_DATETIME], \
 ["2c", "Service panel", DEFAULT_DATETIME], \
@@ -43,10 +50,10 @@ tasks = [ \
 ["6", "Draw lines", DEFAULT_DATETIME], \
 ["7", "Drill guide holes", DEFAULT_DATETIME], \
 ["8", "Cut wall", DEFAULT_DATETIME], \
-["9", "Locate the wire", DEFAULT_DATETIME], \
-["10", "Feed the wire", DEFAULT_DATETIME], \
-["11", "Mark on stud side", DEFAULT_DATETIME], \
-["12", "Attach junction box", DEFAULT_DATETIME]]
+["9", "Identify the wire", DEFAULT_DATETIME], \
+#["10", "Feed the wire", DEFAULT_DATETIME], \
+["10", "Mark on stud side", DEFAULT_DATETIME], \
+["11", "Drill fits", DEFAULT_DATETIME]]
 
 
 def get_datetime(task):
@@ -55,22 +62,28 @@ def get_datetime(task):
 	task[2] = now
 	task[3].config(text = task[2])
 	print(task[0] + " - " + task[1] + " - " + task[2].strftime("%m/%d/%Y %H:%M:%S.%f"))
+	save_task_log(save_text.get("1.0","end-1c"), False)
 
 def reset_task(task):
 	task[2] = DEFAULT_DATETIME
 	task[3].config(text = "")
 	print("Resetting " + task[0] + " - " + task[1])
+	save_task_log(save_text.get("1.0","end-1c"), False)
 
-def save_task_log(subject_id, is_ar):
+def save_task_log(subject_id, is_manual_save):
+	# Get save type from input
+	save_type = "MANUAL" if is_manual_save else "AUTO"
+	print("Initiating " + save_type + " save.")
 	# Check text box input of subject ID
 	if subject_id == None or subject_id == "":
+		messagebox.showerror('Error', 'Error: No subject ID inputted to top text box. Please enter an ID before saving. Save not complete.')
 		print("ERROR: No subject ID inputted to top text box. Please enter an ID before saving. Save not complete.")
 		return
 	# Get directory and datetime info
 	now = datetime.now()
 	file_directory = "Subjects\\" + subject_id + "\\"
 	#file_name = "ProgressTracker_" + now.strftime("%d_%m_%Y-%H_%M_%S_%f")
-	file_name = "ProgressTracker_" + now.strftime(TIME_FORMAT)
+	file_name = "ProgressTracker_" + save_type + "_" + now.strftime(TIME_FORMAT)
 	full_file = file_directory + file_name + ".csv"
 	# If needed, create subject directory
 	if not os.path.isdir(file_directory):
@@ -120,6 +133,9 @@ def save_task_log(subject_id, is_ar):
 	print(full_file + " generated!")
 
 def main(argv):
+	# Get global variables
+	global save_text
+	global is_ar
 	# Check if AR component
 	if len(argv) > 0 and "AR" in argv[0].upper():
 		is_ar = True
@@ -136,14 +152,17 @@ def main(argv):
 	#window.geometry("1200x800")
 	window.resizable(width=False, height=False)
 	window.configure(background="white")
+	window.wm_iconbitmap("icon.ico") # Icon (For classy reason, duh)
 	# Create GUI frame
 	frame = Frame(window)
 	# Create GUI header row/save button
 	save_label = Label(window, text="Subject ID: ")
+	save_label.config(bg= "gold")
 	save_label.grid(column=0, row=0, sticky=W)
 	save_text = Text(window, height=1, width=10)
+	save_text.config(bg= "gold")
 	save_text.grid(column=1, row=0, sticky=W)
-	save_button = Button(window, text="SAVE PROGRESS", command=lambda : save_task_log(save_text.get("1.0","end-1c"), is_ar)) # x=task from https://stackoverflow.com/questions/4236182/generate-tkinter-buttons-dynamically
+	save_button = Button(window, text="SAVE PROGRESS", command=lambda : save_task_log(save_text.get("1.0","end-1c"), True)) # x=task from https://stackoverflow.com/questions/4236182/generate-tkinter-buttons-dynamically
 	save_button.grid(column=2, row=0, sticky=W)
 	condition_label = Label(window, text=condition_label_text)
 	condition_label.grid(column=3, row=0, sticky=W)
@@ -152,10 +171,10 @@ def main(argv):
 	for task in tasks:
 		# Skip non-relevant tasks
 		if is_ar:
-			if task[0] == "1h":
+			if task[0] == "1f": # Stud finder
 				continue
 		else:
-			if task[0] == "0a" or task[0] == "0b":
+			if task[0] == "0a" or task[0] == "0b": # Headset on and GUI test
 				continue
 		# Text labels
 		label_id = Label(window, text=task[0])
@@ -170,6 +189,12 @@ def main(argv):
 		reset_button = Button(window, text="Reset", command=lambda x=task : reset_task(x)).grid(column=4, row=grid_inc, sticky=W) # x=task from https://stackoverflow.com/questions/4236182/generate-tkinter-buttons-dynamically
 		# Inc loop value
 		grid_inc = grid_inc + 1
+		# Add camera indicator
+		if(task[0] in camera_after_these_tasks):
+			label_photo = Label(window, text="Stop here for picture")
+			label_photo.config(bg= "coral1")
+			label_photo.grid(column=0, row=grid_inc, columnspan=5, sticky='ew')
+			grid_inc = grid_inc + 1
 	# Run GUI
 	window.mainloop()
 
