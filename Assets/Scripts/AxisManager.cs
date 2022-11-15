@@ -31,6 +31,11 @@ public class AxisManager : MonoBehaviour
     {
     }
 
+    public void InitialActivation()
+    {
+        ActivateAxis(xAxis, xAxis.axis);
+    }
+
     public void ActivateAxis(Axis axis, AxisFlags axisFlag)
     {
         // Set MRTK scripts

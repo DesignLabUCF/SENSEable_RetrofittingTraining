@@ -16,6 +16,7 @@ public class AlignmentManager : MonoBehaviour
     //public BoxCollider xCollider;
     //public BoxCollider yCollider;
     //public BoxCollider zCollider;
+    public GameObject grabHighlight;
     public GameObject axis;
     public BIMManager bimManager;
     public bool scanningActive = true;
@@ -172,6 +173,8 @@ public class AlignmentManager : MonoBehaviour
     private void SetNudgeability(bool canNudge)
     {
         axis.SetActive(canNudge);
+        if(canNudge)
+            axis.GetComponent<AxisManager>().InitialActivation();
         manipulatorGrabbed = false;
         nudgeCollider.enabled = canNudge;
         //xCollider.enabled = canNudge;
@@ -186,6 +189,7 @@ public class AlignmentManager : MonoBehaviour
 
     public void NudgeComplete()
     {
+        SetGrabHighlightVisibility(false);
         SetNudgeability(false);
         GameObject.FindObjectOfType<DataLogger>().LogWallLocked();
     }
@@ -283,6 +287,11 @@ public class AlignmentManager : MonoBehaviour
     public void NudgeEnded()
     {
         manipulatorGrabbed = false;
+    }
+
+    public void SetGrabHighlightVisibility(bool visible)
+    {
+        grabHighlight.SetActive(visible);
     }
 
     public void SetNudgeAxis(Microsoft.MixedReality.Toolkit.Utilities.AxisFlags axis)
