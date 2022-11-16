@@ -29,7 +29,7 @@ outlet_dimensions = (2.76, 4.5) # width (inch), height (inch)
 outlet_pixel_positions = ((670, 742), (732, 840)) # top-left corner, bottom-right corner
 wall_file = "wall.png"
 tkinter_font = 'Times 20'
-instructions_text = "Suppose you wish to install an electrical outet on a wall within your home. You plan install the outlet at the position shown in the following image. How much of the wall would you need to cut into during the process? Click and drag the mouse on the image to draw a rectangle of the desired cutout area. When you're done, select the Continue button."
+instructions_text = "Suppose you wish to install an electrical outlet on a wall within your home. You plan install the\noutlet at the position shown in the following image. How much of the wall would you need to cut into during the process? Click and drag the mouse on the image to draw a rectangle of the estimated cutout area.\n\nSelect the continue button below when you are ready to begin."
 # Script variables
 points = [] # [[x, y], [x, y], ....]
 img = None

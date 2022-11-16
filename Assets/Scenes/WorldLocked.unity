@@ -1026,9 +1026,11 @@ PrefabInstance:
       propertyPath: instructions
       value: Put on the safety gloves. Do NOT drill yet, but determine if there is
         enough space cut out of the wall so that drilling into the marked points
-        with the electric drill is possible. If there is not enough space, use the
-        jab saw to increase the cutout space as little as possible. Once you have
-        determined that there is enough space for the drill, inform the study administrator.
+        with the electric drill is possible. The drill should be able to be inserted
+        into the cutout area and drill into the stud perpendicularly. If there is
+        not enough space, use the jab saw to increase the cutout space as little
+        as possible. Once you have determined that there is enough space for the
+        drill, inform the study administrator.
       objectReference: {fileID: 0}
     - target: {fileID: 8790496467519586413, guid: 6ba03d38e5f0a79418df65e925f0c052, type: 3}
       propertyPath: m_Name
@@ -7973,7 +7975,7 @@ MonoBehaviour:
   smoothingFar: 1
   smoothingNear: 1
   moveLerpTime: 0.001
-  rotateLerpTime: 0.95
+  rotateLerpTime: 0.6
   scaleLerpTime: 0.001
   enableConstraints: 1
   constraintsManager: {fileID: 1319848927}
