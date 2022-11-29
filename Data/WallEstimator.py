@@ -202,13 +202,16 @@ def get_id_window():
 	id_label.pack(fill=BOTH)
 	id_text = Text(window, height=1, width=10, font=tkinter_font)
 	id_text.pack(fill=BOTH)
-	id_text.focus()
-	continue_button = Button(window, text="Continue", font=tkinter_font, command=lambda : finish_get_id(id_text.get("1.0","end-1c").strip(), window))
+	id_text.focus() ## MAY NEED TO CALL AGAIN
+	pre_val = IntVar()
+	pre_check = Checkbutton(window, text="Pre-Test", variable=pre_val, onvalue=1, offvalue=0)
+	pre_check.pack(fill=BOTH)
+	continue_button = Button(window, text="Continue", font=tkinter_font, command=lambda : finish_get_id(id_text.get("1.0","end-1c").strip(), pre_val.get(), window))
 	continue_button.pack(fill=BOTH)
 	# Run GUI
 	window.mainloop()
 
-def finish_get_id(subject_id_textbox_value, root_window):
+def finish_get_id(subject_id_textbox_value, is_pretest, root_window):
 	global subject_name
 	global subject_dir
 	global file_name
@@ -219,7 +222,8 @@ def finish_get_id(subject_id_textbox_value, root_window):
 	# Assign filename values from textbox input
 	subject_name = subject_id_textbox_value
 	subject_dir = "Subjects//" + subject_name
-	file_name = subject_dir + "//" + "SizeEstimation" + "_" + subject_name + "_" + ".csv"
+	test_type = "Pre" if (is_pretest == 1) else "Post"
+	file_name = subject_dir + "//" + "SizeEstimation" + "_" + subject_name + "_" + test_type + ".csv"
 	# Create directories for subject if needed
 	#assert not os.path.isfile(file_name), "Error: File '" + file_name + "' already exists. Please delete it or double check subject name argument before restarting."
 	if not os.path.isdir(subject_dir):
