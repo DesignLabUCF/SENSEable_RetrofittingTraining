@@ -28,8 +28,8 @@ DEFAULT_DATETIME = None
 # Tasks
 camera_after_these_tasks = ["4b", "6", "8", "11"]
 tasks = [ \
-["0a", "Headset is on", DEFAULT_DATETIME], \
-["0b", "GUI training complete", DEFAULT_DATETIME], \
+["0a", "Headset is on/Explanation", DEFAULT_DATETIME], \
+["0b", "GUI training complete/Blueprint search", DEFAULT_DATETIME], \
 ["1a", "Electric drill", DEFAULT_DATETIME], \
 ["1b", "Jab saw", DEFAULT_DATETIME], \
 ["1c", "Handheld screwdriver", DEFAULT_DATETIME], \
@@ -173,9 +173,9 @@ def main(argv):
 		if is_ar:
 			if task[0] == "1f": # Stud finder
 				continue
-		else:
-			if task[0] == "0a" or task[0] == "0b": # Headset on and GUI test
-				continue
+		#else:
+		#	if task[0] == "0a" or task[0] == "0b": # Headset on and GUI test
+		#		continue
 		# Text labels
 		label_id = Label(window, text=task[0])
 		label_id.grid(column=0, row=grid_inc, sticky=W)
