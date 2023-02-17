@@ -5,6 +5,8 @@ Data/Subjects/*
 !Data/Subjects/*.gitkeep
 Data/Logs/*
 !Data/Logs/*.gitkeep
+Data/ISMAR2023/Outputs/*
+!Data/ISMAR2023/Outputs/*.gitkeep
 ## Python enviornment
 Data/env/
 ## Experiment documents
