@@ -95,7 +95,7 @@ def main(argv):
 						duration_seconds = seconds + microseconds
 						df.at[index, 'Duration_Seconds'] = duration_seconds
 				# Melt and reform
-				df_melted = pd.melt(df, id_vars="Task_Name", value_vars="Duration_Seconds")
+				df_melted = pd.melt(df, id_vars=["Task_Name", "Task_ID"], value_vars="Duration_Seconds")
 				df_melted = df_melted.rename(columns={"value" : "Duration"})
 				df_melted = df_melted.drop('variable', axis=1)
 				df_melted["Subject_ID"] = subject_dir

@@ -5,7 +5,7 @@
 # v1.0
 # 2/21/2021
 ##################################
-# EXP: 'python PerspectiveCorrection.py'
+# EXP: 'python PerspectiveCorrection.py full_file_path'
 ##################################
 # Authors: 
 # Sermarini

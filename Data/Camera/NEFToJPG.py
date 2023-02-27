@@ -21,7 +21,7 @@ import imageio
 # Shout out to our boy M Kompas on StackOverflow
 # https://stackoverflow.com/questions/59054975/how-to-convert-a-nef-raw-image-file-type-to-jpg-in-python-on-mac
 def convert_NEF(file_name):
-    print("Converting " + file_name + " to .jpg")
+    print("Converting " + file_name + " to JPG...")
     with rawpy.imread(file_name) as raw:
         # Convert data
         rgb = raw.postprocess()
@@ -29,8 +29,13 @@ def convert_NEF(file_name):
         image_name = file_name[:-4] + ".jpg"
         #name_split = image_name.split("\\")
         #image_name = "Camera\\JPG\\" + name_split[2]
-        # Save
-        imageio.imsave(image_name, rgb)   
+        # Outputs
+        #imageio.imsave(image_name, rgb) 
+        return rgb, image_name  
+
+def save_NEF(rgb, full_path):
+    imageio.imsave(full_path, rgb) # Save
+    print(full_path, "saved!")
 
 def main(argv):
     # Check inputs and initialize
@@ -41,12 +46,12 @@ def main(argv):
         #raw_paths = glob.glob('Camera\\Raw\\*.NEF')
         raw_paths = glob.glob(argv[1] + "\\*.NEF")
         for raw_path in raw_paths:
-            convert_NEF(raw_path)
+            save_NEF(*convert_NEF(raw_path))
     # Individual file
     else:
         # TODO VERIFY FILE EXISTS
         assert os.path.exists(argv[1]), "Error: File " + argv[1] + " not found."
-        convert_NEF(argv[1])
+        save_NEF(*convert_NEF(argv[1]))
 
 if __name__=='__main__':
     main(sys.argv[1:])
