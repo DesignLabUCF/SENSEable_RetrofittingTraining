@@ -8,6 +8,8 @@ Data/Logs/*
 Data/ISMAR2023/Outputs/*
 !Data/ISMAR2023/Outputs/*.gitkeep
 Data/ISMAR2023/StatisticalAnalyses.txt
+Data/Camera/CollectedSubjectPhotos/*
+!Data/Camera/CollectedSubjectPhotos/*.gitkeep
 ## Python enviornment
 Data/env/
 ## Experiment documents

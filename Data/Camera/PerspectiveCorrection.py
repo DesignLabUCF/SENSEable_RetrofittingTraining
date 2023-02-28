@@ -49,6 +49,31 @@ areas = [] # [[vertex 1, vertex 2, vertex 3], [vertex 1, vertex 2, vertex 3, ver
 area_images = []
 
 
+def reset():
+    global undistorted_image
+    global image
+    global corners
+    global corners_images
+    global wall_dimensions
+    global dimensions_images
+    global areas
+    global area_images
+    global warped
+
+    undistorted_image = None
+    image = None
+    corners = []
+    corners_images = []
+
+    wall_dimensions = []
+    dimensions_images = []
+
+    areas = []
+    area_images = []
+
+    warped = None
+
+
 # https://pyimagesearch.com/2014/08/25/4-point-opencv-getperspective-transform-example/
 def order_points(pts):
     # initialzie a list of coordinates that will be ordered
@@ -353,35 +378,12 @@ def ResizeWithAspectRatio(image, width=None, height=None, inter=cv2.INTER_AREA):
 
     return cv2.resize(image, dim, interpolation=inter)
 
-if __name__ == '__main__':
-    # Set debug values for an easier time getting to what I need to get to
-    if DEBUG_EDGES:
-        print("RUNNING WITH DEBUG PRESET CORNERS")
-        corners = [(382, 134), (1144, 124), (1157, 901), (380, 891)]
-    if DEBUG_DIMENSIONS:
-        print("RUNNING WITH DEBUG PRESET DIMENSIONS")
-        wall_dimensions = [50, 756, 775, 35]
-    if DEBUG_AREA:
-        print("RUNNING WITH DEBUG PRESET CUTOUT AREA")
-        areas = [[(564, 566), (565, 494), (614,491), (614, 564)], []]
+def calculate_area(image_name):
+    global image
+    global warped
+    reset()
 
-    '''
-        Open original image
-        Use undistorer script to remove lens distortion from original picture if needed
-    '''
-    assert os.path.exists(sys.argv[1]), "Error: File " + sys.argv[1] + " not found."
-    # Read and open image
-    if not "_Undistorted" in sys.argv[1]: # Need to undistort image first
-        print("Image requires camera lens distortion removal. Initiating...") 
-        undistort(sys.argv[1])
-        image_name = sys.argv[1][:-4] + "_Undistorted.jpg"
-        undistorted_image = cv2.imread(image_name, 1)
-        print("Opening undistorted " + image_name + "...")
-    else:
-        image_name = sys.argv[1]
-        undistorted_image = cv2.imread(image_name, 1)
-        print("No undistortion required. Opening " + image_name + "...")
-    #undistorted_image = cv2.imread("Camera\\Perspective\\Test\\DSC_3073.jpg", 1)
+    undistorted_image = cv2.imread(image_name, 1)
     height, width, _ = undistorted_image.shape
 
     '''
@@ -492,3 +494,43 @@ if __name__ == '__main__':
     print("Cutout area (inch):", (cutout_area / pixles_per_inch))
 
     cv2.destroyAllWindows()
+
+    # Total cutout area in pixels and inches
+    return cutout_area, (cutout_area / pixles_per_inch),
+
+
+if __name__ == '__main__':
+    """
+    # Set debug values for an easier time getting to what I need to get to
+    if DEBUG_EDGES:
+        print("RUNNING WITH DEBUG PRESET CORNERS")
+        corners = [(382, 134), (1144, 124), (1157, 901), (380, 891)]
+    if DEBUG_DIMENSIONS:
+        print("RUNNING WITH DEBUG PRESET DIMENSIONS")
+        wall_dimensions = [50, 756, 775, 35]
+    if DEBUG_AREA:
+        print("RUNNING WITH DEBUG PRESET CUTOUT AREA")
+        areas = [[(564, 566), (565, 494), (614,491), (614, 564)], []]
+    """
+
+    '''
+        Open original image
+        Use undistorer script to remove lens distortion from original picture if needed
+    '''
+    assert os.path.exists(sys.argv[1]), "Error: File " + sys.argv[1] + " not found."
+    # Read and open image
+    """
+    if not "_Undistorted" in sys.argv[1]: # Need to undistort image first
+        print("Image requires camera lens distortion removal. Initiating...") 
+        undistort(sys.argv[1])
+        image_name = sys.argv[1][:-4] + "_Undistorted.jpg"
+        undistorted_image = cv2.imread(image_name, 1)
+        print("Opening undistorted " + image_name + "...")
+    else:
+        image_name = sys.argv[1]
+        undistorted_image = cv2.imread(image_name, 1)
+        print("No undistortion required. Opening " + image_name + "...")
+    """
+    #undistorted_image = cv2.imread("Camera\\Perspective\\Test\\DSC_3073.jpg", 1)
+    image_name = sys.argv[1]
+    calculate_area(image_name)
