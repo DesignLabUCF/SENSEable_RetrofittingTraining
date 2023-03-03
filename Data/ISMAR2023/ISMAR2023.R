@@ -8,14 +8,19 @@ paper_color <- "#D41159"
 
 output_filename <- "StatisticalAnalyses.txt"
 
+subjects_to_remove <- c("2", "58")
 
 ##############################################
 ### Progress Tracker Data
 ##############################################
-progress_tracker_data <- read.csv("Outputs/CongregatedProgressTrackers.csv",
+
+# TODO UPDATE 55 MANUALLY
+
+progress_tracker_data <- read.csv("../Subjects/CongregatedProgressTrackers.csv",
                                   #skip=1,
                                   header=TRUE,
                                   sep=",")[,-1]
+progress_tracker_data <- progress_tracker_data[!progress_tracker_data$Subject_ID %in% subjects_to_remove, ] # Remove unused subjects
 progress_tracker_data$AR_Condition <- as.logical(progress_tracker_data$AR_Condition) # Cast to boolean for condition value
 
 # Keep only desired columns
@@ -140,8 +145,6 @@ pt_wilcoxin(progress_tracker_data, "11")
 ###### STOP WRITE FILE ###### 
 sink()
 
-# TODO SPLIT INTO INDIVIDUAL TASKS
-
 ##############################################
 ### Plot - Progress Tracker Mean Times
 ##############################################
@@ -163,7 +166,7 @@ pt_duration <- ggplot(progress_tracker_sum, aes(x=Task_ID, y=Mean_Duration, fill
 print(pt_duration)
 
 ##############################################
-### Log/'Mistakes' data
+### Log/Cutout Area data
 ##############################################
 
 log_data <- read.csv("../Subjects/Log.csv",
@@ -172,16 +175,25 @@ log_data <- read.csv("../Subjects/Log.csv",
                      sep=",")
 log_data$Condition <- as.factor(log_data$Condition)
 log_data$Augmentation <- as.factor(log_data$Augmentation)
+colnames(log_data)[colnames(log_data) == "Participant_ID"] ="Participant.ID"
+log_data <- log_data[!log_data$Participant.ID %in% subjects_to_remove, ] # Remove unused subjects
 
-# Get only columns related to mistakes made
-mistakes_data <- select(log_data, c("Condition", "Augmentation", "Mistakes"))
+
+# Add in cutout area data
+cutout_data <- read.csv("../Subjects/CutoutAreas.csv",
+                        #skip=1,
+                        header=TRUE,
+                        sep=",")
+colnames(cutout_data)[colnames(cutout_data) == "Participant_ID"] ="Participant.ID"
+cutout_data <- cutout_data[!cutout_data$Participant.ID %in% subjects_to_remove, ] # Remove unused subjects
+log_data <- merge(log_data, cutout_data, by="Participant.ID")
 
 ##############################################
 ### Plot - Mistakes count (bar plot)
 ##############################################
 
 # Plot
-mistakes_plot <- ggplot(mistakes_data, aes(x=Augmentation, y=Mistakes, fill=Augmentation)) +
+mistakes_plot <- ggplot(log_data, aes(x=Augmentation, y=Mistakes, fill=Augmentation)) +
   geom_boxplot(alpha=0.7,
                color="black") +
   scale_fill_manual(values=c(ar_color, paper_color)) +
@@ -203,30 +215,62 @@ qualtrics_data <- read.csv("../Subjects/Qualtrics.csv",
                            sep=",")
 qualtrics_data <- qualtrics_data[-1:-2,] # Drop junk data
 
-# Rename essential columns in data
+# Rename essential columns in data and drop unused subjects
 colnames(qualtrics_data)[colnames(qualtrics_data) == "X1"] ="Participant.ID"
 colnames(qualtrics_data)[colnames(qualtrics_data) == "X4"] ="Augmentation"  
 colnames(qualtrics_data)[colnames(qualtrics_data) == "X5"] ="Condition"
+qualtrics_data <- qualtrics_data[!qualtrics_data$Participant.ID %in% subjects_to_remove, ] # Remove unused subjects
 
 # Factor/Unify data names with other data frames
 qualtrics_data$Augmentation[qualtrics_data$Augmentation == "Augmented Reality"] <- "AR"
 qualtrics_data$Augmentation <- as.logical(qualtrics_data$Augmentation) # Cast to boolean for condition value
 
-
-
-# TODO REST
-
-
-
+# SUS (1 (Strongly disagree) to 5 (Strongly agree))
+sus_cols <- 71:80
+sus_data <- qualtrics_data[,sus_cols]
+colnames(sus_data) <- 1:10 # Update column names to match answer key
+sus_data[1:10] <- sapply(sus_data[1:10],as.numeric) # Cast to numeric for scoring
+sus_data$Participant.ID <- qualtrics_data$Participant.ID # Re-add participant ID
+# Score the SUS (https://www.measuringux.com/sus/index.htm)
+# FORMULA: = ((B2-1)+(5-C2)+(D2-1)+(5-E2)+(F2-1)+(5-G2)+(H2-1)+(5-I2)+(J2-1)+(5-K2))*2.5
+sus_data$SUS_Score <- (
+  (sus_data$'1' - 1) +
+  (5 - sus_data$'2') +
+  (sus_data$'3' - 1) +
+  (5 - sus_data$'4') +
+  (sus_data$'5' - 1) +
+  (5 - sus_data$'6') +
+  (sus_data$'7' - 1) +
+  (5 - sus_data$'8') +
+  (sus_data$'9' - 1) +
+  (5 - sus_data$'10')) * 2.5
+# Add SUS back into overall subject log
+log_data <- merge(x = log_data, y = sus_data[ , c("Participant.ID", "SUS_Score")], by = "Participant.ID", all.x=TRUE)
+  
+# Score the TLX (https://measuringu.com/nasa-tlx/#:~:text=To%20score%2C%20you%20count%20the,to%20a%20hundred%2Dpoint%20scale.)
+tlx_cols <- 81:85
+tlx_data <- qualtrics_data[,tlx_cols]
+tlx_data <- mutate_all(tlx_data, function(x) as.numeric(as.character(x)))
+tlx_data$Participant.ID <- qualtrics_data$Participant.ID # Re-add participant ID
+# Rename columns
+colnames(tlx_data)[1] <- "Mental_Demand_Raw"
+colnames(tlx_data)[2] <- "Physical_Demand_Raw"
+colnames(tlx_data)[3] <- "Temporal_Demand_Raw"
+colnames(tlx_data)[4] <- "Performance_Demand_Raw"
+colnames(tlx_data)[5] <- "Effort_Demand_Raw"
+# Score them
+tlx_data$Mental_Demand_Score <- (tlx_data$Mental_Demand_Raw - 1) * 20
+tlx_data$Physical_Demand_Score <- (tlx_data$Physical_Demand_Raw - 1) * 20
+tlx_data$Temporal_Demand_Score <- (tlx_data$Temporal_Demand_Raw - 1) * 20
+tlx_data$Performance_Demand_Score <- (tlx_data$Performance_Demand_Raw - 1) * 20
+tlx_data$Effort_Demand_Score <- (tlx_data$Effort_Demand_Raw - 1) * 20
+# Frustration missing...
+# Add TLX back into overall subject log
+log_data <- merge(x = log_data, y = tlx_data[ , c("Participant.ID", "Mental_Demand_Score", "Physical_Demand_Score", "Temporal_Demand_Score", "Performance_Demand_Score", "Effort_Demand_Score")], by = "Participant.ID", all.x=TRUE)
 
 # Paper folding answer key
 ### TODO
 
-##############################################
-### Cutout area data
-##############################################
-
-# TODO
 
 ##############################################
 ### Watch data

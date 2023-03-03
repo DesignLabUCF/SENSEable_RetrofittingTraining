@@ -18,6 +18,8 @@
     2.
         Mark the dimensions of the wall using the 0 inch and 60 inch ruler markers
     3.
+        Select the 3 tape points to determine estimated stud position
+    4.
         Mark the cutout wall areas using triangles or rectangles. Triangles seem more accurate
 '''
 
@@ -44,6 +46,10 @@ dimension_window = "Dimensions"
 wall_dimensions = [] #[min x (pixel), max x (pixel), min y (pixel), max y (pixel)]
 dimensions_images = []
 
+stud_window = "Studs"
+stud_points = [] #[(x1, y1), (x2, y2), ...]
+stud_images = []
+
 area_window = "Area"
 areas = [] # [[vertex 1, vertex 2, vertex 3], [vertex 1, vertex 2, vertex 3, vertex 4]] Can be triangles or rectangles 
 area_images = []
@@ -56,6 +62,8 @@ def reset():
     global corners_images
     global wall_dimensions
     global dimensions_images
+    global stud_points
+    global stud_images
     global areas
     global area_images
     global warped
@@ -67,6 +75,9 @@ def reset():
 
     wall_dimensions = []
     dimensions_images = []
+
+    stud_points = []
+    stud_images = []
 
     areas = []
     area_images = []
@@ -294,6 +305,39 @@ def click_event_wall_dimensions(event, x, y, flags, params):
             else: # Put back original
                 cv2.imshow(dimension_window, warped)
 
+def click_event_stud_location(event, x, y, flags, params):
+    # TODO
+    if event == cv2.EVENT_LBUTTONDOWN:
+        if len(stud_points) < 3:
+            print("Adding stud point...")
+            # Copy previous image
+            if len(stud_points) == 0:
+                marked_image = warped.copy()
+            else:
+                marked_image = stud_images[len(stud_images) - 1].copy()
+            # Add data to corners list
+            stud_points.append((x,y))
+            # Add text and dot
+            marked_image = cv2.circle(marked_image, (x,y), 2, color, 2)
+            marked_image = cv2.putText(marked_image, str(len(stud_points)), (x + 5,y - 5), cv2.FONT_HERSHEY_SIMPLEX, 1, color, 2)
+            stud_images.append(marked_image)
+            # Show updated image
+            cv2.imshow(stud_window, marked_image)
+            print(stud_points)
+    if event == cv2.EVENT_RBUTTONDOWN:
+        if len(stud_points) > 0: # Otherwise there's nothing to undo
+            print("Undoing last stud point...")
+            stud_images.pop()
+            stud_points.pop()
+            print(wall_dimensions)
+            # Show previous image
+            if len(stud_images) != 0: # put previous marked image
+                cv2.imshow(stud_window, stud_images[len(stud_images) - 1])
+            else: # Put back original
+                cv2.imshow(stud_window, warped)
+    if event == cv2.EVENT_MBUTTONDOWN:
+        pass
+
 def click_event_area(event, x, y, flags, params):
     # Add corner
     if event == cv2.EVENT_LBUTTONDOWN:
@@ -424,6 +468,28 @@ def calculate_area(image_name):
         sys.exit()
 
     '''
+        Determine the X coordinates of the stud by selecting the three tape marks. The image should already rotated and perspective corrected so the X coordinate should be able to be compared to other subjects.
+    '''
+    # Set up window
+    cv2.imshow(stud_window, warped)
+    cv2.setWindowTitle(stud_window, 'Select 3 tape-marked stud points')
+    cv2.setMouseCallback(stud_window, click_event_stud_location)
+    # Hold for mouse input
+    cv2.waitKey(0)
+    # If Stud points were not selected, close
+    #if(len(stud_points) != 3):
+    if(not (len(stud_points) <= 3 and len(stud_points) >=2)):
+        cv2.destroyAllWindows()
+        print("ERROR: 3 stud points not selected.")
+        print("Exiting program...")
+        sys.exit()
+    # Determine average X of three selected stud points
+    stud_x_coord = 0
+    for stud_point in stud_points:
+        stud_x_coord = stud_x_coord + stud_point[0]
+    stud_x_coord = int(stud_x_coord / len(stud_points))
+
+    '''
         Draw out the area of the cutout sections
     '''
     # cv.rectangle(img,(384,0),(510,128),(0,255,0),3)
@@ -438,7 +504,7 @@ def calculate_area(image_name):
         Calculate the area in inches using the dimensions and area data
     '''
     width_inches = 60.0
-    height_inches = 60.0
+    height_inches = 63.0
     wall_area_inches = width_inches * height_inches
     width_pixles = wall_dimensions[1] - wall_dimensions[0]
     height_pixels = wall_dimensions[2] - wall_dimensions[3]
@@ -463,7 +529,7 @@ def calculate_area(image_name):
             area = 0.5 * ((b[0]-a[0])*(c[1]-a[1])-(c[0]-a[0])*(b[1]-a[1]))
             cutout_area = cutout_area + abs(area)
         elif len(shape) == 4: # Rectangle
-            print("Rectangle")
+            print("Quadrilateral")
             '''
             top_left, bottom_right = rectangle_boundaries(shape)
             width = bottom_right[0] - top_left[0]
@@ -495,8 +561,8 @@ def calculate_area(image_name):
 
     cv2.destroyAllWindows()
 
-    # Total cutout area in pixels and inches
-    return cutout_area, (cutout_area / pixles_per_inch),
+    # Total cutout area in pixels and inches, and stud x coordinate, and wall dimensions
+    return cutout_area, (cutout_area / pixles_per_inch), stud_x_coord, wall_dimensions[0], wall_dimensions[1], wall_dimensions[2], wall_dimensions[3]
 
 
 if __name__ == '__main__':

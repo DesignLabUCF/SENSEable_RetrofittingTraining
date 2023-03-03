@@ -43,22 +43,28 @@ def run_calc_for_subject(subject):
 		return
 	# Run area calculation for the last subject photo, as it is the their final results.
 	cutout_area_photo = subject_photos[len(subject_photos) - 1]
-	areas = PerspectiveCorrection.calculate_area(cutout_area_photo)
+	tagged = PerspectiveCorrection.calculate_area(cutout_area_photo)
 	#areas = 200, 340 # DEBUG Test values
-	update_csv(subject, areas[0], areas[1])
+	update_csv(subject, tagged[0], tagged[1], tagged[2], tagged[3], tagged[4], tagged[5], tagged[6])
 
 
-def update_csv(subject, area_pixels, area_inches):
+def update_csv(subject, area_pixels, area_inches, stud_x_coord, wall_x_min, wall_x_max, wall_y_min, wall_y_max):
 	print("Updating", output_file, "for subject", subject, "with the following values:")
 	print(area_pixels, "pixels")
 	print(area_inches, "inches")
+	print(stud_x_coord, "stud x coordinate")
 	# Create CSV if it doesn't exist
 	if not os.path.isfile(output_file):
 		print(output_file, "does not exist. Creating file...")
 		data = {
 			"Participant_ID" : [str(subject)], 
 			"Cutout_Area_Pixels" : [str(area_pixels)],
-			"Cutout_Area_Inches" : [str(area_inches)]
+			"Cutout_Area_Inches" : [str(area_inches)],
+			"Stud_X_Coordinate" : [str(stud_x_coord)],
+			"Wall_Min_X" : [str(wall_x_min)],
+			"Wall_Max_X" : [str(wall_x_max)],
+			"Wall_Min_Y" : [str(wall_y_min)],
+			"Wall_Max_Y" : [str(wall_y_max)]
 			}
 		dataframe = pd.DataFrame(data)
 		dataframe.to_csv(output_file, index=False)
@@ -69,9 +75,14 @@ def update_csv(subject, area_pixels, area_inches):
 		print("Subject", subject, "already in CSV. Updating stored values...")
 		dataframe.loc[dataframe['Participant_ID'] == int(subject), "Cutout_Area_Pixels"] = area_pixels
 		dataframe.loc[dataframe['Participant_ID'] == int(subject), "Cutout_Area_Inches"] = area_inches
+		dataframe.loc[dataframe['Participant_ID'] == int(subject), "Stud_X_Coordinate"] = stud_x_coord
+		dataframe.loc[dataframe['Participant_ID'] == int(subject), "Wall_Min_X"] = wall_x_min
+		dataframe.loc[dataframe['Participant_ID'] == int(subject), "Wall_Max_X"] = wall_x_max
+		dataframe.loc[dataframe['Participant_ID'] == int(subject), "Wall_Min_Y"] = wall_y_min
+		dataframe.loc[dataframe['Participant_ID'] == int(subject), "Wall_Max_Y"] = wall_y_max
 	else:
 		print("Adding new row to CSV file for subject", subject)
-		dataframe.loc["Participant_ID"] = [subject, area_pixels, area_inches]
+		dataframe.loc["Participant_ID"] = [subject, area_pixels, area_inches, stud_x_coord, wall_x_min, wall_x_max, wall_y_min, wall_y_max]
 	# Save updates
 	dataframe.to_csv(output_file, index=False)
 
