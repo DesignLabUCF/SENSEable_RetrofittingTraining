@@ -2,13 +2,29 @@ library(ggplot2)
 library(RColorBrewer)
 library(reshape2)
 library(dplyr)
+library(pastecs) # Statistical summary table
 
 ar_color <- "#1A85FF"
 paper_color <- "#D41159"
 
-output_filename <- "StatisticalAnalyses.txt"
+output_folder <- "Outputs"
+pt_filename <- "PT_stats.txt"
+cuts_filename <- "cutout_stats.txt"
+usability_filename <- "Usability_stats.txt"
 
 subjects_to_remove <- c("2", "58")
+
+print_summary <- function(df, metric){
+  print(paste(metric, "AR", sep=" - "))
+  ar <- df[df$Augmentation==TRUE,]
+  print(summary(ar[[metric]]))
+  print(stat.desc(ar[[metric]]))
+  
+  paper <- df[df$Augmentation==FALSE,]
+  print(paste(metric, "Printed", sep=" - "))
+  print(summary(paper[[metric]]))
+  print(stat.desc(paper[[metric]]))
+}
 
 ##############################################
 ### Progress Tracker Data
@@ -56,7 +72,7 @@ progress_tracker_sum <- progress_tracker_data %>%
   summarise(Mean_Duration=mean(Duration))
 
 ###### START WRITE FILE ###### 
-sink(output_filename, append=FALSE)
+sink(paste(output_folder, pt_filename, sep="/"), append=FALSE)
 print("Progress Tracker t-test's")
 print("############################")
 
@@ -76,12 +92,11 @@ pt_t_test <- function(pt_df, task_id)
   ar_shapiro <- shapiro.test(pt_subset[pt_subset$AR_Condition=="TRUE",]$Duration)
   print(ar_shapiro)
   paper_shapiro <- shapiro.test(pt_subset[pt_subset$AR_Condition=="FALSE",]$Duration)
-  print(ar_shapiro)
+  print(paper_shapiro)
   if(ar_shapiro$p.value < 0.05 | paper_shapiro$p.value < 0.05)
   {
     print("Assumption of normailty: FAILED")
-  }
-  else
+  } else
   {
     print("Assumption of normailty: PASSED")
   }
@@ -174,7 +189,8 @@ log_data <- read.csv("../Subjects/Log.csv",
                      header=TRUE,
                      sep=",")
 log_data$Condition <- as.factor(log_data$Condition)
-log_data$Augmentation <- as.factor(log_data$Augmentation)
+#log_data$Augmentation <- as.factor(log_data$Augmentation)
+log_data$Augmentation <- (log_data$Augmentation == "AR")
 colnames(log_data)[colnames(log_data) == "Participant_ID"] ="Participant.ID"
 log_data <- log_data[!log_data$Participant.ID %in% subjects_to_remove, ] # Remove unused subjects
 
@@ -188,6 +204,58 @@ colnames(cutout_data)[colnames(cutout_data) == "Participant_ID"] ="Participant.I
 cutout_data <- cutout_data[!cutout_data$Participant.ID %in% subjects_to_remove, ] # Remove unused subjects
 log_data <- merge(log_data, cutout_data, by="Participant.ID")
 
+# Add column for wall stud positions
+# Objective measures:
+#   wall-x-min: 45
+#   wall-xx-max: 777
+#   wall-x-average: 560 => 560 / 732 => ~76.5% across wall from left side
+log_data$Stud_Percentage = log_data$Stud_X_Coordinate / (log_data$Wall_Max_X - log_data$Wall_Min_X)
+
+###### START WRITE FILE ###### 
+sink(paste(output_folder, cuts_filename, sep="/"), append=FALSE)
+
+print("############################")
+print("Summary Statistics")
+print("############################")
+print_summary(log_data, "Cutout_Area_Inches")
+
+print("############################")
+print("Cutout area t-test")
+print("############################")
+
+# Assumptions
+ar_shapiro <- shapiro.test(log_data[log_data$Augmentation==TRUE,]$Cutout_Area_Inches)
+print(ar_shapiro)
+paper_shapiro <- shapiro.test(log_data[log_data$Augmentation==FALSE,]$Cutout_Area_Inches)
+print(paper_shapiro)
+if(ar_shapiro$p.value < 0.05 | paper_shapiro$p.value < 0.05)
+{
+  print("Assumption of normailty: FAILED")
+} else
+{
+  print("Assumption of normailty: PASSED")
+}
+# T-test
+t <- t.test(log_data$Cutout_Area_Inches~log_data$Augmentation,
+            paired=FALSE,
+            alternative="two.sided",
+            conf.level=0.95)
+print(t) 
+
+print("############################")
+print("Usability Wilcoxin tests")
+print("############################")
+
+wilcoxin <- wilcox.test(log_data$Cutout_Area_Inches ~ log_data$Augmentation,
+                        paired = FALSE,
+                        alternative = "two.sided",
+                        #conf.level = 0.95,
+                        exact = FALSE)
+print(wilcoxin)
+
+###### STOP WRITE FILE ###### 
+sink()
+
 ##############################################
 ### Plot - Mistakes count (bar plot)
 ##############################################
@@ -196,7 +264,7 @@ log_data <- merge(log_data, cutout_data, by="Participant.ID")
 mistakes_plot <- ggplot(log_data, aes(x=Augmentation, y=Mistakes, fill=Augmentation)) +
   geom_boxplot(alpha=0.7,
                color="black") +
-  scale_fill_manual(values=c(ar_color, paper_color)) +
+  scale_fill_manual(values=c(paper_color, ar_color)) +
   labs(
     title="Mistakes Made",
     x="Augmentation",
@@ -204,6 +272,54 @@ mistakes_plot <- ggplot(log_data, aes(x=Augmentation, y=Mistakes, fill=Augmentat
   #theme_classic() +
   theme_bw() #+
 print(mistakes_plot)
+
+##############################################
+### Plot - Cutout Area
+##############################################
+
+# Plot
+cutout_plot <- ggplot(log_data, aes(x=Augmentation, y=Cutout_Area_Inches, fill=Augmentation)) +
+  geom_boxplot(alpha=0.7,
+               color="black") +
+  geom_jitter(color="black",
+              size=0.4,
+              alpha=0.9) +
+  scale_fill_manual(values=c(paper_color, ar_color)) +
+  labs(
+    title="Final Cutout Area",
+    x="Augmentation",
+    y="Cutout Area (Square Inch)") +
+  #theme_classic() +
+  
+  theme_bw()
+  #coord_flip()
+# theme(
+#   axis.text.x = element_text(angle=45)
+# )
+print(cutout_plot)
+
+##############################################
+### Plot - Stud Location
+##############################################
+
+stud_location_plot <- ggplot(log_data, aes(fill=Augmentation, color=Augmentation)) +
+  geom_vline(aes(xintercept=Stud_Percentage,
+                 color=Augmentation)) +
+  geom_vline(xintercept=0.765,
+             color='black',
+             size=1.5) +
+  # geom_boxplot(aes(x=Stud_Percentage),
+  #              alpha=0.2,
+  #              color="darkgreen") +
+  #scale_fill_manual(values=c(paper_color, ar_color)) +
+  scale_color_manual(values=c(paper_color, ar_color)) +
+  xlim(0.7, 0.95) +
+  labs(
+    title="Stud Location"
+  ) +
+  facet_grid(Augmentation ~ .)
+  theme_bw()
+print(stud_location_plot)
 
 ##############################################
 ### Qualtrics data
@@ -223,7 +339,7 @@ qualtrics_data <- qualtrics_data[!qualtrics_data$Participant.ID %in% subjects_to
 
 # Factor/Unify data names with other data frames
 qualtrics_data$Augmentation[qualtrics_data$Augmentation == "Augmented Reality"] <- "AR"
-qualtrics_data$Augmentation <- as.logical(qualtrics_data$Augmentation) # Cast to boolean for condition value
+#qualtrics_data$Augmentation <- as.logical(qualtrics_data$Augmentation) # Cast to boolean for condition value
 
 # SUS (1 (Strongly disagree) to 5 (Strongly agree))
 sus_cols <- 71:80
@@ -259,11 +375,11 @@ colnames(tlx_data)[3] <- "Temporal_Demand_Raw"
 colnames(tlx_data)[4] <- "Performance_Demand_Raw"
 colnames(tlx_data)[5] <- "Effort_Demand_Raw"
 # Score them
-tlx_data$Mental_Demand_Score <- (tlx_data$Mental_Demand_Raw - 1) * 20
-tlx_data$Physical_Demand_Score <- (tlx_data$Physical_Demand_Raw - 1) * 20
-tlx_data$Temporal_Demand_Score <- (tlx_data$Temporal_Demand_Raw - 1) * 20
-tlx_data$Performance_Demand_Score <- (tlx_data$Performance_Demand_Raw - 1) * 20
-tlx_data$Effort_Demand_Score <- (tlx_data$Effort_Demand_Raw - 1) * 20
+tlx_data$Mental_Demand_Score <- (tlx_data$Mental_Demand_Raw - 1) * 5
+tlx_data$Physical_Demand_Score <- (tlx_data$Physical_Demand_Raw - 1) * 5
+tlx_data$Temporal_Demand_Score <- (tlx_data$Temporal_Demand_Raw - 1) * 5
+tlx_data$Performance_Demand_Score <- (tlx_data$Performance_Demand_Raw - 1) * 5
+tlx_data$Effort_Demand_Score <- (tlx_data$Effort_Demand_Raw - 1) * 5
 # Frustration missing...
 # Add TLX back into overall subject log
 log_data <- merge(x = log_data, y = tlx_data[ , c("Participant.ID", "Mental_Demand_Score", "Physical_Demand_Score", "Temporal_Demand_Score", "Performance_Demand_Score", "Effort_Demand_Score")], by = "Participant.ID", all.x=TRUE)
@@ -271,6 +387,126 @@ log_data <- merge(x = log_data, y = tlx_data[ , c("Participant.ID", "Mental_Dema
 # Paper folding answer key
 ### TODO
 
+###### START WRITE FILE ###### 
+sink(paste(output_folder, usability_filename, sep="/"), append=FALSE)
+
+print("############################")
+print("Summary Statistics")
+print("############################")
+print_summary(log_data, "SUS_Score")
+print_summary(log_data, "Mental_Demand_Score")
+print_summary(log_data, "Physical_Demand_Score")
+print_summary(log_data, "Temporal_Demand_Score")
+print_summary(log_data, "Performance_Demand_Score")
+print_summary(log_data, "Effort_Demand_Score")
+
+print("############################")
+print("Usability t-test's")
+print("############################")
+
+# Create empty frame to multiple t test comparisons to
+usability_t_tests <- data.frame(matrix(ncol=2, nrow=0)) 
+colnames(usability_t_tests) <- c("Metric", "p_value")
+
+usability_t_test <- function(usability_df, metric)
+{
+  print(paste0("###### ", metric, " ######"))
+  usability_subset <- usability_df[,c("Augmentation", metric)]
+  # Assumptions
+  ar_shapiro <- shapiro.test(usability_subset[usability_subset$Augmentation==TRUE,][[metric]])
+  print(ar_shapiro)
+  paper_shapiro <- shapiro.test(usability_subset[usability_subset$Augmentation==FALSE,][[metric]])
+  print(paper_shapiro)
+  if(ar_shapiro$p.value < 0.05 | paper_shapiro$p.value < 0.05)
+  {
+    print("Assumption of normailty: FAILED")
+  } else
+  {
+    print("Assumption of normailty: PASSED")
+  }
+  # T-test
+  t <- t.test(usability_subset[[metric]]~usability_subset$Augmentation,
+              #x=usability_subset$Augmentation, 
+              #y=usability_subset[metric],
+              paired=FALSE,
+              alternative="two.sided",
+              conf.level=0.95)
+  print(t) 
+  p_val <- t$p.value
+  return(c(metric, p_val))
+}
+
+# Run t-tests
+usability_t_tests[nrow(usability_t_tests) + 1,] <- usability_t_test(log_data, "SUS_Score")
+usability_t_tests[nrow(usability_t_tests) + 1,] <- usability_t_test(log_data, "Mental_Demand_Score")
+usability_t_tests[nrow(usability_t_tests) + 1,] <- usability_t_test(log_data, "Physical_Demand_Score")
+usability_t_tests[nrow(usability_t_tests) + 1,] <- usability_t_test(log_data, "Temporal_Demand_Score")
+usability_t_tests[nrow(usability_t_tests) + 1,] <- usability_t_test(log_data, "Performance_Demand_Score")
+usability_t_tests[nrow(usability_t_tests) + 1,] <- usability_t_test(log_data, "Effort_Demand_Score")
+
+# Adjust for multiple comparisons using Bonferroni (https://rcompanion.org/rcompanion/f_01.html)
+usability_t_tests$Bonferroni <- p.adjust(usability_t_tests$p_value, method="bonferroni")
+print("Bonferroni Adjusted p-Values")
+print(usability_t_tests)
+
+# Statistical tests - Wilcoxin
+usability_wilcoxin <- function(usability_df, metric)
+{
+  print(paste0("###### ", metric, " ######"))
+  x <- usability_df$Augmentation
+  y <- usability_df[[metric]]
+  print(x)
+  print(y)
+  wilcoxin <- wilcox.test(y ~ x,
+                          paired = FALSE,
+                          alternative = "two.sided",
+                          conf.level = 0.95,
+                          exact = FALSE)
+  print(wilcoxin)
+}
+
+print("############################")
+print("Usability Wilcoxin tests")
+print("############################")
+usability_wilcoxin(log_data, "SUS_Score")
+usability_wilcoxin(log_data, "Mental_Demand_Score")
+usability_wilcoxin(log_data, "Physical_Demand_Score")
+usability_wilcoxin(log_data, "Temporal_Demand_Score")
+usability_wilcoxin(log_data, "Performance_Demand_Score")
+usability_wilcoxin(log_data, "Effort_Demand_Score")
+
+###### STOP WRITE FILE ###### 
+sink()
+
+##############################################
+### Plot - SUS and TLX
+##############################################
+
+usability_melted <- melt(select(log_data, c("Augmentation", "SUS_Score", "Mental_Demand_Score", "Physical_Demand_Score", "Temporal_Demand_Score", "Performance_Demand_Score", "Effort_Demand_Score")), 
+                         id = ("Augmentation"),
+                         variable.name = "Metric",
+                         value.name = "Score")
+
+# Plot
+usability_plot <- ggplot(usability_melted, aes(x=Metric, y=Score, fill=Augmentation)) +
+  geom_boxplot(alpha=0.7,
+               color="black") +
+  # geom_jitter(color="black",
+  #             size=0.4,
+  #             alpha=0.9) +
+  scale_fill_manual(values=c(paper_color, ar_color)) +
+  labs(
+    title="Post-Questionnaire Metrics",
+    x="Test",
+    y="Rating") +
+  #theme_classic() +
+
+  theme_bw() +
+  coord_flip()
+  # theme(
+  #   axis.text.x = element_text(angle=45)
+  # )
+print(usability_plot)
 
 ##############################################
 ### Watch data
