@@ -9,6 +9,12 @@ library(car) # Levene Test
 ar_color <- "#1A85FF"
 #paper_color <- "#D41159"
 paper_color <- "azure3"
+  
+plot_outline_color <- "black"
+plot_outline_size <- 1.5
+plot_grid_color <- "gray85"
+plot_grid_size_major <- 0.55
+plot_grid_size_minor <- 0.35
 
 output_folder <- "Outputs"
 pt_filename <- "PT_stats.txt"
@@ -184,13 +190,33 @@ pt_duration <- ggplot(progress_tracker_sum, aes(x=Task_ID, y=Mean_Duration, fill
            alpha=0.7,
            color="black") +
   #scale_fill_brewer(palette = "Spectral") +
-  scale_fill_manual(values=c(paper_color, ar_color)) +
+  scale_fill_manual(values=c(paper_color, ar_color),
+                    labels=c("Paper", "AR")) +
   labs(
     title="Mean Task Duration",
     x="Task ID",
     y="Duration (s)") +
   #theme_classic() +
-  theme_bw() #+
+  theme_bw() +
+  theme(
+    # Text
+    text = element_text(family="serif"), # Times New Roman
+    plot.title = element_text(size=18, face="bold", hjust=0.5), 
+    axis.title = element_text(size=18, face="italic", hjust=0.5),
+    axis.text = element_text(size=14),
+    # Axis Ticks
+    axis.ticks = element_blank(),
+    # Legend
+    legend.background = element_rect(color="black", size=0.5, linetype="dashed"),
+    legend.position = c(0.23, 0.91),
+    legend.title = element_text(size=14, face="italic", hjust=0.5),
+    legend.text = element_text(size=12),
+    legend.direction = "horizontal",
+    # Borders
+    panel.border = element_rect(color=plot_outline_color, fill=NA, size=plot_outline_size),
+    panel.grid.major = element_line(color=plot_grid_color, size=plot_grid_size_major),
+    panel.grid.minor = element_line(color=plot_grid_color, size=plot_grid_size_minor)
+  )
 print(pt_duration)
 
 ##############################################
@@ -202,7 +228,7 @@ plot_df_identification <- progress_tracker_sum[progress_tracker_sum$Task_ID == "
                                                  progress_tracker_sum$Task_ID == "4b" | 
                                                  progress_tracker_sum$Task_ID == "10", ] %>%
   mutate(Task_ID = factor(Task_ID, levels=c("4a", "4b", "5/6", "10")))
-levels(plot_df_identification$Task_ID) <- c("Locate ideal vertical stud", "Select optimal height", "Mark cutout area", "Mark outlet-stud screw holes")
+levels(plot_df_identification$Task_ID) <- c("Locate ideal\nvertical stud", "Select optimal\nheight", "Mark cutout\narea", "Mark outlet-stud\nscrew holes")
 
 # Plot
 pt_id_duration <- ggplot(plot_df_identification,
@@ -211,16 +237,38 @@ pt_id_duration <- ggplot(plot_df_identification,
                              fill=Augmentation)) +
   geom_bar(stat="identity",
            position="dodge",
+           width=0.9,
+           size=1.25,
            alpha=0.7,
            color="black") +
   #scale_fill_brewer(palette = "Spectral") +
-  scale_fill_manual(values=c(paper_color, ar_color)) +
+  scale_fill_manual(values=c(paper_color, ar_color),
+                    labels=c("Paper", "AR")) +
   labs(
     title="Identication-based Task Durations",
     x="Task",
     y="Duration (seconds)") +
   #theme_classic() +
-  theme_bw() #+
+  theme_bw() +
+  theme(
+    # Text
+    text = element_text(family="serif"), # Times New Roman
+    plot.title = element_text(size=18, face="bold", hjust=0.5), 
+    axis.title = element_text(size=18, face="italic", hjust=0.5),
+    axis.text = element_text(size=14),
+    # Axis Ticks
+    axis.ticks = element_blank(),
+    # Legend
+    legend.background = element_rect(color="black", size=0.5, linetype="dashed"),
+    legend.position = c(0.77, 0.91),
+    legend.title = element_text(size=14, face="italic", hjust=0.5),
+    legend.text = element_text(size=12),
+    legend.direction = "horizontal",
+    # Borders
+    panel.border = element_rect(color=plot_outline_color, fill=NA, size=plot_outline_size),
+    panel.grid.major = element_line(color=plot_grid_color, size=plot_grid_size_major),
+    panel.grid.minor = element_line(color=plot_grid_color, size=plot_grid_size_minor)
+  )
 print(pt_id_duration)
 
 rm(plot_df_identification) # Clean RStudio env
@@ -323,14 +371,33 @@ sink()
 # Plot
 mistakes_plot <- ggplot(log_data, aes(x=Augmentation, y=Mistakes, fill=Augmentation)) +
   geom_boxplot(alpha=0.7,
+               size=1.25,
                color="black") +
-  scale_fill_manual(values=c(paper_color, ar_color)) +
+  scale_fill_manual(values=c(paper_color, ar_color),
+                    labels=c("Paper", "AR")) +
+  scale_x_discrete(labels=c("Paper", "AR")) + 
   labs(
-    title="Mistakes Made",
+    title="Critical Mistakes Made",
     x="Augmentation",
-    y="Mistakes Count") +
+    y="Mistakes") +
   #theme_classic() +
-  theme_bw() #+
+  theme_bw() +
+  theme(
+    # Text
+    text = element_text(family="serif"), # Times New Roman
+    plot.title = element_text(size=18, face="bold", hjust=0.5), 
+    axis.title = element_text(size=18, face="italic", hjust=0.5),
+    axis.text = element_text(size=14),
+    # Axis Ticks
+    axis.ticks = element_blank(),
+    # Legend
+    legend.position = "none",
+    # Borders
+    panel.border = element_rect(color=plot_outline_color, fill=NA, size=plot_outline_size),
+    panel.grid.major = element_line(color=plot_grid_color, size=plot_grid_size_major),
+    panel.grid.minor = element_line(color=plot_grid_color, size=plot_grid_size_minor),
+    panel.grid.major.x = element_blank()
+  )
 print(mistakes_plot)
 
 ##############################################
@@ -340,22 +407,37 @@ print(mistakes_plot)
 # Plot
 cutout_plot <- ggplot(log_data, aes(x=Augmentation, y=Cutout_Area_Inches, fill=Augmentation)) +
   geom_boxplot(alpha=0.7,
+               size=1.15,
                color="black") +
   geom_jitter(color="black",
-              size=0.4,
+              size=0.5,
               alpha=0.9) +
   scale_fill_manual(values=c(paper_color, ar_color)) +
+  scale_x_discrete(labels=c("Paper", "AR")) + 
+  #ylim(25, 150) +
   labs(
     title="Final Cutout Area",
     x="Augmentation",
     y="Cutout Area (Square Inch)") +
-  #theme_classic() +
-  
-  theme_bw()
+    #y=bquote('Cutout Area '(inch^2))) +
+  theme_bw() + 
   #coord_flip()
-# theme(
-#   axis.text.x = element_text(angle=45)
-# )
+  theme(
+    # Text
+    text = element_text(family="serif"), # Times New Roman
+    plot.title = element_text(size=18, face="bold", hjust=0.5), 
+    axis.title = element_text(size=18, face="italic", hjust=0.5),
+    axis.text = element_text(size=14),
+    # Axis Ticks
+    axis.ticks = element_blank(),
+    # Legend
+    legend.position = "none",
+    # Borders
+    panel.border = element_rect(color=plot_outline_color, fill=NA, size=plot_outline_size),
+    panel.grid.major = element_line(color=plot_grid_color, size=plot_grid_size_major),
+    panel.grid.minor = element_line(color=plot_grid_color, size=plot_grid_size_minor),
+    panel.grid.major.x = element_blank()
+  )
 print(cutout_plot)
 
 ##############################################
@@ -364,7 +446,8 @@ print(cutout_plot)
 
 stud_location_plot <- ggplot(log_data, aes(fill=Augmentation, color=Augmentation)) +
   geom_vline(aes(xintercept=Stud_Percentage,
-                 color=Augmentation)) +
+                 color=Augmentation),
+             size=0.5) +
   geom_vline(xintercept=0.765,
              color='black',
              size=1.5) +
@@ -373,12 +456,33 @@ stud_location_plot <- ggplot(log_data, aes(fill=Augmentation, color=Augmentation
   #              color="darkgreen") +
   #scale_fill_manual(values=c(paper_color, ar_color)) +
   scale_color_manual(values=c(paper_color, ar_color)) +
-  xlim(0.7, 0.95) +
+  ##xlim(0.7, 0.95) +
+  xlim(0, 1.0) + 
   labs(
-    title="Stud Location"
+    title="Stud Location",
+    x="Marked Stud Position"
   ) +
-  facet_grid(Augmentation ~ .)
-  theme_bw()
+  facet_grid(Augmentation ~ .,
+             labeller=labeller(Augmentation=c("TRUE" = "AR", "FALSE" = "Paper"))) + 
+  theme_bw() +
+    theme(
+      # Text
+      text = element_text(family="serif"), # Times New Roman
+      plot.title = element_text(size=18, face="bold", hjust=0.5), 
+      axis.title = element_text(size=18, face="italic", hjust=0.5),
+      axis.text = element_text(size=14),
+      # Axis Ticks
+      axis.ticks = element_blank(),
+      # Legend
+      legend.position = "none",
+      # Facet
+      strip.text = element_text(size=14, hjust=0.5, vjust=0.5),
+      strip.background = element_rect(color="black", fill="gray85"),
+      # Borders
+      panel.border = element_rect(color=plot_outline_color, fill=NA, size=plot_outline_size),
+      panel.grid.major = element_line(color=plot_grid_color, size=plot_grid_size_major),
+      panel.grid.minor = element_line(color=plot_grid_color, size=plot_grid_size_minor)
+    )
 print(stud_location_plot)
 
 ##############################################
@@ -566,22 +670,50 @@ usability_melted <- melt(select(log_data, c("Augmentation", "SUS_Score", "Mental
 # Plot
 usability_plot <- ggplot(usability_melted, aes(x=Metric, y=Score, fill=Augmentation)) +
   geom_boxplot(alpha=0.7,
-               color="black") +
+               width=0.6,
+               size=1,
+               color="black",
+               outlier.shape=NA) +
   # geom_jitter(color="black",
   #             size=0.4,
   #             alpha=0.9) +
-  scale_fill_manual(values=c(paper_color, ar_color)) +
+  scale_fill_manual(values=c(paper_color, ar_color),
+                    labels=c("Paper", "AR")) +
+  scale_x_discrete(labels=rev(c("TLX - Effort",
+                            "TLX - Performance",
+                            "TLX - Temporal",
+                            "TLX - Physical",
+                            "TLX - Mental",
+                            "SUS"))) +
   labs(
     title="Post-Questionnaire Metrics",
     x="Test",
-    y="Rating") +
+    y="Normalized Score") +
   #theme_classic() +
 
   theme_bw() +
-  coord_flip()
-  # theme(
-  #   axis.text.x = element_text(angle=45)
-  # )
+  coord_flip() + 
+  theme(
+    # Text
+    text = element_text(family="serif"), # Times New Roman
+    plot.title = element_text(size=18, face="bold", hjust=0.5), 
+    axis.title = element_text(size=18, face="italic", hjust=0.5),
+    axis.title.y = element_blank(),
+    axis.text = element_text(size=14),
+    # Axis Ticks
+    axis.ticks = element_blank(),
+    # Legend
+    legend.background = element_rect(color="black", size=0.5, linetype="dashed"),
+    legend.position = "bottom",
+    legend.title = element_text(size=14, face="italic", hjust=0.5),
+    legend.text = element_text(size=12),
+    legend.direction = "horizontal",
+    # Borders
+    panel.border = element_rect(color=plot_outline_color, fill=NA, size=plot_outline_size),
+    panel.grid.major = element_line(color=plot_grid_color, size=plot_grid_size_major),
+    panel.grid.minor = element_line(color=plot_grid_color, size=plot_grid_size_minor),
+    panel.grid.major.y = element_blank()
+  )
 print(usability_plot)
 
 ##############################################
