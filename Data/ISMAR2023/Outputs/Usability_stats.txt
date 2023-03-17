@@ -1,0 +1,361 @@
+[1] "############################"
+[1] "Summary Statistics"
+[1] "############################"
+[1] "SUS_Score - AR"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  42.50   66.88   77.50   75.39   85.62  100.00 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+  32.0000000    0.0000000    0.0000000   42.5000000  100.0000000   57.5000000 2412.5000000   77.5000000   75.3906250    2.5600386 
+CI.mean.0.95          var      std.dev     coef.var 
+   5.2212331  209.7215222   14.4817652    0.1920897 
+[1] "SUS_Score - Printed"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  27.50   40.62   53.75   53.59   62.50  100.00 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+  32.0000000    0.0000000    0.0000000   27.5000000  100.0000000   72.5000000 1715.0000000   53.7500000   53.5937500    3.4046959 
+CI.mean.0.95          var      std.dev     coef.var 
+   6.9439231  370.9425403   19.2598686    0.3593678 
+[1] "Mental_Demand_Score - AR"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   5.00   20.00   30.00   38.59   65.00   80.00 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+  32.0000000    0.0000000    0.0000000    5.0000000   80.0000000   75.0000000 1235.0000000   30.0000000   38.5937500    4.3777893 
+CI.mean.0.95          var      std.dev     coef.var 
+   8.9285601  613.2812500   24.7645159    0.6416717 
+[1] "Mental_Demand_Score - Printed"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  15.00   48.75   60.00   57.81   70.00  100.00 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+  32.0000000    0.0000000    0.0000000   15.0000000  100.0000000   85.0000000 1850.0000000   60.0000000   57.8125000    3.6817547 
+CI.mean.0.95          var      std.dev     coef.var 
+   7.5089882  433.7701613   20.8271496    0.3602534 
+[1] "Physical_Demand_Score - AR"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   0.00   13.75   20.00   22.66   26.25  100.00 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+  32.0000000    6.0000000    0.0000000    0.0000000  100.0000000  100.0000000  725.0000000   20.0000000   22.6562500    3.5638217 
+CI.mean.0.95          var      std.dev     coef.var 
+   7.2684623  406.4264113   20.1600201    0.8898216 
+[1] "Physical_Demand_Score - Printed"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   5.00   20.00   30.00   34.53   55.00   75.00 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+  32.0000000    0.0000000    0.0000000    5.0000000   75.0000000   70.0000000 1105.0000000   30.0000000   34.5312500    3.5523119 
+CI.mean.0.95          var      std.dev     coef.var 
+   7.2449880  403.8054435   20.0949109    0.5819341 
+[1] "Temporal_Demand_Score - AR"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   0.00    7.50   15.00   17.97   27.50   45.00 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+   32.000000     8.000000     0.000000     0.000000    45.000000    45.000000   575.000000    15.000000    17.968750     2.702107 
+CI.mean.0.95          var      std.dev     coef.var 
+    5.510983   233.644153    15.285423     0.850667 
+[1] "Temporal_Demand_Score - Printed"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   0.00   18.75   25.00   26.56   35.00   70.00 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+  32.0000000    4.0000000    0.0000000    0.0000000   70.0000000   70.0000000  850.0000000   25.0000000   26.5625000    3.1385794 
+CI.mean.0.95          var      std.dev     coef.var 
+   6.4011748  315.2217742   17.7544860    0.6684042 
+[1] "Performance_Demand_Score - AR"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  30.00   65.00   75.00   72.97   85.00  100.00 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+  32.0000000    0.0000000    0.0000000   30.0000000  100.0000000   70.0000000 2335.0000000   75.0000000   72.9687500    3.0689274 
+CI.mean.0.95          var      std.dev     coef.var 
+   6.2591187  301.3860887   17.3604749    0.2379166 
+[1] "Performance_Demand_Score - Printed"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  20.00   55.00   65.00   62.50   71.25  100.00 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+   32.000000     0.000000     0.000000    20.000000   100.000000    80.000000  2000.000000    65.000000    62.500000     3.382533 
+CI.mean.0.95          var      std.dev     coef.var 
+    6.898722   366.129032    19.134498     0.306152 
+[1] "Effort_Demand_Score - AR"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  10.00   20.00   37.50   40.94   56.25   90.00 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+  32.0000000    0.0000000    0.0000000   10.0000000   90.0000000   80.0000000 1310.0000000   37.5000000   40.9375000    4.0125653 
+CI.mean.0.95          var      std.dev     coef.var 
+   8.1836809  515.2217742   22.6984972    0.5544671 
+[1] "Effort_Demand_Score - Printed"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  35.00   55.00   60.00   62.81   70.00  100.00 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+  32.0000000    0.0000000    0.0000000   35.0000000  100.0000000   65.0000000 2010.0000000   60.0000000   62.8125000    2.4587063 
+CI.mean.0.95          var      std.dev     coef.var 
+   5.0145647  193.4475806   13.9085434    0.2214295 
+[1] "############################"
+[1] "Usability t-test's"
+[1] "############################"
+[1] "###### SUS_Score ######"
+
+	Shapiro-Wilk normality test
+
+data:  usability_subset[usability_subset$Augmentation == TRUE, ][[metric]]
+W = 0.97314, p-value = 0.5901
+
+
+	Shapiro-Wilk normality test
+
+data:  usability_subset[usability_subset$Augmentation == FALSE, ][[metric]]
+W = 0.94746, p-value = 0.122
+
+[1] "Assumption of normailty: PASSED"
+
+	Welch Two Sample t-test
+
+data:  usability_subset[[metric]] by usability_subset$Augmentation
+t = -5.1169, df = 57.563, p-value = 3.728e-06
+alternative hypothesis: true difference in means between group FALSE and group TRUE is not equal to 0
+95 percent confidence interval:
+ -30.32514 -13.26861
+sample estimates:
+mean in group FALSE  mean in group TRUE 
+           53.59375            75.39062 
+
+[1] "###### Mental_Demand_Score ######"
+
+	Shapiro-Wilk normality test
+
+data:  usability_subset[usability_subset$Augmentation == TRUE, ][[metric]]
+W = 0.88182, p-value = 0.002202
+
+
+	Shapiro-Wilk normality test
+
+data:  usability_subset[usability_subset$Augmentation == FALSE, ][[metric]]
+W = 0.94003, p-value = 0.07501
+
+[1] "Assumption of normailty: FAILED"
+
+	Welch Two Sample t-test
+
+data:  usability_subset[[metric]] by usability_subset$Augmentation
+t = 3.3598, df = 60.23, p-value = 0.001358
+alternative hypothesis: true difference in means between group FALSE and group TRUE is not equal to 0
+95 percent confidence interval:
+  7.777602 30.659898
+sample estimates:
+mean in group FALSE  mean in group TRUE 
+           57.81250            38.59375 
+
+[1] "###### Physical_Demand_Score ######"
+
+	Shapiro-Wilk normality test
+
+data:  usability_subset[usability_subset$Augmentation == TRUE, ][[metric]]
+W = 0.80974, p-value = 6.247e-05
+
+
+	Shapiro-Wilk normality test
+
+data:  usability_subset[usability_subset$Augmentation == FALSE, ][[metric]]
+W = 0.9448, p-value = 0.1025
+
+[1] "Assumption of normailty: FAILED"
+
+	Welch Two Sample t-test
+
+data:  usability_subset[[metric]] by usability_subset$Augmentation
+t = 2.36, df = 61.999, p-value = 0.02144
+alternative hypothesis: true difference in means between group FALSE and group TRUE is not equal to 0
+95 percent confidence interval:
+  1.816427 21.933573
+sample estimates:
+mean in group FALSE  mean in group TRUE 
+           34.53125            22.65625 
+
+[1] "###### Temporal_Demand_Score ######"
+
+	Shapiro-Wilk normality test
+
+data:  usability_subset[usability_subset$Augmentation == TRUE, ][[metric]]
+W = 0.88573, p-value = 0.002736
+
+
+	Shapiro-Wilk normality test
+
+data:  usability_subset[usability_subset$Augmentation == FALSE, ][[metric]]
+W = 0.94342, p-value = 0.09365
+
+[1] "Assumption of normailty: FAILED"
+
+	Welch Two Sample t-test
+
+data:  usability_subset[[metric]] by usability_subset$Augmentation
+t = 2.075, df = 60.66, p-value = 0.04223
+alternative hypothesis: true difference in means between group FALSE and group TRUE is not equal to 0
+95 percent confidence interval:
+  0.3113608 16.8761392
+sample estimates:
+mean in group FALSE  mean in group TRUE 
+           26.56250            17.96875 
+
+[1] "###### Performance_Demand_Score ######"
+
+	Shapiro-Wilk normality test
+
+data:  usability_subset[usability_subset$Augmentation == TRUE, ][[metric]]
+W = 0.95695, p-value = 0.2262
+
+
+	Shapiro-Wilk normality test
+
+data:  usability_subset[usability_subset$Augmentation == FALSE, ][[metric]]
+W = 0.9307, p-value = 0.04096
+
+[1] "Assumption of normailty: FAILED"
+
+	Welch Two Sample t-test
+
+data:  usability_subset[[metric]] by usability_subset$Augmentation
+t = -2.2921, df = 61.422, p-value = 0.02534
+alternative hypothesis: true difference in means between group FALSE and group TRUE is not equal to 0
+95 percent confidence interval:
+ -19.600278  -1.337222
+sample estimates:
+mean in group FALSE  mean in group TRUE 
+           62.50000            72.96875 
+
+[1] "###### Effort_Demand_Score ######"
+
+	Shapiro-Wilk normality test
+
+data:  usability_subset[usability_subset$Augmentation == TRUE, ][[metric]]
+W = 0.93749, p-value = 0.06355
+
+
+	Shapiro-Wilk normality test
+
+data:  usability_subset[usability_subset$Augmentation == FALSE, ][[metric]]
+W = 0.94994, p-value = 0.1435
+
+[1] "Assumption of normailty: PASSED"
+
+	Welch Two Sample t-test
+
+data:  usability_subset[[metric]] by usability_subset$Augmentation
+t = 4.6484, df = 51.403, p-value = 2.368e-05
+alternative hypothesis: true difference in means between group FALSE and group TRUE is not equal to 0
+95 percent confidence interval:
+ 12.42922 31.32078
+sample estimates:
+mean in group FALSE  mean in group TRUE 
+            62.8125             40.9375 
+
+[1] "Bonferroni Adjusted p-Values"
+                    Metric              p_value   Bonferroni
+1                SUS_Score  3.7281118720725e-06 2.236867e-05
+2      Mental_Demand_Score  0.00135779991069081 8.146799e-03
+3    Physical_Demand_Score   0.0214389165043438 1.286335e-01
+4    Temporal_Demand_Score   0.0422326555848182 2.533959e-01
+5 Performance_Demand_Score   0.0253382904823877 1.520297e-01
+6      Effort_Demand_Score 2.36757457898145e-05 1.420545e-04
+[1] "############################"
+[1] "Usability Wilcoxin tests"
+[1] "############################"
+[1] "###### SUS_Score ######"
+ [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[23]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[45] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [1]  75.0  77.5  77.5  42.5  82.5  87.5  87.5  67.5  77.5  60.0  92.5  57.5  57.5  70.0  90.0  67.5  82.5  97.5  85.0  80.0  55.0  55.0
+[23]  97.5  82.5  95.0 100.0  67.5  82.5  62.5  65.0  67.5  67.5  57.5  55.0  72.5  35.0  45.0  42.5  82.5  45.0  55.0  27.5  60.0  52.5
+[45]  27.5  50.0  62.5  57.5  90.0 100.0  67.5  45.0  30.0  30.0  30.0  62.5  50.0  82.5  30.0  60.0  42.5  75.0  62.5  30.0
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  y by x
+W = 188.5, p-value = 1.399e-05
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "###### Mental_Demand_Score ######"
+ [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[23]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[45] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [1]  40  20  80  70  75  15   5  20  10  25  10  25  55  55  30  70  20  65  10  60  75  75  30  35  20  10  25  15  35  65  70  20  55
+[34]  60  15  40  45  80  20  55  80  60  65  60  75  35  80  35  55  15  65  70  60  65 100  70  50  65  70  20  65  60  75  85
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  y by x
+W = 719, p-value = 0.005415
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "###### Physical_Demand_Score ######"
+ [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[23]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[45] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [1]  25  35  25  65  25  15   0  20   5  25   0   0  25  40  35  15  20  20   0  20  25  35   0  25  20  30  35   0  15 100  10  15  35
+[34]  20  30  35  10  75  70   5  30  15  25  55  55  20  65   5  60  60   5  55  35  30  25  20  35  30  45  25  40  60  15  15
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  y by x
+W = 700, p-value = 0.01137
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "###### Temporal_Demand_Score ######"
+ [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[23]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[45] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [1] 15 45 45 45 10 20  0  0 15 15  0  0 20 35 40 40 10 20 20 25  0 20  0 35 10  0 15  0 15 10 40 10 20 20 25 50 15 65  0  0 25 10 25 10
+[45] 45 25 30 20 30  0 35 70 30 35 55 20 10  0 45 40 20 25 25 25
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  y by x
+W = 668.5, p-value = 0.03472
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "###### Performance_Demand_Score ######"
+ [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[23]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[45] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [1]  85  65  30  45  85  85  75  75  80  75  90  70  70  80  80  65  70  50  45 100  65  75 100  55  70 100  70  45  65  90  95  85  70
+[34]  55  65  60  85  50 100  80  85  45  80  65  65  50  60  65 100  60  65  55  75  60  20  70  50  70  20  55  65  75  60  20
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  y by x
+W = 332, p-value = 0.01545
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "###### Effort_Demand_Score ######"
+ [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[23]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[45] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [1]  40  45  55  70  65  25  20  20  10  20  10  85  55  55  55  40  30  75  30  20  50  90  35  25  30  15  25  15  65  60  60  15  50
+[34]  70  55  60  45  80  65  65  70  60  35  60  80  40  70  35  55  60  60  80  60  70 100  80  65  55  60  60  80  60  70  55
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  y by x
+W = 804.5, p-value = 8.17e-05
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "############################"
+[1] "Prev. AR/VR experience and SUS"
+[1] "############################"
+
+	Shapiro-Wilk normality test
+
+data:  as.integer(qualtrics_data[qualtrics_data$Augmentation == "AR", ][[cor_col]])
+W = 0.88016, p-value = 0.00201
+
+
+	Shapiro-Wilk normality test
+
+data:  log_data[log_data$Augmentation == TRUE, ]$SUS_Score
+W = 0.97314, p-value = 0.5901
+
+
+	Spearman's rank correlation rho
+
+data:  as.integer(qualtrics_data[qualtrics_data$Augmentation == "AR", ][[cor_col]]) and log_data[log_data$Augmentation == TRUE, ]$SUS_Score
+S = 3566.2, p-value = 0.05213
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+      rho 
+0.3463781 
+

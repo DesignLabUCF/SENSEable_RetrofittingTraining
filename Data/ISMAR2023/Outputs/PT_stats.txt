@@ -1,0 +1,407 @@
+[1] "############################"
+[1] "Summary Statistics"
+[1] "############################"
+[1] "======= 3 ======="
+[1] "Duration - AR"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  30.85   39.00   62.08   75.47   82.54  253.66 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+  32.0000000    0.0000000    0.0000000   30.8481810  253.6616390  222.8134580 2414.9965060   62.0781965   75.4686408    9.7155428 
+CI.mean.0.95          var      std.dev     coef.var 
+  19.8149802 3020.5366937   54.9594095    0.7282417 
+[1] "Duration - Printed"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  23.08   35.80   52.30   55.71   60.81  184.08 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+  31.0000000    0.0000000    0.0000000   23.0799010  184.0820420  161.0021410 1727.0777100   52.3030200   55.7121842    5.6595274 
+CI.mean.0.95          var      std.dev     coef.var 
+  11.5582970  992.9377795   31.5109152    0.5656019 
+[1] "======= 4a ======="
+[1] "Duration - AR"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  72.38  107.64  129.23  151.48  161.73  430.15 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+  32.0000000    0.0000000    0.0000000   72.3806760  430.1487510  357.7680750 4847.3985100  129.2268310  151.4812034   14.3217465 
+CI.mean.0.95          var      std.dev     coef.var 
+  29.2093946 6563.5975272   81.0160325    0.5348256 
+[1] "Duration - Printed"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  330.1   595.3  1142.3  1187.3  1530.2  2819.9 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+3.100000e+01 0.000000e+00 0.000000e+00 3.300641e+02 2.819863e+03 2.489799e+03 3.680532e+04 1.142341e+03 1.187268e+03 1.176897e+02 
+CI.mean.0.95          var      std.dev     coef.var 
+2.403545e+02 4.293770e+05 6.552686e+02 5.519127e-01 
+[1] "======= 4b ======="
+[1] "Duration - AR"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  36.90   64.84   82.22   93.61  117.19  257.03 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+  32.0000000    0.0000000    0.0000000   36.9035590  257.0319700  220.1284110 2995.6032830   82.2187425   93.6126026    8.1027857 
+CI.mean.0.95          var      std.dev     coef.var 
+  16.5257405 2100.9643758   45.8362779    0.4896379 
+[1] "Duration - Printed"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  91.52  224.85  293.01  391.44  468.37 1102.16 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+3.100000e+01 0.000000e+00 0.000000e+00 9.152136e+01 1.102161e+03 1.010639e+03 1.213460e+04 2.930150e+02 3.914387e+02 4.806932e+01 
+CI.mean.0.95          var      std.dev     coef.var 
+9.817066e+01 7.163046e+04 2.676387e+02 6.837307e-01 
+[1] "======= 5/6 ======="
+[1] "Duration - AR"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+   80.3   121.6   163.4   169.7   198.8   322.9       3 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+  32.0000000    0.0000000    3.0000000   80.3030010  322.9484110  242.6454100 5431.1978580  163.3783825  169.7249331   11.0508896 
+CI.mean.0.95          var      std.dev     coef.var 
+  22.5384380 3907.9091824   62.5132720    0.3683211 
+[1] "Duration - Printed"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+  69.48  236.74  375.68  362.88  482.90  584.32       3 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+2.800000e+01 0.000000e+00 3.000000e+00 6.948136e+01 5.843206e+02 5.148393e+02 1.016061e+04 3.756843e+02 3.628791e+02 2.651679e+01 
+CI.mean.0.95          var      std.dev     coef.var 
+5.440795e+01 1.968792e+04 1.403136e+02 3.866678e-01 
+[1] "======= 9 ======="
+[1] "Duration - AR"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.6796  8.8230 14.7151 16.3645 21.9405 35.0979 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+  32.0000000    0.0000000    0.0000000    0.6796070   35.0979500   34.4183430  523.6654220   14.7150730   16.3645444    1.7217140 
+CI.mean.0.95          var      std.dev     coef.var 
+   3.5114588   94.8575659    9.7394849    0.5951577 
+[1] "Duration - Printed"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  2.028  15.120  24.300  51.421  68.107 269.086 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+   31.000000     0.000000     0.000000     2.027803   269.086408   267.058605  1594.065274    24.299981    51.421460    11.402765 
+CI.mean.0.95          var      std.dev     coef.var 
+   23.287553  4030.714419    63.487908     1.234658 
+[1] "======= 10 ======="
+[1] "Duration - AR"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  51.57   74.93  130.12  155.04  191.99  461.94 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+  32.0000000    0.0000000    0.0000000   51.5653240  461.9359260  410.3706020 4961.3375710  130.1174655  155.0417991   17.3089728 
+CI.mean.0.95          var      std.dev     coef.var 
+  35.3018829 9587.2173121   97.9143366    0.6315351 
+[1] "Duration - Printed"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  77.28  233.32  360.57  405.37  505.52 1374.67 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+3.100000e+01 0.000000e+00 0.000000e+00 7.728405e+01 1.374671e+03 1.297387e+03 1.256645e+04 3.605735e+02 4.053694e+02 4.712114e+01 
+CI.mean.0.95          var      std.dev     coef.var 
+9.623421e+01 6.883246e+04 2.623594e+02 6.472107e-01 
+[1] "======= 11 ======="
+[1] "Duration - AR"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  58.69  151.79  217.66  230.86  264.55  813.82 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+3.200000e+01 0.000000e+00 0.000000e+00 5.868554e+01 8.138171e+02 7.551315e+02 7.387520e+03 2.176638e+02 2.308600e+02 2.395595e+01 
+CI.mean.0.95          var      std.dev     coef.var 
+4.885849e+01 1.836441e+04 1.355153e+02 5.870022e-01 
+[1] "Duration - Printed"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  34.93  145.17  203.23  224.04  279.81  562.02 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+3.100000e+01 0.000000e+00 0.000000e+00 3.492760e+01 5.620241e+02 5.270965e+02 6.945341e+03 2.032312e+02 2.240433e+02 2.347639e+01 
+CI.mean.0.95          var      std.dev     coef.var 
+4.794518e+01 1.708536e+04 1.307110e+02 5.834186e-01 
+[1] "############################"
+[1] "Progress Tracker t-test's"
+[1] "############################"
+[1] "ALL TASKS - T-test"
+
+	Welch Two Sample t-test
+
+data:  progress_tracker_data$Augmentation and progress_tracker_data$Duration
+t = -14.536, df = 503, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -250.7913 -191.0709
+sample estimates:
+ mean of x  mean of y 
+  0.510978 221.442086 
+
+[1] "###### 2c ######"
+
+	Shapiro-Wilk normality test
+
+data:  pt_subset[pt_subset$Augmentation == "TRUE", ]$Duration
+W = 0.66633, p-value = 2.83e-07
+
+
+	Shapiro-Wilk normality test
+
+data:  pt_subset[pt_subset$Augmentation == "FALSE", ]$Duration
+W = 0.86422, p-value = 0.001033
+
+[1] "Assumption of normailty: FAILED"
+
+	Welch Two Sample t-test
+
+data:  pt_subset$Augmentation and pt_subset$Duration
+t = -4.9967, df = 62.043, p-value = 5.048e-06
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -23.99239 -10.28121
+sample estimates:
+ mean of x  mean of y 
+ 0.5079365 17.6447383 
+
+[1] "###### 3 ######"
+
+	Shapiro-Wilk normality test
+
+data:  pt_subset[pt_subset$Augmentation == "TRUE", ]$Duration
+W = 0.70962, p-value = 1.215e-06
+
+
+	Shapiro-Wilk normality test
+
+data:  pt_subset[pt_subset$Augmentation == "FALSE", ]$Duration
+W = 0.73994, p-value = 4.78e-06
+
+[1] "Assumption of normailty: FAILED"
+
+	Welch Two Sample t-test
+
+data:  pt_subset$Augmentation and pt_subset$Duration
+t = -11.326, df = 62.015, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -76.75306 -53.72549
+sample estimates:
+ mean of x  mean of y 
+ 0.5079365 65.7472098 
+
+[1] "###### 4a ######"
+
+	Shapiro-Wilk normality test
+
+data:  pt_subset[pt_subset$Augmentation == "TRUE", ]$Duration
+W = 0.74818, p-value = 4.975e-06
+
+
+	Shapiro-Wilk normality test
+
+data:  pt_subset[pt_subset$Augmentation == "FALSE", ]$Duration
+W = 0.93522, p-value = 0.0609
+
+[1] "Assumption of normailty: FAILED"
+
+	Welch Two Sample t-test
+
+data:  pt_subset$Augmentation and pt_subset$Duration
+t = -7.5411, df = 62, p-value = 2.478e-10
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -835.7689 -485.5239
+sample estimates:
+  mean of x   mean of y 
+  0.5079365 661.1543173 
+
+[1] "###### 4b ######"
+
+	Shapiro-Wilk normality test
+
+data:  pt_subset[pt_subset$Augmentation == "TRUE", ]$Duration
+W = 0.87067, p-value = 0.001203
+
+
+	Shapiro-Wilk normality test
+
+data:  pt_subset[pt_subset$Augmentation == "FALSE", ]$Duration
+W = 0.81751, p-value = 0.0001108
+
+[1] "Assumption of normailty: FAILED"
+
+	Welch Two Sample t-test
+
+data:  pt_subset$Augmentation and pt_subset$Duration
+t = -7.8823, df = 62.001, p-value = 6.333e-11
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -300.4309 -178.8772
+sample estimates:
+  mean of x   mean of y 
+  0.5079365 240.1619739 
+
+[1] "###### 5/6 ######"
+
+	Shapiro-Wilk normality test
+
+data:  pt_subset[pt_subset$Augmentation == "TRUE", ]$Duration
+W = 0.93331, p-value = 0.04846
+
+
+	Shapiro-Wilk normality test
+
+data:  pt_subset[pt_subset$Augmentation == "FALSE", ]$Duration
+W = 0.95214, p-value = 0.2242
+
+[1] "Assumption of normailty: FAILED"
+
+	Welch Two Sample t-test
+
+data:  pt_subset$Augmentation and pt_subset$Duration
+t = -13.031, df = 62.001, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -284.8384 -209.0731
+sample estimates:
+  mean of x   mean of y 
+  0.5333333 247.4890745 
+
+[1] "###### 9 ######"
+
+	Shapiro-Wilk normality test
+
+data:  pt_subset[pt_subset$Augmentation == "TRUE", ]$Duration
+W = 0.94916, p-value = 0.1364
+
+
+	Shapiro-Wilk normality test
+
+data:  pt_subset[pt_subset$Augmentation == "FALSE", ]$Duration
+W = 0.70993, p-value = 1.634e-06
+
+[1] "Assumption of normailty: FAILED"
+
+	Welch Two Sample t-test
+
+data:  pt_subset$Augmentation and pt_subset$Duration
+t = -5.4672, df = 62.014, p-value = 8.655e-07
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -45.21156 -21.00212
+sample estimates:
+ mean of x  mean of y 
+ 0.5079365 33.6147730 
+
+[1] "###### 10 ######"
+
+	Shapiro-Wilk normality test
+
+data:  pt_subset[pt_subset$Augmentation == "TRUE", ]$Duration
+W = 0.87284, p-value = 0.001351
+
+
+	Shapiro-Wilk normality test
+
+data:  pt_subset[pt_subset$Augmentation == "FALSE", ]$Duration
+W = 0.86177, p-value = 0.0009121
+
+[1] "Assumption of normailty: FAILED"
+
+	Welch Two Sample t-test
+
+data:  pt_subset$Augmentation and pt_subset$Duration
+t = -9.4844, df = 62.001, p-value = 1.108e-13
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -336.2427 -219.1792
+sample estimates:
+  mean of x   mean of y 
+  0.5079365 278.2188724 
+
+[1] "###### 11 ######"
+
+	Shapiro-Wilk normality test
+
+data:  pt_subset[pt_subset$Augmentation == "TRUE", ]$Duration
+W = 0.76525, p-value = 9.665e-06
+
+
+	Shapiro-Wilk normality test
+
+data:  pt_subset[pt_subset$Augmentation == "FALSE", ]$Duration
+W = 0.9337, p-value = 0.05533
+
+[1] "Assumption of normailty: FAILED"
+
+	Welch Two Sample t-test
+
+data:  pt_subset$Augmentation and pt_subset$Duration
+t = -13.635, df = 62.002, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -260.2772 -193.7184
+sample estimates:
+  mean of x   mean of y 
+  0.5079365 227.5057259 
+
+[1] "Bonferroni Adjusted p-Values"
+  Task_ID              p_value   Bonferroni
+1      2c 5.04753979140263e-06 4.038032e-05
+2       3  9.7089871958908e-17 7.767190e-16
+3      4a 2.47803588867131e-10 1.982429e-09
+4      4b 6.33313025534441e-11 5.066504e-10
+5     5/6 2.05987690980932e-19 1.647902e-18
+6       9  8.6549124466902e-07 6.923930e-06
+7      10 1.10761678327157e-13 8.860934e-13
+8      11 2.54075582842502e-20 2.032605e-19
+[1] "WILCOXIN TESTS"
+[1] "###### 2c ######"
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  Duration by Augmentation
+W = 79, p-value = 1.028e-08
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "###### 3 ######"
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  Duration by Augmentation
+W = 376, p-value = 0.1004
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "###### 4a ######"
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  Duration by Augmentation
+W = 988, p-value = 1.407e-11
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "###### 4b ######"
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  Duration by Augmentation
+W = 953, p-value = 3.473e-10
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "###### 5/6 ######"
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  Duration by Augmentation
+W = 793, p-value = 3.315e-07
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "###### 9 ######"
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  Duration by Augmentation
+W = 699, p-value = 0.005369
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "###### 10 ######"
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  Duration by Augmentation
+W = 850, p-value = 1.174e-06
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "###### 11 ######"
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  Duration by Augmentation
+W = 475, p-value = 0.7781
+alternative hypothesis: true location shift is not equal to 0
+

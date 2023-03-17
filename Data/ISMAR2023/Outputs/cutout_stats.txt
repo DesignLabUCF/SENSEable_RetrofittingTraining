@@ -1,0 +1,64 @@
+[1] "############################"
+[1] "Summary Statistics"
+[1] "############################"
+[1] "Cutout_Area_Inches - AR"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  70.98   80.98   88.04   87.45   92.35  124.83 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+  32.0000000    0.0000000    0.0000000   70.9750733  124.8303522   53.8552789 2798.4690961   88.0386518   87.4521593    1.9263691 
+CI.mean.0.95          var      std.dev     coef.var 
+   3.9288557  118.7487329   10.8971892    0.1246074 
+[1] "Cutout_Area_Inches - Printed"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  26.48   58.19   75.74   76.80   86.11  210.13 
+     nbr.val     nbr.null       nbr.na          min          max        range          sum       median         mean      SE.mean 
+  32.0000000    0.0000000    0.0000000   26.4759614  210.1328628  183.6569014 2457.6617292   75.7381799   76.8019290    5.7278660 
+CI.mean.0.95          var      std.dev     coef.var 
+  11.6820597 1049.8703562   32.4017030    0.4218866 
+[1] "############################"
+[1] "Cutout area t-test"
+[1] "############################"
+
+	Shapiro-Wilk normality test
+
+data:  log_data[log_data$Augmentation == TRUE, ]$Cutout_Area_Inches
+W = 0.89195, p-value = 0.003887
+
+
+	Shapiro-Wilk normality test
+
+data:  log_data[log_data$Augmentation == FALSE, ]$Cutout_Area_Inches
+W = 0.79158, p-value = 2.842e-05
+
+[1] "Assumption of normailty: FAILED"
+
+	Welch Two Sample t-test
+
+data:  log_data$Cutout_Area_Inches by log_data$Augmentation
+t = -1.7624, df = 37.924, p-value = 0.08607
+alternative hypothesis: true difference in means between group FALSE and group TRUE is not equal to 0
+95 percent confidence interval:
+ -22.884699   1.584239
+sample estimates:
+mean in group FALSE  mean in group TRUE 
+           76.80193            87.45216 
+
+[1] "############################"
+[1] "Cutout Area Wilcoxin test"
+[1] "############################"
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  log_data$Cutout_Area_Inches by log_data$Augmentation
+W = 284, p-value = 0.002253
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "############################"
+[1] "Levene Test for variance"
+[1] "############################"
+Levene's Test for Homogeneity of Variance (center = median)
+      Df F value  Pr(>F)  
+group  1  6.0017 0.01713 *
+      62                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
