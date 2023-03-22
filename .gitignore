@@ -1,5 +1,7 @@
 #### SENSEable Design Lab
 
+*.psd
+
 ## Subject data
 Data/Subjects/*
 !Data/Subjects/*.gitkeep
