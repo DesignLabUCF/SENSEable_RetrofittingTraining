@@ -666,6 +666,10 @@ usability_melted <- melt(select(log_data, c("Augmentation", "SUS_Score", "Mental
                          id = ("Augmentation"),
                          variable.name = "Metric",
                          value.name = "Score")
+# Re-order and refactor
+usability_melted <- usability_melted %>%
+  mutate(Metric = factor(Metric, levels=c("SUS_Score", "Mental_Demand_Score", "Physical_Demand_Score", "Temporal_Demand_Score", "Performance_Demand_Score", "Effort_Demand_Score")))
+levels(usability_melted$Metric) <- c("SUS", "TLX - Mental", "TLX - Physical", "TLX - Temporal", "TLX - Performance", "TLX - Effort")
 
 # Plot
 usability_plot <- ggplot(usability_melted, aes(x=Metric, y=Score, fill=Augmentation)) +
@@ -679,18 +683,18 @@ usability_plot <- ggplot(usability_melted, aes(x=Metric, y=Score, fill=Augmentat
   #             alpha=0.9) +
   scale_fill_manual(values=c(paper_color, ar_color),
                     labels=c("Paper", "AR")) +
-  scale_x_discrete(labels=rev(c("TLX - Effort",
-                            "TLX - Performance",
-                            "TLX - Temporal",
-                            "TLX - Physical",
-                            "TLX - Mental",
-                            "SUS"))) +
+  scale_x_discrete(limits = rev(levels(usability_melted$Metric))) +
+  #scale_x_discrete(labels=rev(c("TLX - Effort",
+  #                          "TLX - Performance",
+  #                          "TLX - Temporal",
+  #                          "TLX - Physical",
+  #                          "TLX - Mental",
+  #                          "SUS"))) +
   labs(
     title="Post-Questionnaire Metrics",
     x="Test",
     y="Normalized Score") +
   #theme_classic() +
-
   theme_bw() +
   coord_flip() + 
   theme(
@@ -713,7 +717,8 @@ usability_plot <- ggplot(usability_melted, aes(x=Metric, y=Score, fill=Augmentat
     panel.grid.major = element_line(color=plot_grid_color, size=plot_grid_size_major),
     panel.grid.minor = element_line(color=plot_grid_color, size=plot_grid_size_minor),
     panel.grid.major.y = element_blank()
-  )
+  )# + 
+  #scale_x_discrete(limits = rev(levels(usability_melted$Metric)))
 print(usability_plot)
 
 ##############################################
