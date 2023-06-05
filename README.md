@@ -3,6 +3,7 @@
 * Data directory guide
 * Link to guides used
 * Aesthetics
+* Add built release
 
 
 # Retrofitting_Training
