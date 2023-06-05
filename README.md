@@ -2,6 +2,7 @@
 * Installation instructions
 * Data directory guide
 * Link to guides used
+* Aesthetics
 
 
 # Retrofitting_Training
