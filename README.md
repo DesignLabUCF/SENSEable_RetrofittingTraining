@@ -1,3 +1,9 @@
+# TODOs
+* Installation instructions
+* Data directory guide
+* Link to guides used
+
+
 # Retrofitting_Training
 
 Microsoft HoloLens 2 \
