@@ -4,6 +4,7 @@
 * Link to guides used
 * Aesthetics
 * Add built release
+* Add questionnaire info
 
 
 # Retrofitting_Training
