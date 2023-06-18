@@ -6,6 +6,12 @@ Augmented Reality (AR) tools have shown significant potential in providing on-si
 
 For our full paper, see **TODO**.
 
+| [SENSEable Design Lab](https://sdl.eecs.ucf.edu/) | [UCF Modeling & Simulation](https://www.ist.ucf.edu/)  |
+|--------|--------|
+|    ![SENSEableDesign Lab](GitHubGraphics/SENSEable.png)    |    ![UCF](GitHubGraphics/UCF.png)    |
+|   |   |
+
+
 ## Toolset
 
 This project was designed in **Unity** for the **Microsoft HoloLens 2** and currently is only compatible with it.
@@ -34,4 +40,4 @@ Data processing is primarly done using **Python 3.8.10**. A description of the d
 
 ## Pre/Post-Questionnaire Surveys
 
-TODO
+Screen captures from the Qualtrics pre and post questionnaires that participants completed are found in *[StudyMaterials/QuestionnaireCaptures](StudyMaterials/QuestionnaireCaptures)*. Not included are the post-questionnaire *SUS*, *NASA TLX*, *VVIQ*, *VVSQ*, *OSVIQ*, and *Spatial Ability Test*.
