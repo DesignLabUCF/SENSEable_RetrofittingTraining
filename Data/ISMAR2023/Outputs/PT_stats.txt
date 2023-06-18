@@ -1,7 +1,17 @@
+
+> print("############################")
 [1] "############################"
+
+> print("Summary Statistics")
 [1] "Summary Statistics"
+
+> print("############################")
 [1] "############################"
+
+> print("======= 3 =======")
 [1] "======= 3 ======="
+
+> print_summary(progress_tracker_data[progress_tracker_data$Task_ID=="3",], "Duration")
 [1] "Duration - AR"
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   30.85   39.00   62.08   75.47   82.54  253.66 
@@ -16,7 +26,11 @@ CI.mean.0.95          var      std.dev     coef.var
   31.0000000    0.0000000    0.0000000   23.0799010  184.0820420  161.0021410 1727.0777100   52.3030200   55.7121842    5.6595274 
 CI.mean.0.95          var      std.dev     coef.var 
   11.5582970  992.9377795   31.5109152    0.5656019 
+
+> print("======= 4a =======")
 [1] "======= 4a ======="
+
+> print_summary(progress_tracker_data[progress_tracker_data$Task_ID=="4a",], "Duration")
 [1] "Duration - AR"
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   72.38  107.64  129.23  151.48  161.73  430.15 
@@ -31,7 +45,11 @@ CI.mean.0.95          var      std.dev     coef.var
 3.100000e+01 0.000000e+00 0.000000e+00 3.300641e+02 2.819863e+03 2.489799e+03 3.680532e+04 1.142341e+03 1.187268e+03 1.176897e+02 
 CI.mean.0.95          var      std.dev     coef.var 
 2.403545e+02 4.293770e+05 6.552686e+02 5.519127e-01 
+
+> print("======= 4b =======")
 [1] "======= 4b ======="
+
+> print_summary(progress_tracker_data[progress_tracker_data$Task_ID=="4b",], "Duration")
 [1] "Duration - AR"
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   36.90   64.84   82.22   93.61  117.19  257.03 
@@ -46,7 +64,11 @@ CI.mean.0.95          var      std.dev     coef.var
 3.100000e+01 0.000000e+00 0.000000e+00 9.152136e+01 1.102161e+03 1.010639e+03 1.213460e+04 2.930150e+02 3.914387e+02 4.806932e+01 
 CI.mean.0.95          var      std.dev     coef.var 
 9.817066e+01 7.163046e+04 2.676387e+02 6.837307e-01 
+
+> print("======= 5/6 =======")
 [1] "======= 5/6 ======="
+
+> print_summary(progress_tracker_data[progress_tracker_data$Task_ID=="5/6",], "Duration")
 [1] "Duration - AR"
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
    80.3   121.6   163.4   169.7   198.8   322.9       3 
@@ -61,7 +83,11 @@ CI.mean.0.95          var      std.dev     coef.var
 2.800000e+01 0.000000e+00 3.000000e+00 6.948136e+01 5.843206e+02 5.148393e+02 1.016061e+04 3.756843e+02 3.628791e+02 2.651679e+01 
 CI.mean.0.95          var      std.dev     coef.var 
 5.440795e+01 1.968792e+04 1.403136e+02 3.866678e-01 
+
+> print("======= 9 =======")
 [1] "======= 9 ======="
+
+> print_summary(progress_tracker_data[progress_tracker_data$Task_ID=="9",], "Duration")
 [1] "Duration - AR"
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
  0.6796  8.8230 14.7151 16.3645 21.9405 35.0979 
@@ -76,7 +102,11 @@ CI.mean.0.95          var      std.dev     coef.var
    31.000000     0.000000     0.000000     2.027803   269.086408   267.058605  1594.065274    24.299981    51.421460    11.402765 
 CI.mean.0.95          var      std.dev     coef.var 
    23.287553  4030.714419    63.487908     1.234658 
+
+> print("======= 10 =======")
 [1] "======= 10 ======="
+
+> print_summary(progress_tracker_data[progress_tracker_data$Task_ID=="10",], "Duration")
 [1] "Duration - AR"
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   51.57   74.93  130.12  155.04  191.99  461.94 
@@ -91,7 +121,11 @@ CI.mean.0.95          var      std.dev     coef.var
 3.100000e+01 0.000000e+00 0.000000e+00 7.728405e+01 1.374671e+03 1.297387e+03 1.256645e+04 3.605735e+02 4.053694e+02 4.712114e+01 
 CI.mean.0.95          var      std.dev     coef.var 
 9.623421e+01 6.883246e+04 2.623594e+02 6.472107e-01 
+
+> print("======= 11 =======")
 [1] "======= 11 ======="
+
+> print_summary(progress_tracker_data[progress_tracker_data$Task_ID=="11",], "Duration")
 [1] "Duration - AR"
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   58.69  151.79  217.66  230.86  264.55  813.82 
@@ -106,10 +140,26 @@ CI.mean.0.95          var      std.dev     coef.var
 3.100000e+01 0.000000e+00 0.000000e+00 3.492760e+01 5.620241e+02 5.270965e+02 6.945341e+03 2.032312e+02 2.240433e+02 2.347639e+01 
 CI.mean.0.95          var      std.dev     coef.var 
 4.794518e+01 1.708536e+04 1.307110e+02 5.834186e-01 
+
+> print("############################")
 [1] "############################"
+
+> print("Progress Tracker t-test's")
 [1] "Progress Tracker t-test's"
+
+> print("############################")
 [1] "############################"
+
+> # Create empty frame to multiple t test comparisons to
+> progress_tracker_t_tests <- data.frame(matrix(ncol=2, nrow=0)) 
+
+> colnames(progress_tracker_t_tests) <- c("Task_ID", "p_value")
+
+> # Statistical tests - t-tests
+> print("ALL TASKS - T-test")
 [1] "ALL TASKS - T-test"
+
+> print(t.test(progress_tracker_data$Augmentation, progress_tracker_data$Duration)) 
 
 	Welch Two Sample t-test
 
@@ -122,6 +172,15 @@ sample estimates:
  mean of x  mean of y 
   0.510978 221.442086 
 
+
+> pt_t_test <- function(pt_df, task_id)
++ {
++   print(paste0("###### ", task_id, " ######"))
++   pt_subset <- pt_df[pt_df$Task_ID==task_id,]
++   # Ass .... [TRUNCATED] 
+
+> # Run t-tests
+> progress_tracker_t_tests[nrow(progress_tracker_t_tests) + 1,] <- pt_t_test(progress_tracker_data, "2c")
 [1] "###### 2c ######"
 
 	Shapiro-Wilk normality test
@@ -148,6 +207,8 @@ sample estimates:
  mean of x  mean of y 
  0.5079365 17.6447383 
 
+
+> progress_tracker_t_tests[nrow(progress_tracker_t_tests) + 1,] <- pt_t_test(progress_tracker_data, "3")
 [1] "###### 3 ######"
 
 	Shapiro-Wilk normality test
@@ -174,6 +235,8 @@ sample estimates:
  mean of x  mean of y 
  0.5079365 65.7472098 
 
+
+> progress_tracker_t_tests[nrow(progress_tracker_t_tests) + 1,] <- pt_t_test(progress_tracker_data, "4a")
 [1] "###### 4a ######"
 
 	Shapiro-Wilk normality test
@@ -200,6 +263,8 @@ sample estimates:
   mean of x   mean of y 
   0.5079365 661.1543173 
 
+
+> progress_tracker_t_tests[nrow(progress_tracker_t_tests) + 1,] <- pt_t_test(progress_tracker_data, "4b")
 [1] "###### 4b ######"
 
 	Shapiro-Wilk normality test
@@ -226,6 +291,8 @@ sample estimates:
   mean of x   mean of y 
   0.5079365 240.1619739 
 
+
+> progress_tracker_t_tests[nrow(progress_tracker_t_tests) + 1,] <- pt_t_test(progress_tracker_data, "5/6")
 [1] "###### 5/6 ######"
 
 	Shapiro-Wilk normality test
@@ -252,6 +319,8 @@ sample estimates:
   mean of x   mean of y 
   0.5333333 247.4890745 
 
+
+> progress_tracker_t_tests[nrow(progress_tracker_t_tests) + 1,] <- pt_t_test(progress_tracker_data, "9")
 [1] "###### 9 ######"
 
 	Shapiro-Wilk normality test
@@ -278,6 +347,8 @@ sample estimates:
  mean of x  mean of y 
  0.5079365 33.6147730 
 
+
+> progress_tracker_t_tests[nrow(progress_tracker_t_tests) + 1,] <- pt_t_test(progress_tracker_data, "10")
 [1] "###### 10 ######"
 
 	Shapiro-Wilk normality test
@@ -304,6 +375,8 @@ sample estimates:
   mean of x   mean of y 
   0.5079365 278.2188724 
 
+
+> progress_tracker_t_tests[nrow(progress_tracker_t_tests) + 1,] <- pt_t_test(progress_tracker_data, "11")
 [1] "###### 11 ######"
 
 	Shapiro-Wilk normality test
@@ -330,7 +403,14 @@ sample estimates:
   mean of x   mean of y 
   0.5079365 227.5057259 
 
+
+> # Adjust for multiple comparisons using Bonferroni (https://rcompanion.org/rcompanion/f_01.html)
+> progress_tracker_t_tests$Bonferroni <- p.adjust(p .... [TRUNCATED] 
+
+> print("Bonferroni Adjusted p-Values")
 [1] "Bonferroni Adjusted p-Values"
+
+> print(progress_tracker_t_tests)
   Task_ID              p_value   Bonferroni
 1      2c 5.04753979140263e-06 4.038032e-05
 2       3  9.7089871958908e-17 7.767190e-16
@@ -340,68 +420,112 @@ sample estimates:
 6       9  8.6549124466902e-07 6.923930e-06
 7      10 1.10761678327157e-13 8.860934e-13
 8      11 2.54075582842502e-20 2.032605e-19
+
+> # Statistical tests - Wilcoxin
+> pt_wilcoxin <- function(pt_df, task_id)
++ {
++   print(paste0("###### ", task_id, " ######"))
++   pt_subset <- pt_df .... [TRUNCATED] 
+
+> # Run wilcoxin tests
+> print("WILCOXIN TESTS")
 [1] "WILCOXIN TESTS"
+
+> pt_wilcoxin(progress_tracker_data, "2c")
 [1] "###### 2c ######"
 
 	Wilcoxon rank sum test with continuity correction
 
-data:  Duration by Augmentation
+data:  pt_subset$Duration by pt_subset$Augmentation
 W = 79, p-value = 1.028e-08
 alternative hypothesis: true location shift is not equal to 0
 
+     r 
+-0.722 
+
+> pt_wilcoxin(progress_tracker_data, "3")
 [1] "###### 3 ######"
 
 	Wilcoxon rank sum test with continuity correction
 
-data:  Duration by Augmentation
+data:  pt_subset$Duration by pt_subset$Augmentation
 W = 376, p-value = 0.1004
 alternative hypothesis: true location shift is not equal to 0
 
+     r 
+-0.208 
+
+> pt_wilcoxin(progress_tracker_data, "4a")
 [1] "###### 4a ######"
 
 	Wilcoxon rank sum test with continuity correction
 
-data:  Duration by Augmentation
+data:  pt_subset$Duration by pt_subset$Augmentation
 W = 988, p-value = 1.407e-11
 alternative hypothesis: true location shift is not equal to 0
 
+    r 
+0.852 
+
+> pt_wilcoxin(progress_tracker_data, "4b")
 [1] "###### 4b ######"
 
 	Wilcoxon rank sum test with continuity correction
 
-data:  Duration by Augmentation
+data:  pt_subset$Duration by pt_subset$Augmentation
 W = 953, p-value = 3.473e-10
 alternative hypothesis: true location shift is not equal to 0
 
+    r 
+0.791 
+
+> pt_wilcoxin(progress_tracker_data, "5/6")
 [1] "###### 5/6 ######"
 
 	Wilcoxon rank sum test with continuity correction
 
-data:  Duration by Augmentation
+data:  pt_subset$Duration by pt_subset$Augmentation
 W = 793, p-value = 3.315e-07
 alternative hypothesis: true location shift is not equal to 0
 
+    r 
+0.644 
+
+> pt_wilcoxin(progress_tracker_data, "9")
 [1] "###### 9 ######"
 
 	Wilcoxon rank sum test with continuity correction
 
-data:  Duration by Augmentation
+data:  pt_subset$Duration by pt_subset$Augmentation
 W = 699, p-value = 0.005369
 alternative hypothesis: true location shift is not equal to 0
 
+    r 
+0.352 
+
+> pt_wilcoxin(progress_tracker_data, "10")
 [1] "###### 10 ######"
 
 	Wilcoxon rank sum test with continuity correction
 
-data:  Duration by Augmentation
+data:  pt_subset$Duration by pt_subset$Augmentation
 W = 850, p-value = 1.174e-06
 alternative hypothesis: true location shift is not equal to 0
 
+    r 
+0.614 
+
+> pt_wilcoxin(progress_tracker_data, "11")
 [1] "###### 11 ######"
 
 	Wilcoxon rank sum test with continuity correction
 
-data:  Duration by Augmentation
+data:  pt_subset$Duration by pt_subset$Augmentation
 W = 475, p-value = 0.7781
 alternative hypothesis: true location shift is not equal to 0
 
+      r 
+-0.0364 
+
+> ###### STOP WRITE FILE ###### 
+> sink()

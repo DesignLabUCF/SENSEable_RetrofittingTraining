@@ -5,6 +5,7 @@ library(dplyr)
 library(pastecs) # Statistical summary table
 library(car) # Levene Test
 #library(forcats)
+library(rcompanion)
 
 ar_color <- "#1A85FF"
 #paper_color <- "#D41159"
@@ -33,6 +34,12 @@ print_summary <- function(df, metric){
   print(paste(metric, "Printed", sep=" - "))
   print(summary(paper[[metric]]))
   print(stat.desc(paper[[metric]]))
+}
+
+print_general_stats <- function(df, metric){
+  print(paste(df, metric, sep=" - "))
+  #print(summary(df[[metric]]))
+  print(stat.desc(as.numeric(df[[metric]])))
 }
 
 ##############################################
@@ -157,13 +164,14 @@ pt_wilcoxin <- function(pt_df, task_id)
 {
   print(paste0("###### ", task_id, " ######"))
   pt_subset <- pt_df[pt_df$Task_ID==task_id,]
-  wilcoxin <- wilcox.test(Duration ~ Augmentation,
-                          data = pt_subset,
+  wilcoxin <- wilcox.test(pt_subset$Duration ~ pt_subset$Augmentation,
+                          #data = pt_subset,
                           paired = FALSE,
                           alternative = "two.sided",
                           conf.level = 0.95,
                           exact = FALSE)
   print(wilcoxin)
+  print(wilcoxonR(x = pt_subset$Duration, g = pt_subset$Augmentation))
 }
 
 # Run wilcoxin tests
@@ -351,6 +359,7 @@ wilcoxin <- wilcox.test(log_data$Cutout_Area_Inches ~ log_data$Augmentation,
                         #conf.level = 0.95,
                         exact = FALSE)
 print(wilcoxin)
+print(wilcoxonR(x = log_data$Cutout_Area_Inches, g = log_data$Augmentation))
 
 print("############################")
 print("Levene Test for variance")
@@ -499,6 +508,8 @@ qualtrics_data <- qualtrics_data[-1:-2,] # Drop junk data
 colnames(qualtrics_data)[colnames(qualtrics_data) == "X1"] ="Participant.ID"
 colnames(qualtrics_data)[colnames(qualtrics_data) == "X4"] ="Augmentation"  
 colnames(qualtrics_data)[colnames(qualtrics_data) == "X5"] ="Condition"
+colnames(qualtrics_data)[colnames(qualtrics_data) == "X2.5"] ="Construction.Familiarity"
+colnames(qualtrics_data)[colnames(qualtrics_data) == "X4.4"] ="Construction.Experience"
 
 qualtrics_data <- qualtrics_data[!qualtrics_data$Participant.ID %in% subjects_to_remove, ] # Remove unused subjects
 
@@ -628,6 +639,7 @@ usability_wilcoxin <- function(usability_df, metric)
                           conf.level = 0.95,
                           exact = FALSE)
   print(wilcoxin)
+  print(wilcoxonR(x = usability_df[[metric]], g = usability_df$Augmentation))
 }
 
 print("############################")
@@ -657,6 +669,34 @@ print(sus_cor)
 
 ###### STOP WRITE FILE ###### 
 sink()
+
+print("############################")
+print("Prev. Construction Experience and Condition")
+print("############################")
+wilcoxin <- wilcox.test(as.numeric(qualtrics_data$Construction.Experience) ~ qualtrics_data$Augmentation,
+                        paired = FALSE,
+                        alternative = "two.sided",
+                        conf.level = 0.95,
+                        exact = FALSE)
+print(wilcoxin)
+print(wilcoxonR(x = as.numeric(qualtrics_data$Construction.Experience), g = qualtrics_data$Augmentation))
+
+print("############################")
+print("General pre-questionnaire stats")
+print("############################")
+
+# X1.3 = Age
+# X4.2 = Physical activity (1 - 10)
+# X3.4 = Gaming freq (1 - 10)
+# X1.4 = VR frq (1 - 7)
+# X2.4 = AR frq (1 - 7)
+# X4.3 = 3D modeling (1 - 7)
+# X5.2 = Computer use freq (1 - 7)
+# Construction.Experience
+
+print_general_stats(subset(qualtrics_data, Augmentation=="AR"), "X1.3") # AGE
+print_general_stats(subset(qualtrics_data, Augmentation=="Paper"), "X1.3") # AGE
+print_general_stats(subset(qualtrics_data, Augmentation=="AR"), "X4.2") # TODO
 
 ##############################################
 ### Plot - SUS and TLX

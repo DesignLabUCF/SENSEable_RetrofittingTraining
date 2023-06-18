@@ -1,6 +1,14 @@
+
+> print("############################")
 [1] "############################"
+
+> print("Summary Statistics")
 [1] "Summary Statistics"
+
+> print("############################")
 [1] "############################"
+
+> print_summary(log_data, "SUS_Score")
 [1] "SUS_Score - AR"
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   42.50   66.88   77.50   75.39   85.62  100.00 
@@ -15,6 +23,8 @@ CI.mean.0.95          var      std.dev     coef.var
   32.0000000    0.0000000    0.0000000   27.5000000  100.0000000   72.5000000 1715.0000000   53.7500000   53.5937500    3.4046959 
 CI.mean.0.95          var      std.dev     coef.var 
    6.9439231  370.9425403   19.2598686    0.3593678 
+
+> print_summary(log_data, "Mental_Demand_Score")
 [1] "Mental_Demand_Score - AR"
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
    5.00   20.00   30.00   38.59   65.00   80.00 
@@ -29,6 +39,8 @@ CI.mean.0.95          var      std.dev     coef.var
   32.0000000    0.0000000    0.0000000   15.0000000  100.0000000   85.0000000 1850.0000000   60.0000000   57.8125000    3.6817547 
 CI.mean.0.95          var      std.dev     coef.var 
    7.5089882  433.7701613   20.8271496    0.3602534 
+
+> print_summary(log_data, "Physical_Demand_Score")
 [1] "Physical_Demand_Score - AR"
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
    0.00   13.75   20.00   22.66   26.25  100.00 
@@ -43,6 +55,8 @@ CI.mean.0.95          var      std.dev     coef.var
   32.0000000    0.0000000    0.0000000    5.0000000   75.0000000   70.0000000 1105.0000000   30.0000000   34.5312500    3.5523119 
 CI.mean.0.95          var      std.dev     coef.var 
    7.2449880  403.8054435   20.0949109    0.5819341 
+
+> print_summary(log_data, "Temporal_Demand_Score")
 [1] "Temporal_Demand_Score - AR"
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
    0.00    7.50   15.00   17.97   27.50   45.00 
@@ -57,6 +71,8 @@ CI.mean.0.95          var      std.dev     coef.var
   32.0000000    4.0000000    0.0000000    0.0000000   70.0000000   70.0000000  850.0000000   25.0000000   26.5625000    3.1385794 
 CI.mean.0.95          var      std.dev     coef.var 
    6.4011748  315.2217742   17.7544860    0.6684042 
+
+> print_summary(log_data, "Performance_Demand_Score")
 [1] "Performance_Demand_Score - AR"
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   30.00   65.00   75.00   72.97   85.00  100.00 
@@ -71,6 +87,8 @@ CI.mean.0.95          var      std.dev     coef.var
    32.000000     0.000000     0.000000    20.000000   100.000000    80.000000  2000.000000    65.000000    62.500000     3.382533 
 CI.mean.0.95          var      std.dev     coef.var 
     6.898722   366.129032    19.134498     0.306152 
+
+> print_summary(log_data, "Effort_Demand_Score")
 [1] "Effort_Demand_Score - AR"
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   10.00   20.00   37.50   40.94   56.25   90.00 
@@ -85,9 +103,28 @@ CI.mean.0.95          var      std.dev     coef.var
   32.0000000    0.0000000    0.0000000   35.0000000  100.0000000   65.0000000 2010.0000000   60.0000000   62.8125000    2.4587063 
 CI.mean.0.95          var      std.dev     coef.var 
    5.0145647  193.4475806   13.9085434    0.2214295 
+
+> print("############################")
 [1] "############################"
+
+> print("Usability t-test's")
 [1] "Usability t-test's"
+
+> print("############################")
 [1] "############################"
+
+> # Create empty frame to multiple t test comparisons to
+> usability_t_tests <- data.frame(matrix(ncol=2, nrow=0)) 
+
+> colnames(usability_t_tests) <- c("Metric", "p_value")
+
+> usability_t_test <- function(usability_df, metric)
++ {
++   print(paste0("###### ", metric, " ######"))
++   usability_subset <- usability_df[,c("Augm ..." ... [TRUNCATED] 
+
+> # Run t-tests
+> usability_t_tests[nrow(usability_t_tests) + 1,] <- usability_t_test(log_data, "SUS_Score")
 [1] "###### SUS_Score ######"
 
 	Shapiro-Wilk normality test
@@ -114,6 +151,8 @@ sample estimates:
 mean in group FALSE  mean in group TRUE 
            53.59375            75.39062 
 
+
+> usability_t_tests[nrow(usability_t_tests) + 1,] <- usability_t_test(log_data, "Mental_Demand_Score")
 [1] "###### Mental_Demand_Score ######"
 
 	Shapiro-Wilk normality test
@@ -140,6 +179,8 @@ sample estimates:
 mean in group FALSE  mean in group TRUE 
            57.81250            38.59375 
 
+
+> usability_t_tests[nrow(usability_t_tests) + 1,] <- usability_t_test(log_data, "Physical_Demand_Score")
 [1] "###### Physical_Demand_Score ######"
 
 	Shapiro-Wilk normality test
@@ -166,6 +207,8 @@ sample estimates:
 mean in group FALSE  mean in group TRUE 
            34.53125            22.65625 
 
+
+> usability_t_tests[nrow(usability_t_tests) + 1,] <- usability_t_test(log_data, "Temporal_Demand_Score")
 [1] "###### Temporal_Demand_Score ######"
 
 	Shapiro-Wilk normality test
@@ -192,6 +235,8 @@ sample estimates:
 mean in group FALSE  mean in group TRUE 
            26.56250            17.96875 
 
+
+> usability_t_tests[nrow(usability_t_tests) + 1,] <- usability_t_test(log_data, "Performance_Demand_Score")
 [1] "###### Performance_Demand_Score ######"
 
 	Shapiro-Wilk normality test
@@ -218,6 +263,8 @@ sample estimates:
 mean in group FALSE  mean in group TRUE 
            62.50000            72.96875 
 
+
+> usability_t_tests[nrow(usability_t_tests) + 1,] <- usability_t_test(log_data, "Effort_Demand_Score")
 [1] "###### Effort_Demand_Score ######"
 
 	Shapiro-Wilk normality test
@@ -244,7 +291,14 @@ sample estimates:
 mean in group FALSE  mean in group TRUE 
             62.8125             40.9375 
 
+
+> # Adjust for multiple comparisons using Bonferroni (https://rcompanion.org/rcompanion/f_01.html)
+> usability_t_tests$Bonferroni <- p.adjust(usabilit .... [TRUNCATED] 
+
+> print("Bonferroni Adjusted p-Values")
 [1] "Bonferroni Adjusted p-Values"
+
+> print(usability_t_tests)
                     Metric              p_value   Bonferroni
 1                SUS_Score  3.7281118720725e-06 2.236867e-05
 2      Mental_Demand_Score  0.00135779991069081 8.146799e-03
@@ -252,9 +306,23 @@ mean in group FALSE  mean in group TRUE
 4    Temporal_Demand_Score   0.0422326555848182 2.533959e-01
 5 Performance_Demand_Score   0.0253382904823877 1.520297e-01
 6      Effort_Demand_Score 2.36757457898145e-05 1.420545e-04
+
+> # Statistical tests - Wilcoxin
+> usability_wilcoxin <- function(usability_df, metric)
++ {
++   print(paste0("###### ", metric, " ######"))
++   x <- u .... [TRUNCATED] 
+
+> print("############################")
 [1] "############################"
+
+> print("Usability Wilcoxin tests")
 [1] "Usability Wilcoxin tests"
+
+> print("############################")
 [1] "############################"
+
+> usability_wilcoxin(log_data, "SUS_Score")
 [1] "###### SUS_Score ######"
  [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
 [23]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
@@ -269,12 +337,16 @@ data:  y by x
 W = 188.5, p-value = 1.399e-05
 alternative hypothesis: true location shift is not equal to 0
 
+     r 
+-0.544 
+
+> usability_wilcoxin(log_data, "Mental_Demand_Score")
 [1] "###### Mental_Demand_Score ######"
  [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
 [23]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 [45] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
- [1]  40  20  80  70  75  15   5  20  10  25  10  25  55  55  30  70  20  65  10  60  75  75  30  35  20  10  25  15  35  65  70  20  55
-[34]  60  15  40  45  80  20  55  80  60  65  60  75  35  80  35  55  15  65  70  60  65 100  70  50  65  70  20  65  60  75  85
+ [1]  40  20  80  70  75  15   5  20  10  25  10  25  55  55  30  70  20  65  10  60  75  75  30  35  20  10  25  15  35  65  70  20  55  60
+[35]  15  40  45  80  20  55  80  60  65  60  75  35  80  35  55  15  65  70  60  65 100  70  50  65  70  20  65  60  75  85
 
 	Wilcoxon rank sum test with continuity correction
 
@@ -282,12 +354,16 @@ data:  y by x
 W = 719, p-value = 0.005415
 alternative hypothesis: true location shift is not equal to 0
 
+    r 
+0.349 
+
+> usability_wilcoxin(log_data, "Physical_Demand_Score")
 [1] "###### Physical_Demand_Score ######"
  [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
 [23]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 [45] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
- [1]  25  35  25  65  25  15   0  20   5  25   0   0  25  40  35  15  20  20   0  20  25  35   0  25  20  30  35   0  15 100  10  15  35
-[34]  20  30  35  10  75  70   5  30  15  25  55  55  20  65   5  60  60   5  55  35  30  25  20  35  30  45  25  40  60  15  15
+ [1]  25  35  25  65  25  15   0  20   5  25   0   0  25  40  35  15  20  20   0  20  25  35   0  25  20  30  35   0  15 100  10  15  35  20
+[35]  30  35  10  75  70   5  30  15  25  55  55  20  65   5  60  60   5  55  35  30  25  20  35  30  45  25  40  60  15  15
 
 	Wilcoxon rank sum test with continuity correction
 
@@ -295,12 +371,16 @@ data:  y by x
 W = 700, p-value = 0.01137
 alternative hypothesis: true location shift is not equal to 0
 
+    r 
+0.318 
+
+> usability_wilcoxin(log_data, "Temporal_Demand_Score")
 [1] "###### Temporal_Demand_Score ######"
  [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
 [23]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 [45] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
- [1] 15 45 45 45 10 20  0  0 15 15  0  0 20 35 40 40 10 20 20 25  0 20  0 35 10  0 15  0 15 10 40 10 20 20 25 50 15 65  0  0 25 10 25 10
-[45] 45 25 30 20 30  0 35 70 30 35 55 20 10  0 45 40 20 25 25 25
+ [1] 15 45 45 45 10 20  0  0 15 15  0  0 20 35 40 40 10 20 20 25  0 20  0 35 10  0 15  0 15 10 40 10 20 20 25 50 15 65  0  0 25 10 25 10 45
+[46] 25 30 20 30  0 35 70 30 35 55 20 10  0 45 40 20 25 25 25
 
 	Wilcoxon rank sum test with continuity correction
 
@@ -308,12 +388,16 @@ data:  y by x
 W = 668.5, p-value = 0.03472
 alternative hypothesis: true location shift is not equal to 0
 
+    r 
+0.265 
+
+> usability_wilcoxin(log_data, "Performance_Demand_Score")
 [1] "###### Performance_Demand_Score ######"
  [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
 [23]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 [45] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
- [1]  85  65  30  45  85  85  75  75  80  75  90  70  70  80  80  65  70  50  45 100  65  75 100  55  70 100  70  45  65  90  95  85  70
-[34]  55  65  60  85  50 100  80  85  45  80  65  65  50  60  65 100  60  65  55  75  60  20  70  50  70  20  55  65  75  60  20
+ [1]  85  65  30  45  85  85  75  75  80  75  90  70  70  80  80  65  70  50  45 100  65  75 100  55  70 100  70  45  65  90  95  85  70  55
+[35]  65  60  85  50 100  80  85  45  80  65  65  50  60  65 100  60  65  55  75  60  20  70  50  70  20  55  65  75  60  20
 
 	Wilcoxon rank sum test with continuity correction
 
@@ -321,12 +405,16 @@ data:  y by x
 W = 332, p-value = 0.01545
 alternative hypothesis: true location shift is not equal to 0
 
+     r 
+-0.304 
+
+> usability_wilcoxin(log_data, "Effort_Demand_Score")
 [1] "###### Effort_Demand_Score ######"
  [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
 [23]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 [45] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
- [1]  40  45  55  70  65  25  20  20  10  20  10  85  55  55  55  40  30  75  30  20  50  90  35  25  30  15  25  15  65  60  60  15  50
-[34]  70  55  60  45  80  65  65  70  60  35  60  80  40  70  35  55  60  60  80  60  70 100  80  65  55  60  60  80  60  70  55
+ [1]  40  45  55  70  65  25  20  20  10  20  10  85  55  55  55  40  30  75  30  20  50  90  35  25  30  15  25  15  65  60  60  15  50  70
+[35]  55  60  45  80  65  65  70  60  35  60  80  40  70  35  55  60  60  80  60  70 100  80  65  55  60  60  80  60  70  55
 
 	Wilcoxon rank sum test with continuity correction
 
@@ -334,9 +422,23 @@ data:  y by x
 W = 804.5, p-value = 8.17e-05
 alternative hypothesis: true location shift is not equal to 0
 
+    r 
+0.494 
+
+> print("############################")
 [1] "############################"
+
+> print("Prev. AR/VR experience and SUS")
 [1] "Prev. AR/VR experience and SUS"
+
+> print("############################")
 [1] "############################"
+
+> # 2.4 <- Prev. AR Experience (1 - 7)
+> # 5.1 <- Prev AR or VR Experience (1 - 10)
+> cor_col <-"X5.1"
+
+> print(shapiro.test(as.integer(qualtrics_data[qualtrics_data$Augmentation=="AR",][[cor_col]])))
 
 	Shapiro-Wilk normality test
 
@@ -344,11 +446,18 @@ data:  as.integer(qualtrics_data[qualtrics_data$Augmentation == "AR", ][[cor_col
 W = 0.88016, p-value = 0.00201
 
 
+> print(shapiro.test(log_data[log_data$Augmentation==TRUE,]$SUS_Score))
+
 	Shapiro-Wilk normality test
 
 data:  log_data[log_data$Augmentation == TRUE, ]$SUS_Score
 W = 0.97314, p-value = 0.5901
 
+
+> # Cant use Pearson beacuse not normally distributed, so use Spearman (https://www.geeksforgeeks.org/spearman-correlation-testing-in-r-programming/)
+ .... [TRUNCATED] 
+
+> print(sus_cor)
 
 	Spearman's rank correlation rho
 
@@ -359,3 +468,32 @@ sample estimates:
       rho 
 0.3463781 
 
+
+> print("############################")
+[1] "############################"
+
+> print("Prev. Construction Experience and Condition")
+[1] "Prev. Construction Experience and Condition"
+
+> print("############################")
+[1] "############################"
+
+> wilcoxin <- wilcox.test(as.numeric(qualtrics_data$Construction.Experience) ~ qualtrics_data$Augmentation,
++                         paired = FALSE,
+ .... [TRUNCATED] 
+
+> print(wilcoxin)
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  as.numeric(qualtrics_data$Construction.Experience) by qualtrics_data$Augmentation
+W = 374, p-value = 0.0522
+alternative hypothesis: true location shift is not equal to 0
+
+
+> print(wilcoxonR(x = as.numeric(qualtrics_data$Construction.Experience), g = qualtrics_data$Augmentation))
+     r 
+-0.244 
+
+> ###### STOP WRITE FILE ###### 
+> sink()

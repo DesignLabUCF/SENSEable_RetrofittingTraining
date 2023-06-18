@@ -1,6 +1,14 @@
+
+> print("############################")
 [1] "############################"
+
+> print("Summary Statistics")
 [1] "Summary Statistics"
+
+> print("############################")
 [1] "############################"
+
+> print_summary(log_data, "Cutout_Area_Inches")
 [1] "Cutout_Area_Inches - AR"
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   70.98   80.98   88.04   87.45   92.35  124.83 
@@ -15,9 +23,20 @@ CI.mean.0.95          var      std.dev     coef.var
   32.0000000    0.0000000    0.0000000   26.4759614  210.1328628  183.6569014 2457.6617292   75.7381799   76.8019290    5.7278660 
 CI.mean.0.95          var      std.dev     coef.var 
   11.6820597 1049.8703562   32.4017030    0.4218866 
+
+> print("############################")
 [1] "############################"
+
+> print("Cutout area t-test")
 [1] "Cutout area t-test"
+
+> print("############################")
 [1] "############################"
+
+> # Assumptions
+> ar_shapiro <- shapiro.test(log_data[log_data$Augmentation==TRUE,]$Cutout_Area_Inches)
+
+> print(ar_shapiro)
 
 	Shapiro-Wilk normality test
 
@@ -25,12 +44,31 @@ data:  log_data[log_data$Augmentation == TRUE, ]$Cutout_Area_Inches
 W = 0.89195, p-value = 0.003887
 
 
+> paper_shapiro <- shapiro.test(log_data[log_data$Augmentation==FALSE,]$Cutout_Area_Inches)
+
+> print(paper_shapiro)
+
 	Shapiro-Wilk normality test
 
 data:  log_data[log_data$Augmentation == FALSE, ]$Cutout_Area_Inches
 W = 0.79158, p-value = 2.842e-05
 
+
+> if(ar_shapiro$p.value < 0.05 | paper_shapiro$p.value < 0.05)
++ {
++   print("Assumption of normailty: FAILED")
++ } else
++ {
++   print("Assumption of  ..." ... [TRUNCATED] 
 [1] "Assumption of normailty: FAILED"
+
+> # T-test
+> t <- t.test(log_data$Cutout_Area_Inches~log_data$Augmentation,
++             paired=FALSE,
++             alternative="two.sided",
++       .... [TRUNCATED] 
+
+> print(t) 
 
 	Welch Two Sample t-test
 
@@ -43,9 +81,21 @@ sample estimates:
 mean in group FALSE  mean in group TRUE 
            76.80193            87.45216 
 
+
+> print("############################")
 [1] "############################"
+
+> print("Cutout Area Wilcoxin test")
 [1] "Cutout Area Wilcoxin test"
+
+> print("############################")
 [1] "############################"
+
+> wilcoxin <- wilcox.test(log_data$Cutout_Area_Inches ~ log_data$Augmentation,
++                         paired = FALSE,
++                         alt .... [TRUNCATED] 
+
+> print(wilcoxin)
 
 	Wilcoxon rank sum test with continuity correction
 
@@ -53,12 +103,25 @@ data:  log_data$Cutout_Area_Inches by log_data$Augmentation
 W = 284, p-value = 0.002253
 alternative hypothesis: true location shift is not equal to 0
 
+
+> print("############################")
 [1] "############################"
+
+> print("Levene Test for variance")
 [1] "Levene Test for variance"
+
+> print("############################")
 [1] "############################"
+
+> # Can't use F-test since data is not normally distributed.
+> print(leveneTest(data=log_data,
++                  Cutout_Area_Inches ~ Augmentation))
 Levene's Test for Homogeneity of Variance (center = median)
       Df F value  Pr(>F)  
 group  1  6.0017 0.01713 *
       62                  
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+> ###### STOP WRITE FILE ###### 
+> sink()
